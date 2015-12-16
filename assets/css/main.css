@@ -2079,7 +2079,7 @@
 			}
 
 		.image.avatar {
-			border-radius: 100%;
+			/*border-radius: 100%;*/
 		}
 
 			.image.avatar:before {
@@ -2087,7 +2087,7 @@
 			}
 
 			.image.avatar img {
-				border-radius: 100%;
+				/*border-radius: 100%;*/
 				width: 100%;
 			}
 
@@ -2464,11 +2464,11 @@
 
 	#header {
 		background-color: #1f1815;
-		background-attachment: scroll,								fixed;
-		background-image: url("images/overlay.png"), url("../../images/bg.jpg");
-		background-position: top left,							top left;
-		background-repeat: repeat,								no-repeat;
-		background-size: auto,								auto 100%;
+		background-attachment: scroll;
+		background-image: url("../../images/bg.jpg");
+		background-position: top left;
+		background-repeat: no-repeat;
+		background-size: auto;
 		color: rgba(255, 255, 255, 0.5);
 		height: 100%;
 		left: 0;
@@ -2481,22 +2481,26 @@
 
 		#header strong, #header b {
 			color: #ffffff;
+			text-shadow: 0px 4px 3px rgba(0,0,0,0.4), 0px 8px 13px rgba(0,0,0,0.1), 0px 18px 23px rgba(0,0,0,0.1), 0px 15px 5px rgba(0,0,0,0.1), 10px 20px 5px rgba(0,0,0,0.05), -10px 20px 5px rgba(0,0,0,0.05);
 		}
 
 		#header h2, #header h3, #header h4, #header h5, #header h6 {
 			color: #ffffff;
+
 		}
 
 		#header h1 {
-			color: rgba(255, 255, 255, 0.5);
+			color: rgba(0,0,0,.3);
 			font-size: 1.35em;
 			line-height: 1.75em;
 			margin: 0;
+			
 		}
 
 		#header .image.avatar {
 			margin: 0 0 1em 0;
 			width: 6.25em;
+
 		}
 
 /* Footer */
