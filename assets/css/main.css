@@ -2466,9 +2466,9 @@
 		background-color: #1f1815;
 		background-attachment: scroll,								fixed;
 		background-image: url("images/overlay.png"), url("../../images/bg.jpg");
-		background-position: bottom left,							bottom left;
+		background-position: bottom left,							top center;
 		background-repeat: repeat,								no-repeat;
-		background-size: auto,								auto 100%;
+		background-size: auto,								auto;
 		color: rgba(255, 255, 255, 0.5);
 		height: 100%;
 		left: 0;
