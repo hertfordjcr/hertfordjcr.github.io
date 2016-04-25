@@ -2480,8 +2480,7 @@
 	}
 
 		#header strong, #header b {
-			color: #ffffff;
-			text-shadow: 0px 4px 3px rgba(0,0,0,0.4), 0px 8px 13px rgba(0,0,0,0.1), 0px 18px 23px rgba(0,0,0,0.1), 0px 15px 5px rgba(0,0,0,0.1), 10px 20px 5px rgba(0,0,0,0.05), -10px 20px 5px rgba(0,0,0,0.05);
+			color: #000;
 		}
 
 		#header h2, #header h3, #header h4, #header h5, #header h6 {
@@ -2490,7 +2489,7 @@
 		}
 
 		#header h1 {
-			color: rgba(0,0,0,.3);
+			color: rgba(0,0,0,.5);
 			font-size: 1.35em;
 			line-height: 1.75em;
 			margin: 0;
