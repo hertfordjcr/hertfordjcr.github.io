@@ -1,0 +1,111 @@
+#searchfield {
+  width: 100%;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  font-size: 1.1em;
+  font-family: inherit;
+  font-weight: inherit;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  padding: 10px 30px;
+  box-sizing: border-box;
+  border-radius: 30px;
+  z-index: 1000;
+  margin-top: 40px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+#searchfield:focus,
+#searchfield:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgb(121, 166, 210);
+}
+
+#messagetoall {
+  font-size: 1.5em;
+  border: 1px solid black;
+  background-color: darkred;
+  padding: 10px;
+  color: white;
+  text-align: center;
+}
+
+#noresults {
+  display: none;
+  text-align: center;
+  margin: 50px auto;
+  font-size: 1.5em;
+}
+
+section {
+  margin: 40px auto;
+}
+
+section h3 {
+  border-bottom: 1px solid #999;
+  color: #777;
+  padding-left: 25px;
+  font-size: 1.5em;
+}
+
+.item {
+  margin: 20px 0;
+  padding: 15px 25px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: rgba(200, 200, 200, 0.6);
+  border: 2px solid rgba(0, 0, 0, 0);
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  overflow: auto;
+}
+
+.item:hover {
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.item h4 {
+  font-weight: 300;
+  font-size: 1.2em;
+}
+
+.itemgrow {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  overflow: auto;
+  cursor: auto;
+  display: none;
+}
+
+.itemfocus {
+  background-color: rgba(255, 255, 255, 0.7);
+  /* must override hover rule */
+  border: 2px solid rgb(121, 166, 210) !important;
+}
+
+.itemgrow > form {
+  margin: 0 auto;
+  font-size: 1.1em;
+}
+
+.itemgrownote {
+  display: block;
+  padding-bottom: 10px;
+}
+
+.itemgrow h5 {
+  font-size: 1.4em;
+  font-weight: 400;
+  border-bottom: 1px solid black;
+  display: block;
+  margin: 10px 0;
+}
+
+.itemgrow li {
+  padding: 4px 0;
+  padding-left: -1em;
+  text-indent: 1em;
+}

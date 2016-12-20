@@ -1,0 +1,49 @@
+/* images should be 680x680 for retina
+and should be 340x340 for norm */
+
+main {
+  text-align: center;
+  margin: 100px 0;
+}
+
+.member {
+  display: inline-block;
+  width: 340px;
+  box-sizing: border-box;
+  padding: 0px;
+  font-size: 1em;
+  /* margin difference cancels out whitespace*/
+  margin: 13px 11px;
+  padding-bottom: 20px;
+}
+
+.membername {
+  padding-top: 10px;
+  font-size: 1.8em;
+}
+
+.memberrole {
+  padding-top: 3px;
+  font-size: 1.6em;
+}
+
+.memail {
+  font-size: 1.1em;
+  padding-top: 3px;
+}
+
+.member img {
+  width: 100%;
+}
+
+#apeman {
+  background: -webkit-linear-gradient(left, lightgreen, olive, darkgoldenrod);
+  background: linear-gradient(to right, lightgreen, olive, darkgoldenrod);
+  text-shadow: 0 0 5px white;
+}
+
+#currentyear{
+  background: -webkit-linear-gradient(left, crimson,orange,yellow,lightgreen,deepskyblue,mediumslateblue,violet);
+  background: linear-gradient(to right, crimson,orange,yellow,lightgreen,deepskyblue,mediumslateblue,violet);
+  text-shadow: 0 0 5px white;
+}

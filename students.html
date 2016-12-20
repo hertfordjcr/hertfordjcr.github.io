@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hertford JCR</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/students.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.4.1/velocity.min.js"></script>
+  <script src="js/msearch.js"></script>
+  <script src="js/memail.js"></script>
+  <script>
+    function ready() {
+      msearchReady();
+      memailReady();
+    }
+  </script>
+</head>
+
+<body onload="ready()">
+  
+    <header>
+      <h1>JCR Area</h1>
+    </header>
+  <div class="container">
+    
+    <div id="messagetoall">
+      Though the forms do, in theory, work, please don't send any information through with them yet, as everything will arrive in Mikey's inbox and I have no desire to take welfare orders from you now, or ever.
+    </div>
+    <input type="text" id="searchfield" placeholder="search..." autocomplete="off" oninput="doSearch()">
+    <main>
+      <!-- hidden div to show when, obviously, no results are round -->
+      <div id="noresults">no results</div>
+
+      <section>
+        <h3>Food</h3>
+<!--
+        <div class="item" data-link="/menu">
+          <h4>Hall menu</h4>
+        </div>
+        <div class="item" data-link="/prices">
+          <h4>Hall prices</h4>
+        </div>
+        <div class="item">
+          <h4>View food battels</h4>
+        </div>
+-->
+        
+        <div class="item" data-link="/warnymenu" data-terms="warny">
+          <h4>Warnock menu</h4>
+        </div>
+        <div class="item" data-link="http://meals.hertford.ox.ac.uk/asmeals">
+          <h4>Book formal meals</h4>
+        </div>
+      </section>
+
+      <section>
+        <h3>Committees</h3>
+        <div class="item" data-link="/executives" data-terms="jcr">
+          <h4>Executives</h4>
+        </div>
+        <div class="item" data-link="/representatives" data-terms="reps">
+          <h4>Representatives</h4>
+        </div>
+        <div class="item" data-link="/captains">
+          <h4>Sports captains</h4>
+        </div>
+<!--
+        <div class="item" data-link="/peersupporters">
+          <h4>Peer supporters</h4>
+        </div>
+-->
+      </section>
+
+      <section>
+        <h3>IT</h3>
+        <div class="item">
+          <h4>Report a broken printer</h4>
+          <div class="itemgrow">
+            <form method="POST" autocomplete="off" action="http://formspree.io/m@michaelagius.uk">
+              <div class="formrow">
+                <input class="firstrow" autocomplete="off" type="text" name="name" placeholder="name" required>
+                <input autocomplete="off" type="text" name="email" placeholder="email" required>
+              </div>
+              <textarea name="message" placeholder="details"></textarea>
+              <input type="text" name="_gotcha" style="display:none">
+              <input type="hidden" name="_subject" value="Broken printer report">
+              <input type="hidden" name="_next" value="//hertfordjcr.org/formsent">
+              <button class="mbutton" type="submit">send</button>
+            </form>
+          </div>
+        </div>
+        <div class="item">
+          <h4>Request a projector</h4>
+          <div class="itemgrow">
+            <form method="POST" autocomplete="off" action="http://formspree.io/m@michaelagius.uk">
+              <div class="formrow">
+                <input class="firstrow" autocomplete="off" type="text" name="name" placeholder="name" required>
+                <input autocomplete="off" type="text" name="email" placeholder="email" required>
+              </div>
+              <textarea name="message" placeholder="desired time"></textarea>
+              <input type="text" name="_gotcha" style="display:none">
+              <input type="hidden" name="_subject" value="Projector request">
+              <input type="hidden" name="_next" value="//hertfordjcr.org/formsent">
+              <button class="mbutton" type="submit">send</button>
+            </form>
+          </div>
+        </div>
+        <div class="item" data-link="https://webprint.hertford.ox.ac.uk" data-terms="webprint">
+          <h4>Web print</h4>
+        </div>
+      </section>
+
+      <section>
+        <h3>Welfare</h3>
+        <div class="item" data-terms="condoms, lubs, attack alarm, pregnancy test, ear plugs, dental dam">
+          <h4>Order from female welfare</h4>
+          <div class="itemgrow">
+            <form method="POST" autocomplete="off" action="http://formspree.io/fwelfare@michaelagius.uk">
+              <div class="formrow">
+                <input class="firstrow" autocomplete="off" type="text" name="name" placeholder="name" required>
+                <input autocomplete="off" type="text" name="email" placeholder="email" required>
+              </div>
+              <label>
+                <input class="radio" type="checkbox" name="order" value="condoms">condoms</label>
+              <label>
+                <input class="radio" type="checkbox" name="order" value="lube">lube</label>
+              <label>
+                <input class="radio" type="checkbox" name="order" value="attack alarm">attack alarm</label>
+              <label>
+                <input class="radio" type="checkbox" name="order" value="preggers tester">pregnancy test</label>
+              <label>
+                <input class="radio" type="checkbox" name="order" value="ear plugs">ear plugs</label>
+              <label>
+                <input class="radio" type="checkbox" name="order" value="dental dam">dental dam</label>
+              <textarea name="message" placeholder="message (optional)"></textarea>
+              <input type="text" name="_gotcha" style="display:none" />
+              <input type="hidden" name="_subject" value="Welfare request" />
+              <input type="hidden" name="_next" value="//hertfordjcr.org/formsent">
+              <button class="mbutton" type="submit">send</button>
+            </form>
+          </div>
+        </div>
+        <div class="item" data-terms="condoms, lubs, attack alarm, pregnancy test, ear plugs, dental dam">
+          <h4>Order from male welfare</h4>
+          <div class="itemgrow">
+            <form method="POST" autocomplete="off" action="http://formspree.io/mwelfare@michaelagius.uk">
+              <div class="formrow">
+                <input class="firstrow" autocomplete="off" type="text" name="name" placeholder="name" required>
+                <input autocomplete="off" type="text" name="email" placeholder="email" required>
+              </div>
+              <label>
+                <input class="radio" type="checkbox" name="order" value="condoms">condoms</label>
+              <label>
+                <input class="radio" type="checkbox" name="order" value="lube">lube</label>
+              <label>
+                <input class="radio" type="checkbox" name="order" value="attack alarm">attack alarm</label>
+              <label>
+                <input class="radio" type="checkbox" name="order" value="preggers tester">pregnancy test</label>
+              <label>
+                <input class="radio" type="checkbox" name="order" value="ear plugs">ear plugs</label>
+              <label>
+                <input class="radio" type="checkbox" name="order" value="dental dam">dental dam</label>
+              <textarea name="message" placeholder="message (optional)"></textarea>
+              <input type="text" name="_gotcha" style="display:none" />
+              <input type="hidden" name="_subject" value="Welfare request" />
+              <input type="hidden" name="_next" value="//hertfordjcr.org/formsent">
+              <button class="mbutton" type="submit">send</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+<!--
+      <section>
+        <h3>Access</h3>
+        <div class="item" data-link="/access">
+          <h4>Alternative prospectus</h4>
+        </div>
+      </section>
+-->
+
+      <section>
+        <h3>Entz</h3>
+        <div class="item">
+          <h4>Bop angel volunteer form</h4>
+          <div class="itemgrow">
+            <div class="itemgrownote">Make sure you have read the bop angel guide beforehand.</div>
+            <form method="POST" autocomplete="off" action="http://formspree.io/entz@michaelagius.uk">
+              <input autocomplete="off" type="text" name="name" placeholder="name" required>
+              <label>
+                <input class="radio" type="checkbox" name="order" value="11:30-12:30">11:30 – 12:30</label>
+              <label>
+                <input class="radio" type="checkbox" name="order" value="12:30-01:30">12:30 – 01:30</label>
+              <label>
+                <input class="radio" type="checkbox" name="order" value="01:30-02:30">01:30 – 02:30</label>
+              <textarea name="message" placeholder="message (optional)"></textarea>
+              <input type="text" name="_gotcha" style="display:none" />
+              <input type="hidden" name="_subject" value="Bop angel volunteer" />
+              <input type="hidden" name="_next" value="//hertfordjcr.org/formsent">
+              <button class="mbutton" type="submit">send</button>
+            </form>
+          </div>
+        </div>
+        <div class="item">
+          <h4>Bop angel guide</h4>
+          <div class="itemgrow">
+            <h5>Expected Behaviour</h5>
+            <ul>
+              <li>
+                Your role is primarily preventative and intended to provide support in addition to that which friends can be expected to provide.
+                <li>
+                  You are not expected to do anything which makes you uncomfortable. If you cannot do something yourself then let someone else know – we will not ask questions.
+                  <li>
+                    You must be capable of making reponsible decisions in the best interests of others. This means staying sober. You can drink before and during your shift but be aware of your limits.
+                    <li>
+                      You must be visible. We provide high visibility jackets which you will be given by the Angel before you but you also need to make sure to move around and keep a look out for people in bathrooms and outside as well as by your friends.
+                      <li>
+                        If you feel someone is in danger of harming themselves or others either intervene yoursself, or speak to Entz, Welfare, or the bouncers. Do not attempt first aid if not trained and do not intervene if in danger.
+                        <li>
+                          Ensure an appropriate handover to the person following your shift. If there's anyone you have been monitoring let them know so that they can look out for them later.
+            </ul>
+            <h5>Important Information</h5>
+            <ul>
+              <li>
+                You may be asked to call a welfare taxi or walk somebody home. If you do, send Welfare an email explaining who the taxi was for and where it went.
+                <li>
+                  If someone is going to vomit a welfare taxi will not take them and likewise they shouldn't be left unmonitored. Stay with them, and give them water and fresh air if possible until they sober up enough.
+                  <li>
+                    If you do leave the bop please let Entz and your fellow bop angels know.
+                    <li>
+                      If someone discloses an instance of sexual violence to you and you want help or advice, the Welfare and Entz team have been trained and you should get in touch with them.
+            </ul>
+            <h5>Useful Numbers</h5>
+            <ul>
+              <li>Lodge / Welfare taxi: 01865 279 400
+                <li>Arran (Male Welfare): 07552 403 977
+                  <li>Maya (Female Welfare): ---needed---
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Sports</h3>
+        <div class="item" data-link="/captains">
+          <h4>Sports captains</h4>
+        </div>
+      </section>
+
+      <section>
+        <h3>Hertford ball</h3>
+        <div class="item" data-link="http://hertfordball.co.uk">
+          <h4>Hertford ball website</h4>
+        </div>
+      </section>
+
+      <section>
+        <h3>Society websites</h3>
+        <div class="item" data-link="https://hertfordcollegeboatclub.com">
+          <h4>Rowing society</h4>
+        </div>
+        <div class="item" data-link="http://hertfordmusic.org">
+          <h4>Music society</h4>
+        </div>
+      </section>
+      
+      <section>
+        <h3>Laundry</h3>
+        <div class="item" data-link="https://www.circuit.co.uk/i-want-to-do-my-laundry/card-top-up/">
+          <h4>Top up</h4>
+        </div>
+        <div class="item" data-link="http://www.laundryview.com/lvs.php?s=418">
+          <h4>Live status</h4>
+        </div>
+      </section>
+
+      <section>
+        <h3>Facebook</h3>
+        <div class="item" data-link="https://www.facebook.com/groups/337705103235565/">
+          <h4>Main JCR page</h4>
+        </div>
+        <div class="item" data-link="https://www.facebook.com/groups/431113416959461/">
+          <h4>Access page</h4>
+        </div>
+        <div class="item" data-link="https://www.facebook.com/profile.php?id=100009280119680">
+          <h4>Entz profile</h4>
+        </div>
+      </section>
+
+      <section>
+        <h3>Rooms</h3>
+        <div class="item" data-link="https://www.hertford.ox.ac.uk/my-hertford/forms-and-bookings/room-booking">
+          <h4>Book a room</h4>
+        </div>
+<!--
+        <div class="item" data-link="/housing" data-terms="housing">
+          <h4>Live ballot</h4>
+        </div>
+-->
+      </section>
+    </main>
+  </div>
+  <div class="spacer"></div>
+  <footer>&copy; MMJZ</footer>
+</body>
+
+</html>

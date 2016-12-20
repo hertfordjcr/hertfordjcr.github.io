@@ -1,0 +1,143 @@
+body {
+  background-image: url(../img/gplaypattern_@2X.png);
+  background-size: 188px 178px;
+}
+
+header {
+  padding-bottom: 20px;
+  background-color: rgba(150, 0, 0, 0.7);
+}
+
+header p {
+  text-align: center;
+  max-width: 70%;
+  margin: 30px auto;
+  font-size: 1.3em;
+}
+
+nav ul li {
+  margin-top: 50px;
+  display: inline-block;
+  box-sizing: border-box;
+  /* TODO correct to proper amount */
+  width: 16.4%;
+  text-align: center;
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: 20px 0;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+section {
+  overflow: auto;
+  padding: 50px 0;
+  color: white;
+}
+
+section h3 {
+  font-size: 3em;
+  padding-bottom: 10px;
+}
+
+section p {
+  padding: 10px;
+  font-size: 1.2em;
+}
+
+#rooms {
+  background-color: rgba(0, 100, 150, 0.5);
+}
+
+#food {
+  background-color: rgba(150, 50, 50, 0.5);
+}
+
+#sport {
+  background-color: rgba(0, 100, 40, 0.5);
+}
+
+#music {
+  background-color: rgba(150, 40, 0, 0.5);
+}
+
+#welfare {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#it {
+  background-color: rgba(0, 40, 180, 0.5);
+}
+
+.lefty {
+  box-shadow: 0 0 20px black;
+}
+
+.lefty aside {
+  float: right;
+}
+
+.lefty img:nth-child(odd),
+.righty img:nth-child(even) {
+  -webkit-transform: rotate(5deg);
+          transform: rotate(5deg);
+}
+
+.lefty img:nth-child(even),
+.righty img:nth-child(odd) {
+  -webkit-transform: rotate(-5deg);
+          transform: rotate(-5deg);
+}
+
+.lefty article {
+  float: left;
+  /* Very true, CSS, very true */
+}
+
+.lefty h3 {
+  padding-left: 100px;
+}
+
+.lefty p {
+  padding-left: 100px;
+}
+
+.righty aside {
+  float: left;
+}
+
+.righty article {
+  float: right;
+  /*skip*/
+}
+
+.righty h3 {
+  padding-left: 10px;
+}
+
+.righty p {
+  padding-right: 100px;
+}
+
+aside img {
+  width: 65%;
+  display: block;
+  margin: 20px auto;
+  border-radius: 3px;
+/*  border: 1px solid white;*/
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+aside {
+  padding-top: 30px;
+  width: 40%;
+}
+
+article {
+  width: 60%;
+  text-align: justify;
+}
+
+footer {
+  background-color: rgba(150, 0, 0, 0.7);
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hertford JCR</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100italic,300" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/mback.js" type="text/javascript"></script>
+  <script>
+    // Handy shortcut search: automatically redirects to students page with search query
+    var st = window.location.href.split("?")[1];
+    if (st != null) {
+      window.location.href = "/students.html?" + st;
+    }
+  </script>
+</head>
+
+<body>
+
+  <div id="photocredit">
+    <a href="https://www.flickr.com/photos/10287726@N02/7988398466">Photo &copy;Simon Q</a>
+  </div>
+  
+  <header>
+    <h1>Hertford JCR</h1>
+    <nav>
+      <a class="mbutton" href="/students">students area</a>
+<!--      <a class="mbutton" href="/prospectus">all about hertford</a>-->
+    </nav>
+  </header>
+
+  <aside class="container">
+    <h2>Get in touch</h2>
+
+    <p>
+      If you're thinking of applying to Hertford, feel free to send us a message with any questions. Be sure to put in your email so we can get back to you!
+    </p>
+
+    <form method="POST" action="http://formspree.io/m@michaelagius.uk">
+      <div class="formrow">
+        <input autocomplete="off" type="text" name="name" placeholder="name">
+        <input type="text" name="email" placeholder="email">
+      </div>
+      <textarea autocomplete="off" name="message" placeholder="message"></textarea>
+      <input type="text" name="_gotcha" style="display:none">
+      <input type="hidden" name="_next" value="//hertfordjcr.org/formsent?in">
+      <input type="hidden" name="_subject" value="Question about Hertford">
+      <button class="mbutton" type="submit">send</button>
+    </form>
+  </aside>
+</body>
+
+</html>

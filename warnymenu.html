@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hertford JCR</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.4.1/velocity.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyBgT_WotHdQwc4YX8IcC2tYPJ2BxPifS2Y",
+      authDomain: "hertfordjcr-bf40e.firebaseapp.com",
+      databaseURL: "https://hertfordjcr-bf40e.firebaseio.com",
+      storageBucket: "hertfordjcr-bf40e.appspot.com",
+      messagingSenderId: "318620778170"
+    };
+    firebase.initializeApp(config);
+
+    function ready() {
+      firebase.database().ref("/warny").once('value').then(function (snapshot) {
+        var warnymenu = snapshot.val();
+        var contentarea = document.getElementsByTagName("main")[0];
+        if (warnymenu.date == new Date().getDate()) {
+          contentarea.innerHTML = warnymenu.content.replace(/[\n\r]/g, "<br>");
+        } else {
+          contentarea.innerHTML = "Today's menu isn't ready yet :(";
+        }
+      });
+    }
+  </script>
+</head>
+
+<body onload="ready()">
+  <header>
+    <h1>Warnock Menu</h1></header>
+  <main class="container" id="warnymenucont">...loading...</main>
+  <div class="spacer"></div>
+  <footer>&copy; MMJZ</footer>
+</body>
+
+</html>

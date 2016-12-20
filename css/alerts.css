@@ -1,0 +1,17 @@
+body {
+  text-align: center;
+  font-size: 150%;
+}
+
+.emoji {
+  font-size: 5em;
+}
+
+p {
+  padding: 10px;
+}
+
+.mbutton {
+  display: inline-block;
+  margin-top: 30px;
+}

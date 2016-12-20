@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hertford JCR</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    var st = window.location.href.split("?")[1];
+    if (st === "stu") {
+      document.getElementById("backbutton").attributes["href"] = "/students";
+    }
+  </script>
+</head>
+
+<body onload="memailReady()">
+  <span id="thumbsup">&#128077;</span>
+
+  <p>your form was successfully sent</p>
+
+  <a class="mbutton" id="backbutton" href="/">back</a>
+
+</body>
+
+</html>

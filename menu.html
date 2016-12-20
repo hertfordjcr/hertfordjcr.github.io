@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hertford JCR</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyBgT_WotHdQwc4YX8IcC2tYPJ2BxPifS2Y",
+      authDomain: "hertfordjcr-bf40e.firebaseapp.com",
+      databaseURL: "https://hertfordjcr-bf40e.firebaseio.com",
+      storageBucket: "hertfordjcr-bf40e.appspot.com",
+      messagingSenderId: "318620778170"
+    };
+    firebase.initializeApp(config);
+
+    function ready() {
+      firebase.database().ref().once('value').then(function (snapshot) {
+        var lines = snapshot.val().menu;
+                [].forEach.call(document.getElementsByTagName("section"), function (section) {
+          var name = section.getElementsByTagName("sectionname")[0].innerHTML;
+          var nm;
+          if (name === "Main site hall") nm = "hall";
+          else nm = "warny";
+          var menus = section.getElementsByTagName("menuline");
+          for (var x = 0; x < menus.length; x++) {
+            menus[x].innerHTML = lines[nm][x + 1];
+          }
+        });
+      });
+    }
+  </script>
+</head>
+
+<body onload="ready()">
+  <pagetitle>Menus</pagetitle>
+
+  <subheading>Main hall</subheading>
+
+  <menuday>
+    <h1>Monday</h1>
+    <menuduo>
+      <h2>Lunch</h2>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+    </menuduo>
+    <menuduo>
+      <h2>Dinner</h2>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+    </menuduo>
+  </menuday>
+
+  <menuday>
+    <h1>Tuesday</h1>
+    <menuduo>
+      <h2>Lunch</h2>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+    </menuduo>
+    <menuduo>
+      <h2>Dinner</h2>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+    </menuduo>
+  </menuday>
+
+  <menuday>
+    <h1>Wednesday</h1>
+    <menuduo>
+      <h2>Lunch</h2>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+    </menuduo>
+    <menuduo>
+      <h2>Dinner</h2>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+    </menuduo>
+  </menuday>
+
+  <menuday>
+    <h1>Thursday</h1>
+    <menuduo>
+      <h2>Lunch</h2>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+    </menuduo>
+    <menuduo>
+      <h2>Dinner</h2>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+    </menuduo>
+  </menuday>
+
+  <menuday>
+    <h1>Friday</h1>
+    <menuduo>
+      <h2>Lunch</h2>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+    </menuduo>
+    <menuduo>
+      <h2>Dinner</h2>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+    </menuduo>
+  </menuday>
+
+  <subheading id="formal">Formal hall</subheading>
+
+  <menuday>
+    <h1>Wednesday</h1>
+    <menusingle>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+    </menusingle>
+  </menuday>
+  <menuday>
+    <h1>Sunday</h1>
+    <menusingle>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+    </menusingle>
+  </menuday>
+
+  <subheading id="warny">Warny hall</subheading>
+
+  <menuday>
+    <h1>Friday</h1>
+    <menusingle>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+      <menuline>menu menu menu</menuline>
+    </menusingle>
+  </menuday>
+</body>
+
+</html>

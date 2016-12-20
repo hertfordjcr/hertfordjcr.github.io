@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hertford JCR</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/alerts.css">
+  <script>
+    // decides whether the back button takes you to the main page or students page
+    var st = window.location.href.split("?")[1];
+    if (st === "in") {
+      document.getElementById("backbutton").attributes["href"] = "/";
+    }
+  </script>
+</head>
+
+<body>
+  <main class="container">
+    <div class="emoji">&#128077;</div>
+    <p>Your form was successfully sent.</p>
+    <a class="mbutton" href="/students">Back</a>
+  </main>
+</body>
+
+</html>

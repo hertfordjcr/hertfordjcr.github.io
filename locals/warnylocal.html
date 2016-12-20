@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Warny meal input</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyBgT_WotHdQwc4YX8IcC2tYPJ2BxPifS2Y",
+      authDomain: "hertfordjcr-bf40e.firebaseapp.com",
+      databaseURL: "https://hertfordjcr-bf40e.firebaseio.com",
+      storageBucket: "hertfordjcr-bf40e.appspot.com",
+      messagingSenderId: "318620778170"
+    };
+    firebase.initializeApp(config);
+
+    function processForm(e) {
+      if (e.preventDefault) e.preventDefault();
+      var pass = document.getElementById("pass").value;
+      var content = document.getElementById("contentmenu").value;
+      firebase.auth().signInWithEmailAndPassword("pass@michaelagius.uk", pass).catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert(errorMessage);
+      }).then(function () {
+        firebase.database().ref('warny').set({
+          content: content,
+          date: new Date().getDate()
+        }).then(function () {
+          firebase.auth().signOut().then(function () {
+            alert("Menu updated successfully :D");
+          }, function (error) {
+            alert(error.message);
+          });
+        });
+      });
+      // must return false to prevent the default form behavior
+      return false;
+    }
+
+    function ready() {
+      var form = document.getElementById('menuform');
+      if (form.attachEvent) form.attachEvent("submit", processForm);
+      else form.addEventListener("submit", processForm);
+    }
+
+    //    function post(path, params, method) {
+    //      method = method || "post"; // Set method to post by default if not specified.
+    //
+    //      // The rest of this code assumes you are not using a library.
+    //      // It can be made less wordy if you use one.
+    //      var form = document.createElement("form");
+    //      form.setAttribute("method", method);
+    //      form.setAttribute("action", path);
+    //
+    //      for (var key in params) {
+    //        if (params.hasOwnProperty(key)) {
+    //          var hiddenField = document.createElement("input");
+    //          hiddenField.setAttribute("type", "hidden");
+    //          hiddenField.setAttribute("name", key);
+    //          hiddenField.setAttribute("value", params[key]);
+    //
+    //          form.appendChild(hiddenField);
+    //        }
+    //      }
+    //
+    //      document.body.appendChild(form);
+    //      form.submit();
+    //    }
+  </script>
+</head>
+
+<body onload="ready()">
+  <header><h1>Warnock Menu Input</h1></header>
+  <main class="container">
+    <form id="menuform" class="menuform" method="POST" autocomplete="off">
+      <input id="pass" autocomplete="off" type="text" name="name" placeholder="password" required>
+      <textarea id="contentmenu" name="message" placeholder="today's menu" rows="10"></textarea>
+      <button class="mbutton" type="submit">send</button>
+    </form>
+  </main>
+  <div class="spacer"></div>
+  <footer>&copy; MMJZ</footer>
+</body>
+
+</html>

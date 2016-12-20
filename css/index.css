@@ -1,0 +1,91 @@
+body {
+  /*
+  Photo credit: Simon Quinton
+  https://www.flickr.com/photos/10287726@N02/7988398466
+  Photo has been scaled for better performance across
+  various devices.
+  */
+  background-image: url(../img/backs/hert4200.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (max-width:2880px) and (max-height: 1920px) {
+  body {
+    background-image: url(../img/backs/hert2880.jpg);
+  }
+}
+
+@media only screen and (max-width: 1920px) and (max-height: 1280px) {
+  body {
+    background-image: url(../img/backs/hert1920.jpg);
+  }
+}
+
+@media only screen and (max-width:1440px) and (max-height: 960px) {
+  body {
+    background-image: url(../img/backs/hert1440.jpg);
+  }
+}
+
+#photocredit {
+  padding: 5px;
+  color: #ddd;
+  text-shadow: 0 0 2px black;
+}
+
+#photocredit a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#photocredit a:hover {
+  text-decoration: underline;
+}
+
+header {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.45);
+  margin-top: 10vh;
+  margin-bottom: 5vh;
+  box-shadow: none;
+}
+
+header h1 {
+  font-size: 6em;
+  font-weight: 100;
+  font-style: italic;
+  margin: 10px 0;
+  text-shadow: 0 0 2px red;
+}
+
+@media only screen and (max-width: 800px) {
+  header h1 {
+    font-size: 3em;
+  }
+  .container {
+    font-size: 0.8em;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+nav > .mbutton {
+  display: inline-block;
+  margin: 0 10px 25px 10px;
+  font-size: 1.5em;
+}
+
+p {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 1.4em;
+}
+
+form {
+  margin: 0 auto;
+  font-size: 1.2em;
+}
