@@ -7,15 +7,15 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/alerts.css">
   <script>
-    // decides whether the back button takes you to the main page or students page
-    var st = window.location.href.split("?")[1];
-    if (st === "in") {
-      document.getElementById("backbutton").attributes["href"] = "/";
+    function ready() {
+      // decides whether the back button takes you to the main page or students page
+      var st = window.location.href.split("?")[1];
+      if (st === "in") document.getElementById("backbutton").href = "/";
     }
   </script>
 </head>
 
-<body>
+<body onload="ready()">
   <main class="container">
     <div class="emoji">&#128077;</div>
     <p>Your form was successfully sent.</p>
