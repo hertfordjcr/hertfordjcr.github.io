@@ -1,34 +1,33 @@
-/* images should be 680x680 for retina
-and should be 340x340 for norm */
+/* images should be 600x600 for retina */
 
 main {
   text-align: center;
-  margin: 100px 0;
+  margin: 40px 0;
+  max-width: 1500px;
 }
 
 .member {
   display: inline-block;
-  width: 340px;
+  width: 300px;
   box-sizing: border-box;
   padding: 0px;
-  font-size: 1em;
-  /* margin difference cancels out whitespace*/
-  margin: 13px 11px;
+  /* margin difference cancels out whitespace
+  of inline elements */
+  margin: 11px 9px;
   padding-bottom: 20px;
 }
 
 .membername {
   padding-top: 10px;
-  font-size: 1.8em;
-}
-
-.memberrole {
-  padding-top: 3px;
   font-size: 1.6em;
 }
 
+.memberrole {
+  font-size: 1.3em;
+  padding-top: 3px;
+}
+
 .memail {
-  font-size: 1.1em;
   padding-top: 3px;
 }
 
@@ -42,7 +41,7 @@ main {
   text-shadow: 0 0 5px white;
 }
 
-#currentyear{
+#lgbtq{
   background: -webkit-linear-gradient(left, crimson,orange,yellow,lightgreen,deepskyblue,mediumslateblue,violet);
   background: linear-gradient(to right, crimson,orange,yellow,lightgreen,deepskyblue,mediumslateblue,violet);
   text-shadow: 0 0 5px white;

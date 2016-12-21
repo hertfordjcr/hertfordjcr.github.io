@@ -50,12 +50,14 @@ function handleGrowItem(item) {
       Velocity(grow, "slideDown", {
         duration: 300
       });
+      getItemNameElement(item).style.fontSize = "1.8em";
     } else {
       //      hideDiv(grow);
       item.className = "item";
       Velocity(grow, "slideUp", {
         duration: 300
       });
+      getItemNameElement(item).style.fontSize = "1.2em";
     }
   }
 }

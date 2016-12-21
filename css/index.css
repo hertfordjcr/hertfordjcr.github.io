@@ -5,6 +5,7 @@ body {
   Photo has been scaled for better performance across
   various devices.
   */
+  background-color: black;
   background-image: url(../img/backs/hert4200.jpg);
   background-size: cover;
   background-repeat: no-repeat;

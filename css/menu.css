@@ -2,3 +2,34 @@
   font-size: 1.8em;
   text-align: center;
 }
+
+.container {
+  max-width: 1100px;
+}
+
+section {
+  margin-bottom: 30px;
+  overflow: auto;
+}
+
+h3 {
+  font-size: 1.5em;
+  padding-left: 40px;
+  clear: both;
+  margin: 15px 0;
+}
+
+.lunch, .dinner {
+  text-align: center;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.lunch {
+  float: left;
+  border-right: 1px solid black;
+}
+
+.dinner {
+  float: right;
+}
