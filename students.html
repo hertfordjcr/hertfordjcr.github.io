@@ -22,13 +22,28 @@
       msearchReady();
       memailReady();
     }
+    function swapPatTheme(){
+      if(document.body.className === "pattedbody"){
+        document.body.className = "";
+        document.getElementsByTagName("header")[0].className = "";
+        document.getElementsByTagName("footer")[0].className = "";
+        document.getElementsByTagName("footer")[0].innerHTML = "&copy; MMJZ";
+      } else {
+        document.body.className = "pattedbody";
+        document.getElementsByTagName("header")[0].className = "pattedheader";
+        document.getElementsByTagName("footer")[0].className = "pattedheader";
+        document.getElementsByTagName("footer")[0].innerHTML = "<marquee>glorious Pat theme</marquee>";
+      }
+    }
   </script>
 </head>
 
 <body onload="ready()">
   
     <header>
-      <h1>JCR Area</h1>
+      <a class="mbutton" href="/">Home</a>
+      <h1>Students' Area</h1>
+      <a class="mbutton" onclick="swapPatTheme()">Patrify</a>
     </header>
   <div class="container">
     
