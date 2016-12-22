@@ -1,7 +1,13 @@
 header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 header .mbutton {
@@ -20,11 +26,13 @@ header .mbutton {
 .pattedbody {
   background-image: url(/img/backs/patpat250.png);
   background-size: 250px;
+  -webkit-transition: background-image 2s ease-in-out;
   transition: background-image 2s ease-in-out;
 }
 
 .pattedheader {
   background-color: rgba(0, 0, 0, 0.85);
+  -webkit-transition: all 2s ease-in-out;
   transition: all 2s ease-in-out;
 }
 
@@ -32,6 +40,7 @@ header .mbutton {
 (min-resolution: 192dpi) {
   .pattedbody {
     background-image: url(../img/backs/patpat500.png);
+    -webkit-transition: background-image 2s ease-in-out;
     transition: background-image 2s ease-in-out;
   }
 }
