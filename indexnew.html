@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
   <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
@@ -18,7 +19,7 @@
     // Handy shortcut search: automatically redirects to students page with search query
     var st = window.location.href.split("?")[1];
     if (st != null) {
-      window.location.href = "/students.html?" + st;
+      window.location.href = "/students?" + st;
     }
   </script>
   <script>
@@ -56,7 +57,7 @@
     <h1>Hertford JCR</h1>
     <nav>
       <a class="mbutton" href="/students">students' area</a>
-      <!--      <a class="mbutton" href="/prospectus">all about hertford</a>-->
+<!--            <a class="mbutton" href="/prospectus">all about hertford</a>-->
     </nav>
   </header>
 

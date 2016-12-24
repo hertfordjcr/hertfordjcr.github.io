@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
   <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
@@ -11,7 +12,7 @@
   <meta name="msapplication-config" content="/favicons/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
   <title>Students' area</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/students.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.4.1/velocity.min.js"></script>
@@ -43,12 +44,12 @@
     <header>
       <a class="mbutton" href="/">Home</a>
       <h1>Students' Area</h1>
-      <a class="mbutton" onclick="swapPatTheme()">Patrify</a>
+      <a class="mbutton" id="patrify" onclick="swapPatTheme()">Patrify</a>
     </header>
   <div class="container">
     
     <div id="messagetoall">
-      Though the forms do, in theory, work, please don't send any information through with them yet, as everything will arrive in Mikey's inbox and I have no desire to take welfare orders from you now, or ever.
+      Though the forms do work, please don't send any information through with them yet, as everything will arrive in Mikey's inbox and I have no desire to take welfare orders from you now, or ever.
     </div>
     <input type="text" id="searchfield" placeholder="search..." autocomplete="off" oninput="doSearch()">
     <main>
@@ -84,9 +85,6 @@
         </div>
         <div class="item" data-link="/representatives" data-terms="reps">
           <h4>Representatives</h4>
-        </div>
-        <div class="item" data-link="/captains">
-          <h4>Sports captains</h4>
         </div>
 <!--
         <div class="item" data-link="/peersupporters">
@@ -290,6 +288,9 @@
         <div class="item" data-link="/captains">
           <h4>Sports captains</h4>
         </div>
+        <div class="item" data-link="https://hertfordcollegeboatclub.com">
+          <h4>Boat club</h4>
+        </div>
       </section>
 
       <section>
@@ -301,9 +302,6 @@
 
       <section>
         <h3>Society websites</h3>
-        <div class="item" data-link="https://hertfordcollegeboatclub.com">
-          <h4>Rowing society</h4>
-        </div>
         <div class="item" data-link="http://hertfordmusic.org">
           <h4>Music society</h4>
         </div>

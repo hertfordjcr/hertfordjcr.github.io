@@ -33,3 +33,36 @@ h3 {
 .dinner {
   float: right;
 }
+
+/* print stuff */
+
+#printpage {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  font-size: 1.5em;
+}
+
+th {
+  font-weight: 300;
+  font-size: 1.3em;
+}
+
+.rotate {
+  transform: rotate(-90deg);
+  padding: 30px 0;
+  width: 30px;
+}
+
+@media print {
+  @page {
+    size: landscape;
+  }
+  header, footer, .spacer {
+    display: none;
+  }
+}

@@ -3,11 +3,11 @@ header {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 header .mbutton {
@@ -15,6 +15,26 @@ header .mbutton {
   width: 60px;
   text-align: center;
   margin: 0 50px;
+}
+
+@media only screen and (max-width: 800px){
+  header {
+    display: block;
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+  header > .mbutton {
+    display: block;
+  }
+  #patrify {
+    display: none;
+  }
+}
+
+header,
+footer {
+  -webkit-transition: all 2s ease-in-out;
+  transition: all 2s ease-in-out;
 }
 
 @media only screen and (max-width: 800px) {
@@ -32,16 +52,12 @@ header .mbutton {
 
 .pattedheader {
   background-color: rgba(0, 0, 0, 0.85);
-  -webkit-transition: all 2s ease-in-out;
-  transition: all 2s ease-in-out;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (min-resolution: 192dpi) {
   .pattedbody {
     background-image: url(../img/backs/patpat500.png);
-    -webkit-transition: background-image 2s ease-in-out;
-    transition: background-image 2s ease-in-out;
   }
 }
 
