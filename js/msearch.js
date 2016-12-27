@@ -38,26 +38,33 @@ function getItemGrow(item) {
 function handleItem(item) {
   var link = getItemLink(item);
   if (link !== null) window.location.href = link;
-  else handleGrowItem(item);
+  else if (!handleGrowItem(item)) {
+    handleHideItem();
+  }
+}
+
+function handleHideItem(item) {
+  var grow = getItemGrow(item);
+  if (grow != null && item.className !== "item") {
+    item.className = "item";
+    Velocity(grow, "slideUp", {
+      duration: 300
+    });
+    getItemNameElement(item).style.fontSize = "1.2em";
+    return true;
+  } else return false;
 }
 
 function handleGrowItem(item) {
   var grow = getItemGrow(item);
-  if (grow != null) {
-    if (item.className === "item") {
-      item.className = "item itemfocus";
-      Velocity(grow, "slideDown", {
-        duration: 300
-      });
-      getItemNameElement(item).style.fontSize = "1.8em";
-    } else {
-      item.className = "item";
-      Velocity(grow, "slideUp", {
-        duration: 300
-      });
-      getItemNameElement(item).style.fontSize = "1.2em";
-    }
-  }
+  if (grow != null && item.className === "item") {
+    item.className = "item itemfocus";
+    Velocity(grow, "slideDown", {
+      duration: 300
+    });
+    getItemNameElement(item).style.fontSize = "1.8em";
+    return true;
+  } else return false;
 }
 
 function getSections() {
@@ -84,17 +91,23 @@ function getItemNameElement(item) {
   return item.getElementsByTagName("h4")[0];
 }
 
+var singletonitemcatch;
+var oldsingletonitemcatch;
+
 function doSearch() {
   // format search term
   var full = document.getElementById("searchfield").value.trim().toUpperCase();
   if (full.length === 0) {
     showAll();
+    if (oldsingletonitemcatch !== null) {
+      handleHideItem(oldsingletonitemcatch);
+      oldsingletonitemcatch = null;
+    }
     return; // search cancelled; show everything
   }
   full = " " + full;
 
   var numresults = 0;
-  var singletonitemcatch;
   [].forEach.call(getSections(), function (section) {
     if (searchSection(section, full)) {
       showFullSection(section);
@@ -120,7 +133,14 @@ function doSearch() {
 
   document.getElementById("noresults").style.display = numresults === 0 ? "block" : "none";
   // If only one item matches, grow it if possible
-  if (numresults === 1) handleGrowItem(singletonitemcatch);
+  // If one item matched before, hide it 
+  if (numresults === 1) {
+    handleGrowItem(singletonitemcatch);
+    oldsingletonitemcatch = singletonitemcatch;
+  } else if (oldsingletonitemcatch !== null) {
+    handleHideItem(oldsingletonitemcatch);
+    oldsingletonitemcatch = null;
+  }
 }
 
 function searchSection(section, sfor) {
@@ -151,7 +171,6 @@ function showFullSection(section) {
 
 function hideDiv(divv) {
   divv.style.display = "none";
-
 }
 
 function showDiv(divv) {

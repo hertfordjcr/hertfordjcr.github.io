@@ -29,6 +29,25 @@ body {
   }
 }
 
+@media (-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 120dpi) {
+  @media only screen and (max-width: 1440px) and (max-height: 960px) {
+    body {
+      background-image: url(../img/backs/hert2880.jpg);
+    }
+  }
+  @media only screen and (max-width: 960px) and (max-height: 640px) {
+    body {
+      background-image: url(../img/backs/hert1920.jpg);
+    }
+  }
+  @media only screen and (max-width:720px) and (max-height: 480px) {
+    body {
+      background-image: url(../img/backs/hert1440.jpg);
+    }
+  }
+}
+
 #photocredit {
   padding: 5px;
   color: #ddd;
