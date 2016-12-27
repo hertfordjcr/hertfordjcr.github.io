@@ -142,6 +142,10 @@ textarea {
   transition: all 0.2s ease-in-out;
 }
 
+button {
+  font-weight: 300;
+}
+
 input:hover,
 textarea:hover {
   background-color: white;

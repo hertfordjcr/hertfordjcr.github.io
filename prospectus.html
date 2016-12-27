@@ -2,6 +2,10 @@
 <html>
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="description" content="All about Hertford">
+  <meta name="keywords" content="Hertford,JCR,alternative,prospectus,prospective,students,information,application">
+  <meta name="author" content="Michael Agius">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
@@ -11,61 +15,95 @@
   <link rel="shortcut icon" href="/favicons/favicon.ico">
   <meta name="msapplication-config" content="/favicons/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
-  <title>Hertford JCR</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300" rel="stylesheet">
+  <title>All about Hertford</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300|Calligraffitti" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/access.css">
+  <link rel="stylesheet" href="css/prospectus.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.4.1/velocity.min.js"></script>
+  <script>
+    function doScroll(name) {
+      var divv = document.getElementById(name);
+      Velocity(divv, "scroll", {
+        duration: (Math.abs(divv.getBoundingClientRect().top) > 1500 ? 2000 : 800),
+        easing: "ease"
+      });
+    }
+  </script>
 </head>
 
 <body>
-  <header>
-    <h1>Welcome to Hertford</h1>
-    <p>This is a brief overview of what you would actually want to know about Hertford, instead of waffle about entry requirements and generally boring advertising.</p>
-    <p>Here, we will try to give you an unbiased account of Hertford life without any nonsense.</p>
-    <p>More detailed information is available on our Access website, along with videos, blog posts, virtual tours, and stories about our college from current students.</p>
-    <p>We hope this will dispel any worries you have about the college, and we welcome any feedback you have.</p>
+  <header id="top">
+    <a class="mbutton" id="homebutton" href="/">Home</a>
+    <div class="rightdimmer"></div>
+    <div>
+      <h3>welcome to</h3>
+      <h1>Hertford</h1>
+    </div>
+  </header>
+  <aside id="navaside">
     <nav>
       <ul>
-        <li>Sport</li>
-        <li>
-          Music</li>
-        <li>
-          Welfare</li>
-        <li>
-          Societies</li>
-        <li>
-          Facilities</li>
-        <li>
-          Finance</li>
+        <li onclick="doScroll('top')">Top</li>
+        <li onclick="doScroll('intro')">Intro</li>
+        <li onclick="doScroll('history')">History</li>
+        <li onclick="doScroll('rooms')">Rooms</li>
+        <li onclick="doScroll('food')">Food</li>
+        <li onclick="doScroll('sports')">Sports</li>
+        <li onclick="doScroll('music')">Music</li>
+        <li onclick="doScroll('welfare')">Welfare</li>
+        <li onclick="doScroll('tech')">Tech</li>
+        <li onclick="doScroll('entz')">Entz</li>
+        <li onclick="doScroll('finance')">Finance</li>
       </ul>
     </nav>
-  </header>
-
-
-
+  </aside>
   <main>
-
-    <section id="rooms" class="righty">
+    <section id="intro">
+      <aside>
+        <img src="img/testimg.jpg">
+      </aside>
+      <article>
+        <h3>Alternative Prospectus 2017</h3>
+        <p>This is an overview of what you would actually want to know about Hertford, instead of waffle about entry requirements and generally boring advertising.</p>
+        <p>Here, we will try to give you an unbiased account of Hertford life without any nonsense. We hope this will dispel any worries you have about the college, and we welcome any feedback you have.</p>
+        <p>More detailed information is available on our Access website, along with videos, blog posts, virtual tours, and stories about our college from current students.</p>
+        <p><!-- shameless hack <3 --></p>
+        <p><a class="mbutton">Access website</a> <a class="mbutton">Access blog</a></p>
+      </article>
+    </section>
+    <section id="history">
+      <aside>
+        <img src="img/testimg.jpg">
+      </aside>
+      <article>
+        <h3>History</h3>
+        <p>Food at Hertford is great etc.</p>
+      </article>
+    </section>
+    <section id="rooms">
       <aside>
         <img src="img/testimg2.jpg">
       </aside>
       <article>
-        <h3>Accommodation</h3>
-        <p></p>
+        <h3>Rooms</h3>
+        <p>Hertford, unlike most colleges, guarantees housing for all three or four years of your degree. All freshers are housed on the main college site in the centre of Oxford, with everything needed for Oxford life within a five minute walk. Second, third, and fourth years ‘ballot’ for their accommodation with a group of friends, and this random ballot decides the order in which people get to choose their rooms.</p>
+        <p>The college holds a range of properties in order to suit the different styles of living that you as a student may wish to experience. In South Oxford there are two halls-style accommodation areas (Warnock and Abingdon Houses) and three houses, and in North Oxford there are five houses of varying sizes. No property is further than a 15 minute cycle from college, with most properties within a 10 minute walk.</p>
+        <p>This doesn't mean that all non-freshers must stay off the main site: some students are able to move back in for their third and fourth years at Oxford. On top of this, students going into third year choose their rooms before other students (except for scholars), so you’ll be in a great room for your final year.</p>
+        <p>Most importantly, there are no 'rent bands' at Hertford. While some other colleges offer cheaper rooms alongside more expensive rooms, Hertford charges the exact same rate for every room on every site for every student.</p>
       </article>
     </section>
-    
-    <section id="food" class="lefty">
+    <section id="food">
       <aside>
         <img src="img/testimg.jpg">
       </aside>
       <article>
         <h3>Food</h3>
-        <p>Food at Hertford is great etc.</p>
+        <p>Hertford’s main site dining hall (‘Hall’) offers three meals a day during the week and brunch on Saturday and Sunday. For those living in South Oxford there is a dining room in Warnock house (located behind the Head of the River pub). Our head chefs, Frankie and Nigel, cook fantastic food and accommodate nearly all dietary requirements.</p>
+        <p>For a more ‘Oxford’ experience, Hertford holds two formal dining nights a week (Wednesdays and Sundays), where you can get a three course meal for less than £10, and other less regular ‘guest nights’ and special events like Christmas formals.</p>
+        <p>All the food you eat in college is paid for termly. You use your university card (Bod card) each time you eat in Hall or Warnock, so there’s no upfront payment, and you only ever pay for the meals you eat. There is no compulsory catering charge.</p>
       </article>
     </section>
-    
-    <section id="sport" class="righty">
+    <section id="sports">
       <aside>
         <img src="img/testimg2.jpg">
         <img src="img/testimg2.jpg">
@@ -78,54 +116,71 @@
         <p>Our college sports grounds in Marston (around 15 minutes’ walk from Hertford) has three full sized pitches, squash and tennis courts, and a pavilion which is used as a changing room. We also have a reasonably well equipped gym in college, which is located in the basement of the NB3 staircase. All of these facilities are freely available to be used by college members at any time.</p>
       </article>
     </section>
-
-    <section id="music" class="lefty">
+    <section id="music">
       <aside>
         <img src="img/testimg.jpg">
         <img src="img/testimg.jpg">
       </aside>
       <article>
         <h3>Music</h3>
-        <p>Sport is a big part of life at Hertford, and while the focus is on inclusivity and making sport accessible to all, Hertford also enjoys a considerable amount of sporting success. Last year, the cricket team won the university-wide ‘Cuppers’ tournament, with the rugby team and women’s football team also coming close to victory. All sports welcome complete beginners, so whatever your prior experience, and however much time you want to dedicate to sport, there will definitely be either one or many sports that you can pick up at Hertford!</p>
-        <p>Commitment varies massively between sports – the lacrosse and frisbee teams have matches every two or three weeks, whilst the college’s best rowers train up to six times per week. Most teams also have really fun socials and an annual dinner to celebrate their achievements, as well as ‘stash’: customised sports clothing organised by each team.</p>
-        <p>Sport at Hertford is very well funded, and with the exception of rowing (which costs £40 per term), nobody pays to participate or compete in college level sport. Many Hertford JCR members benefit from the college’s ‘Blues Fund’, which consists of £5,000 given by Hertford College and divided between university sport players to pay for their annual subs and other expenses associated with playing sport at university level. This ensures that there are no financial barriers preventing anyone at Hertford from participating in sport at any level.</p>
-        <p>Our college sports grounds in Marston (around 15 minutes’ walk from Hertford) has three full sized pitches, squash and tennis courts, and a pavilion which is used as a changing room. We also have a reasonably well equipped gym in college, which is located in the basement of the NB3 staircase. All of these facilities are freely available to be used by college members at any time.</p>
+        <p>The Oxford music scene is massive! There’s a multitude of venues and styles, from notorious clubs such as Atik (commonly known as Park End), Bridge and the infamous Purple Turtle, to incredible live music at the O2 Academy, Freuds and Varsity Club, to astounding shows and musicals at the Playhouse and Theatre, to an immense concert repertoire in the University’s own Sheldonian Theatre – and that’s not even going into any college music.</p>
+        <p>The amount of music at Hertford is overwhelming: from ska-punk gigs and open mics events down the bar, to Freshers’ Jazz and Cocktails and Boatie Cocktails in the Octagon, to weekly evensongs in the chapel, there’s always something to hear or play in. As well as being at all these events, musicians from Hertford get involved around the university, in the University orchestras and ensembles, in the casts, bands, and crews of musicals and shows and in independent bands, like current wunderkind Emily The Snake, playing gigs like “Gin and Phonics” at Freuds.</p>
+        <p>Hertford College Music Society (HCMS) is the largest and most welcoming college music society in Oxford. Whether you’re an internationally renowned Italian opera singer, or you hit the “DJ” button too many times and caught the bug, there’s an opportunity to get involved: with three big non-auditioning ensembles, the Orchestra plays classical music, the Concert Band plays classics alongside wind arrangements, and the Jazz Band plays jazzy big band charts and original arrangements. Even if your instrument doesn’t fit into one of these ensembles, there’s always an opportunity to play in one of the weekly recitals, with the sighs of tourists  lling out the chapel’s lovely acoustic. HCMS gets together at the termly themed dinners and regular trips DTB (down the bar) after rehearsals and concerts, facilitating many musical friendships and regularly emptying wallets.</p>
+        <p>If you’re a singer, Hertford has the best non-auditioning chapel choir in Oxford. With low week by week commitment, but free food and drink and international touring, it’s probably some of the most fun you can have with your socks on. Last year we visited both Dublin and Krakow, singing in many venues including Dublin’s cathedral and an incredible underground chapel dug out of the salt mines below Krakow.</p>
+        <p>But Oxford isn’t all trips abroad: the mainstay of the experience is bopping and essays, with a side-salad of very interesting chats over dinner. HCMS’s motto is “Play Hard, Play Hard”: just like the rest of Oxford, we really get stuck in.</p>
       </article>
     </section>
-
-    <section id="welfare" class="righty">
+    <section id="welfare">
       <aside>
         <img src="img/testimg.jpg">
       </aside>
       <article>
         <h3>Welfare</h3>
-        <p>Sport is a big part of life at Hertford, and while the focus is on inclusivity and making sport accessible to all, Hertford also enjoys a considerable amount of sporting success. Last year, the cricket team won the university-wide ‘Cuppers’ tournament, with the rugby team and women’s football team also coming close to victory. All sports welcome complete beginners, so whatever your prior experience, and however much time you want to dedicate to sport, there will definitely be either one or many sports that you can pick up at Hertford!</p>
-        <p>Commitment varies massively between sports – the lacrosse and frisbee teams have matches every two or three weeks, whilst the college’s best rowers train up to six times per week. Most teams also have really fun socials and an annual dinner to celebrate their achievements, as well as ‘stash’: customised sports clothing organised by each team.</p>
+        <p>Hertford is not a big college which makes it easy to get to know lots of people and makes it virtually impossible to spend time in college without bumping into a friendly face. Hertford is famous for its welcoming, fun, friendly and caring atmosphere and students’ happiness and welfare is really important to everyone in college.</p>
+        <p>As with any university, coming to Oxford can be pretty stressful. Our terms are only eight weeks which means there’s a lot to pack in and things can sometimes get quite intense. Whilst many of you may never need to make use of it, the college has a great welfare system to help with any issues (however big or small) you may have whilst at university. The welfare team aims to maintain a high pro le in college so that students always know that if problems arise, or if they just feel a little blue, there are loads of people around who are always very happy to chat about it.</p>
+        <p>The team is made up of a group of trained Peer Supporters, an on-site nurse, the Chaplain, three Junior Deans and us (the Welfare Of cers). The entire team are lovely, very approachable, completely non-judgemental and trained in dealing with a huge variety of issues. There is also a university-wide welfare system, which amongst others includes the Counselling Service, the Student Advice Service and the Disability Advisory Service. We can put you in touch with these services and give you information about them and other services available in the wider Oxford area.</p>
+        <p>There are two Welfare Of cers, one male and one female, elected annually by the JCR. Part of our role essentially involves carrying out regular raids on Tesco to get chocolates to deliver to everyone in the middle of term and food for welfare teas (which are really relaxed events where everyone can just come and eat food, drink tea, and chat). We also give out free welfare supplies and occasionally organise speaker events. We represent the welfare of the undergraduate student body on the JCR Committee and in dialogue with College.</p>
+        <p>The most important part of our role, as peer supporters, is to be there to listen and help with any social, academic,  nancial or health-related problems you may have (and to make a world class cup of tea).</p>
       </article>
     </section>
-
-    <section id="it" class="lefty">
+    <section id="tech">
       <aside>
         <img src="img/testimg.jpg">
       </aside>
       <article>
-
-        <h3>IT</h3>
+        <h3>Tech</h3>
         <p>Every room owned by the college has complete access to both a wireless and wired connection to the Internet, with both offering good speeds. There are college computer rooms and multiple printers available, as well as an online web-print system. Whenever something breaks, the IT office and officers will be there to help.</p>
         <p>The IT Office is able to loan out notebooks to everyone that needs one, and there are four projectors (and cables) available to borrow for film nights.</p>
-
       </article>
     </section>
-
+    <section id="entz">
+      <aside>
+        <img src="img/testimg.jpg">
+      </aside>
+      <article>
+        <h3>Entz</h3>
+        <p>The Entz team is basically in charge of making sure that everyone has a good time.</p>
+        <p>We organise both alcoholic and non- alcoholic events that the entire student body of the JCR can be involved with. This mostly means we organise bops - at Hertford a bop is basically a massive whole college party where we book out a club, get outrageous drinks deals and encourage ridiculous fancy dress. The whole college comes together and these always turn into the biggest nights of the term. (We try not to take any responsibility for the repercussions the next day.)</p>
+        <p>We also organise a lot of non-alcoholic events as well - these include pub quizzes down the bar and events such as Hertford does ‘Take Me Out’. ENTZ are around to make sure that everyone takes enough time out from their degree to have a good time, a role that is really important if you go to Oxford! It’s a really fun job and is open to Freshers, so it’s a great way to begin getting involved in college life early on in your degree, as well as giving great experience of event planning and organising large groups of people.</p>
+      </article>
+    </section>
+    <section id="finance">
+      <aside>
+        <img src="img/testimg.jpg">
+      </aside>
+      <article>
+        <h3>Finance</h3>
+        <p>Hertford is absolutely committeed to ensuring that financial considerations aren’t a barrier to undergraduates studying and enjoying their time here.</p>
+        <p>When compared to other universities, the combination of lower than average rent, cheaper general student living costs and substantial bursaries makes an undergraduate degree at Hertford College Oxford one of the best value educational courses in the world. Oxford boasts one of the most generous support packages of any university in the UK for students from the lowest-income backgrounds, which includes fee waivers and bursaries.</p>
+        <p>Hertford is also proud to offer its own range of bursaries (or in some cases loans), including the Hertford Undergraduate Bursary of £1000 to anyone with a household income of below around £50,000, as well as a student support fund for any student experiencing unexpected financial hardship during their time here. The college also provides great employment opportunities throughout all academic vacations, and students are also able to work down the bar during term time.</p>
+      </article>
+    </section>
   </main>
-
   <div class="spacer"></div>
   <footer>
-    <p>current creds are temp</p>
     <p>content by Annie Ault, Michael Agius</p>
     <p>design by Michael Agius</p>
   </footer>
-
 </body>
 
 </html>

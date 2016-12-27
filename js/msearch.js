@@ -45,14 +45,12 @@ function handleGrowItem(item) {
   var grow = getItemGrow(item);
   if (grow != null) {
     if (item.className === "item") {
-      //      showDiv(grow);
       item.className = "item itemfocus";
       Velocity(grow, "slideDown", {
         duration: 300
       });
       getItemNameElement(item).style.fontSize = "1.8em";
     } else {
-      //      hideDiv(grow);
       item.className = "item";
       Velocity(grow, "slideUp", {
         duration: 300
@@ -121,6 +119,7 @@ function doSearch() {
   });
 
   document.getElementById("noresults").style.display = numresults === 0 ? "block" : "none";
+  // If only one item matches, grow it if possible
   if (numresults === 1) handleGrowItem(singletonitemcatch);
 }
 
