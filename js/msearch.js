@@ -39,7 +39,7 @@ function handleItem(item) {
   var link = getItemLink(item);
   if (link !== null) window.location.href = link;
   else if (!handleGrowItem(item)) {
-    handleHideItem();
+    handleHideItem(item);
   }
 }
 
@@ -51,8 +51,7 @@ function handleHideItem(item) {
       duration: 300
     });
     getItemNameElement(item).style.fontSize = "1.2em";
-    return true;
-  } else return false;
+  }
 }
 
 function handleGrowItem(item) {
