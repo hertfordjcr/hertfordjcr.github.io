@@ -16,9 +16,11 @@
   <meta name="msapplication-config" content="/favicons/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
   <title>Live ballot</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/ballot.css">
+  <!-- Using students.css for the card layout -->
+  <link rel="stylesheet" href="/css/students.css">
+  <link rel="stylesheet" href="/css/ballot.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.4.1/velocity.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
   <script>
@@ -40,30 +42,20 @@
           else room.className = "room freeroom";
         });
       });
-
-      [].forEach.call(document.getElementsByClassName("building"), function (building) {
-        building.getElementsByClassName("buildingname")[0].addEventListener("click", function (e) {
-          if (e.target === this)
-            [].forEach.call(building.getElementsByClassName("floor"), function (divv) {
-              if (divv.style.display === "block") Velocity(divv, "slideUp", {
-                duration: 300
-              });
-              else Velocity(divv, "slideDown", {
-                duration: 300
-              });
-            });
-        });
-      });
-      [].forEach.call(document.getElementsByClassName("floor"), function (floor) {
-        floor.getElementsByClassName("floorname")[0].addEventListener("click", function (e) {
-          if (e.target === this) {
-            var divv = floor.getElementsByTagName("ul")[0];
-            if (divv.style.display === "block") Velocity(divv, "slideUp", {
-              duration: 600
-            });
-            else Velocity(divv, "slideDown", {
-              duration: 600
-            });
+      [].forEach.call(document.getElementsByClassName("floorwrapper"), function (divv) {
+        divv.getElementsByTagName("h4")[0].addEventListener("click", function () {
+          var floor = divv.getElementsByClassName("floor")[0];
+          console.log(floor.style.display);
+          if (floor.style.display === "none" || floor.style.display === "") {
+//            Velocity(floor, "slideDown", {
+//              duration: 300
+//            });
+            floor.style.display = "block";
+          } else {
+//            Velocity(floor, "slideUp", {
+//              duration: 300
+//            });
+            floor.style.display = "none";
           }
         });
       });
@@ -75,61 +67,148 @@
   <header>
     <h1>Ballot Status</h1>
   </header>
-  <main class="container">
-    <ul>
-      <li class="building">
-        <div class="buildingname">Old Abingdon</div>
-        <ul>
-          <li class="floor">
-            <div class="floorname">ground floor</div>
-            <ul>
-              <div class="room">room 1</div>
-              <div class="room">room 2</div>
-            </ul>
-          </li>
-          <li class="floor">
-            <div class="floorname">first floor</div>
-            <ul>
-              <div class="room">room 1</div>
-              <div class="room">room 2</div>
-              <div class="room">room 1</div>
-              <div class="room">room 2</div>
-              <div class="room">room 1</div>
-              <div class="room">room 2</div>
-              <div class="room">room 1</div>
-              <div class="room">room 2</div>
-              <div class="room">room 1</div>
-              <div class="room">room 2</div>
-              <div class="room">room 1</div>
-              <div class="room">room 2</div>
-              <div class="room">room 1</div>
-              <div class="room">room 2</div>
-              <div class="room">room 1</div>
-              <div class="room">room 2</div>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li class="building">
-        <div class="buildingname">Mary Warnock</div>
-        <ul>
-          <li class="floor">
-            <div class="floorname">ground floor</div>
-            <ul>
-              <div class="room">room 1</div>
-              <div class="room">room 2</div>
-            </ul>
-          </li>
-          <li class="floor">
-            <div class="floorname">first floor</div>
-            <ul>
-              <div class="room">room 1</div>
-              <div class="room">room 2</div>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
+  <main>
+    <section class="card">
+      <h3>Old Abingdon</h3>
+      <ul>
+        <li class="floorwrapper">
+          <h4>ground floor</h4>
+          <div class="floor">
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+            <div class="room">room 2</div>
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+          </div>
+        </li>
+        <li class="floorwrapper">
+          <h4>ground floor</h4>
+          <div class="floor">
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="card">
+      <h3>New Abindgon</h3>
+      <ul>
+        <li class="floorwrapper">
+          <h4>ground floor</h4>
+          <div class="floor">
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+          </div>
+        </li>
+        <li class="floorwrapper">
+          <h4>ground floor</h4>
+          <div class="floor">
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="card">
+      <h3>Old Buildings 1</h3>
+      <ul>
+        <li class="floorwrapper">
+          <h4>ground floor</h4>
+          <div class="floor">
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+          </div>
+        </li>
+        <li class="floorwrapper">
+          <h4>ground floor</h4>
+          <div class="floor">
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="card">
+      <h3>Mary Warnock</h3>
+      <ul>
+        <li class="floorwrapper">
+          <h4>ground floor</h4>
+          <div class="floor">
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+          </div>
+        </li>
+        <li class="floorwrapper">
+          <h4>ground floor</h4>
+          <div class="floor">
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="card">
+      <h3>Old Buildings 3</h3>
+      <ul>
+        <li class="floorwrapper">
+          <h4>ground floor</h4>
+          <div class="floor">
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+          </div>
+        </li>
+        <li class="floorwrapper">
+          <h4>ground floor</h4>
+          <div class="floor">
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="card">
+      <h3>59 Banbury</h3>
+      <ul>
+        <li class="floorwrapper">
+          <h4>ground floor</h4>
+          <div class="floor">
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+          </div>
+        </li>
+        <li class="floorwrapper">
+          <h4>ground floor</h4>
+          <div class="floor">
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+            <div class="room">room 1</div>
+            <div class="room">room 2</div>
+          </div>
+        </li>
+      </ul>
+    </section>
   </main>
   <div class="spacer"></div>
   <footer>&copy; MMJZ</footer>

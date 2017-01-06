@@ -83,14 +83,17 @@ header h1 {
   header h1 {
     font-size: 3em;
   }
-  .container {
+  aside {
     font-size: 0.8em;
   }
 }
 
-.container {
+aside {
   margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.95);
+  width: 700px;
+  max-width: 100%;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 nav > .mbutton {
@@ -101,8 +104,9 @@ nav > .mbutton {
 
 p {
   text-align: center;
-  margin: 30px 0;
-  font-size: 1.4em;
+  max-width: 600px;
+  margin: 15px auto;
+  font-size: 1.15em;
 }
 
 form {

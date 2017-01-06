@@ -50,7 +50,6 @@ function handleHideItem(item) {
     Velocity(grow, "slideUp", {
       duration: 300
     });
-    getItemNameElement(item).style.fontSize = "1.2em";
   }
 }
 
@@ -61,7 +60,6 @@ function handleGrowItem(item) {
     Velocity(grow, "slideDown", {
       duration: 300
     });
-    getItemNameElement(item).style.fontSize = "1.8em";
     return true;
   } else return false;
 }
@@ -119,14 +117,14 @@ function doSearch() {
       var noneVisible = true;
         [].forEach.call(getItems(section), function (item) {
         if (searchItem(item, full)) {
-          showDiv(item);
+          showItem(item);
           numresults += 1;
           singletonitemcatch = item;
           noneVisible = false;
         } else hideDiv(item);
       });
       if (noneVisible) hideDiv(section);
-      else showDiv(section);
+      else showSection(section);
     }
   });
 
@@ -158,20 +156,24 @@ function searchItem(item, sfor) {
 }
 
 function showAll() {
-  [].forEach.call(getSections(), showDiv);
-  [].forEach.call(getAllItems(), showDiv);
+  [].forEach.call(getSections(), showSection);
+  [].forEach.call(getAllItems(), showItem);
   hideDiv(document.getElementById("noresults"));
 }
 
 function showFullSection(section) {
-  showDiv(section);
-  [].forEach.call(getItems(section), showDiv);
+  showSection(section);
+  [].forEach.call(getItems(section), showItem);
 }
 
 function hideDiv(divv) {
   divv.style.display = "none";
 }
 
-function showDiv(divv) {
+function showSection(divv) {
+  divv.style.display = "inline-block";
+}
+
+function showItem(divv) {
   divv.style.display = "block";
 }

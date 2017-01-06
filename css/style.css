@@ -20,33 +20,51 @@ body {
   -ms-flex-direction: column;
   flex-direction: column;
   min-height: 100vh;
-  background-image: url(../img/backs/pat512.png);
-  background-size: 512px;
+  /*  background-image: url(../img/backs/pat512.png);*/
+  /*  background-size: 512px;*/
+  background-image: url("/img/backs/fg.png");
+  background-size: 410px;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {
+@media only screen and (max-width: 800px) {
   body {
-    background-image: url(../img/backs/pat1024.png);
+    font-size: 90%;
   }
 }
 
 h1,
 h2,
-h3 {
+h4 {
   font-weight: 300;
 }
 
 header {
-  background-color: rgba(0, 0, 0, 0.3);
   color: white;
   box-shadow: 0 0 10px black;
 }
 
+header,
+footer {
+  background-image: url(/img/backs/fr.png);
+  background-size: 410px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  body {
+    /*    background-image: url(../img/backs/pat1024.png);*/
+    background-image: url(/img/backs/fg2.png);
+  }
+  header,
+  footer {
+    background-image: url(/img/backs/fr2.png);
+  }
+}
+
 header h1 {
   text-align: center;
-  font-size: 2.7em;
-  margin: 20px 0;
+  font-size: 2.5em;
+  margin: 15px 0;
 }
 
 main {
@@ -55,34 +73,17 @@ main {
 }
 
 h2 {
-  font-size: 2em;
-  margin-top: 20px;
+  font-size: 1.7em;
   margin-bottom: 10px;
   padding-left: 40px;
   border-bottom: 1px solid black;
 }
 
-.container {
-  max-width: 800px;
-  padding: 20px 70px;
+.card {
+  background-color: white;
+  border-radius: 2px;
   box-sizing: border-box;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
-  overflow: auto;
-  border-radius: 3px;
-  margin: 40px auto;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
-}
-
-@media only screen and (max-width: 800px) {
-  .container {
-    padding: 20px 10px;
-    margin: 0 auto;
-    max-width: 9999px;
-  }
-  body {
-    font-size: 90%;
-  }
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.137255) 0px 1px 1px 0px, rgba(0, 0, 0, 0.117647) 0px 2px 1px -1px;
 }
 
 .mbutton {
@@ -90,17 +91,24 @@ h2 {
   color: white;
   cursor: pointer;
   background-color: rgba(121, 166, 210, 0.9);
-  border-bottom: 5px solid rgba(121, 166, 210, 0.9);
-  padding: 10px 30px;
-  border-radius: 8px;
+  /*  border-bottom: 5px solid rgba(121, 166, 210, 0.9);*/
+  padding: 10px 25px;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
   -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
 }
 
 .mbutton:hover {
-  border-bottom: 5px solid rgb(85, 136, 186);
+  /*  border-bottom: 5px solid rgb(85, 136, 186);*/
   background-color: rgba(121, 166, 210, 1);
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.6) inset;
+  /*  box-shadow: 0 0 5px rgba(255, 255, 255, 0.6) inset;*/
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.mbutton:active {
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 5px 0 rgba(0, 0, 0, 0.5) inset;
+  outline: none;
 }
 
 form {
@@ -112,7 +120,8 @@ form {
   font-size: 1.4em;
 }
 
-.menuform > textarea, .menuform > input {
+.menuform > textarea,
+.menuform > input {
   text-align: center;
 }
 
@@ -137,24 +146,25 @@ textarea {
   font-weight: 300;
   box-sizing: border-box;
   font-family: Roboto, sans-serif;
-  border: 2px solid rgba(0, 0, 0, 0);
+  border: 1px solid transparent;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 
 button {
   font-weight: 300;
+  margin: 10px;
 }
 
 input:hover,
 textarea:hover {
   background-color: white;
-  border: 2px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 input:focus,
 textarea:focus {
-  border: 2px solid rgb(121, 166, 210);
+  border: 1px solid rgb(121, 166, 210);
   background-color: white;
 }
 
@@ -162,25 +172,25 @@ textarea:focus {
   display: inline;
 }
 
-.formrow > input:first-child {
+.formrow > *:first-child {
   float: left;
   width: 45%;
 }
 
-.formrow > input:last-child {
+.formrow > *:last-child {
   float: right;
   width: 54%;
 }
 
 @media only screen and (max-width: 600px) {
-  .formrow input {
+  .formrow * {
     display: block;
   }
-  .formrow > input:first-child {
+  .formrow > *:first-child {
     float: none;
     width: 100%;
   }
-  .formrow > input:last-child {
+  .formrow > *:last-child {
     float: none;
     width: 100%;
   }
@@ -221,5 +231,4 @@ footer {
   box-sizing: border-box;
   text-align: center;
   padding: 9px;
-  background-color: rgba(0, 0, 0, 0.3);
 }

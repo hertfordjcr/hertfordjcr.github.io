@@ -1,62 +1,46 @@
+header {
+  display: block;
+}
+
 main {
-  font-size: 2em;
+  margin: 30px 0;
 }
 
-.container {
-  padding-bottom: 70px;
-  max-width: 1067px;
+section ul {
+  list-style: none;
+  padding-left: 15px;
 }
 
-.buildingname,
-.floorname {
+section h4 {
+  font-size: 1.4em;
   cursor: pointer;
 }
 
-.buildingname {
-  margin-top: 50px;
-  border-bottom: 1px solid black;
-}
-
-.floorname {
-  padding-top: 20px;
-  border-bottom: 1px solid black;
-  margin-bottom: 10px;
-  width: 50%;
-}
-
 .floor {
-  margin-left: 30px;
-}
-
-ul {
-  list-style-type: none;
-  font-size: 0.9em;
-}
-
-.floor ul,
-.building li {
+  padding: 10px 0 15px 20px;
   display: none;
 }
 
 .room {
-  margin: 2px 0;
-  padding: 10px;
+  margin: 5px 0;
+  padding: 8px;
   text-align: center;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.3);
-  border-bottom: 4px solid #444;
+  border-bottom: 2px solid #444;
   color: white;
-  width: 200px;
+  font-size: 1.1em;
+  width: 100px;
   display: inline-block;
 }
 
 .freeroom {
   background-color: rgba(100, 200, 100, 0.5);
-  border-bottom: 4px solid rgb(0, 180, 0);
+  border-bottom: 2px solid rgb(0, 180, 0);
 }
 
 .takenroom {
   background-color: rgba(255, 0, 0, 0.5);
-  border-bottom: 4px solid red;
+  border-bottom: 2px solid red;
   color: rgba(180, 0, 0, 1);
 }
