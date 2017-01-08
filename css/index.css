@@ -49,9 +49,11 @@ body {
 }
 
 #photocredit {
-  padding: 5px;
   color: #ddd;
   text-shadow: 0 0 2px black;
+  position: absolute;
+  top: 3px;
+  left: 8px;
 }
 
 #photocredit a {
@@ -63,20 +65,48 @@ body {
   text-decoration: underline;
 }
 
+#flexholder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
 header {
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.45);
-  margin-top: 10vh;
-  margin-bottom: 5vh;
+  /*  background-color: rgba(0, 0, 0, 0.45);*/
+  background-color: transparent;
   box-shadow: none;
+  
+/*  background: radial-gradient(black, transparent, transparent);*/
+}
+
+#headerborder {
+  border-bottom: 5px solid white;
+  border-radius: 5px;
 }
 
 header h1 {
-  font-size: 6em;
+  color: white;
+  font-size: 6.5em;
   font-weight: 100;
+  font-family: 'Optima', sans-serif;
   font-style: italic;
-  margin: 10px 0;
-  text-shadow: 0 0 2px red;
+  display: inline-block;
+  border-bottom: 1px solid black;
+  line-height: 0.8em;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  padding: 0;
+  /*  background-color: red;*/
+  text-shadow: 0 0 2px darkred, 0 0 10px darkred, 1px 1px 0 black;
 }
 
 @media only screen and (max-width: 800px) {
@@ -89,23 +119,29 @@ header h1 {
 }
 
 aside {
-  margin: 0 auto;
+  margin-top: 50px;
   width: 700px;
   max-width: 100%;
   padding: 20px;
+  overflow: auto;
   background-color: rgba(255, 255, 255, 0.9);
 }
 
-nav > .mbutton {
+nav .mbutton {
   display: inline-block;
-  margin: 0 10px 25px 10px;
   font-size: 1.5em;
 }
 
-p {
-  text-align: center;
+h2 {
+  font-weight: 400;
   max-width: 600px;
-  margin: 15px auto;
+  margin: 0 auto;
+  font-size: 1.6em;
+}
+
+p {
+  max-width: 600px;
+  margin: 5px auto;
   font-size: 1.15em;
 }
 

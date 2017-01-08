@@ -11,8 +11,9 @@
   <meta name="msapplication-config" content="/favicons/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
   <title>Warny meal input</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/alerts.css">
   <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
   <script>
     var config = {
@@ -87,7 +88,7 @@
 <body onload="ready()">
   <header><h1>Warnock Menu Input</h1></header>
   <div class="spacer"></div>
-  <main class="container">
+  <main class="card">
     <form id="menuform" class="menuform" method="POST" autocomplete="off">
       <input id="pass" autocomplete="off" type="text" name="name" placeholder="password" required>
       <textarea id="contentmenu" name="message" placeholder="today's menu" rows="10"></textarea>
@@ -95,7 +96,7 @@
     </form>
   </main>
   <div class="spacer"></div>
-  <footer>&copy; MMJZ</footer>
+  <footer>&copy; Michael Agius</footer>
 </body>
 
 </html>

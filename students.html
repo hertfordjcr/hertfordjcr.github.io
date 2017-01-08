@@ -33,7 +33,7 @@
         document.body.className = "";
         document.getElementsByTagName("header")[0].className = "";
         document.getElementsByTagName("footer")[0].className = "";
-        document.getElementsByTagName("footer")[0].innerHTML = "&copy; MMJZ";
+        document.getElementsByTagName("footer")[0].innerHTML = "&copy; Michael Agius";
       } else {
         document.body.className = "pattedbody";
         document.getElementsByTagName("header")[0].className = "pattedheader";
@@ -48,7 +48,8 @@
 
   <header>
     <a class="mbutton" href="/">Home</a>
-    <h1>Students' Area</h1>
+<!--    <h1>Students' Area</h1>-->
+    <h1>Student Area</h1>
     <a class="mbutton" id="patrify" onclick="swapPatTheme()">Patrify</a>
   </header>
   <!--
@@ -181,18 +182,24 @@
               <input class="firstrow" autocomplete="off" type="text" name="name" placeholder="name" required>
               <input autocomplete="off" type="text" name="email" placeholder="email" required>
             </div>
-            <label>
-              <input class="radio" type="checkbox" name="order" value="condoms">condoms</label>
-            <label>
-              <input class="radio" type="checkbox" name="order" value="lube">lube</label>
-            <label>
-              <input class="radio" type="checkbox" name="order" value="attack alarm">attack alarm</label>
-            <label>
-              <input class="radio" type="checkbox" name="order" value="preggers tester">pregnancy test</label>
-            <label>
-              <input class="radio" type="checkbox" name="order" value="ear plugs">ear plugs</label>
-            <label>
-              <input class="radio" type="checkbox" name="order" value="dental dam">dental dam</label>
+            <div class="formrow">
+              <div>
+                <label>
+                  <input class="radio" type="checkbox" name="order" value="condoms">condoms</label>
+                <label>
+                  <input class="radio" type="checkbox" name="order" value="lube">lube</label>
+                <label>
+                  <input class="radio" type="checkbox" name="order" value="attack alarm">attack alarm</label>
+              </div>
+              <div>
+                <label>
+                  <input class="radio" type="checkbox" name="order" value="preggers tester">pregnancy test</label>
+                <label>
+                  <input class="radio" type="checkbox" name="order" value="ear plugs">ear plugs</label>
+                <label>
+                  <input class="radio" type="checkbox" name="order" value="dental dam">dental dam</label>
+              </div>
+            </div>
             <textarea name="message" placeholder="message (optional)"></textarea>
             <input type="text" name="_gotcha" style="display:none" />
             <input type="hidden" name="_subject" value="Welfare request" />
@@ -344,7 +351,7 @@
     </section>
   </main>
   <div class="spacer"></div>
-  <footer>&copy; MMJZ</footer>
+  <footer>&copy; Michael Agius</footer>
 </body>
 
 </html>
