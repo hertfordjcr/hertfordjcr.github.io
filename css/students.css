@@ -19,15 +19,22 @@ header .mbutton {
   header {
     padding-top: 10px;
     padding-left: 10px;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: flex-start;
   }
   header h1 {
+    -webkit-box-ordinal-group: 3;
+    -ms-flex-order: 2;
     order: 2;
     width: 100%;
   }
   header > .mbutton {
     display: inline-block;
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
     order: 1;
   }
 }
@@ -52,7 +59,7 @@ footer {
 }
 
 .pattedheader {
-  background-color: rgba(255,255,255, 0.95);
+  background-color: rgba(255, 255, 255, 0.95);
   background-image: none;
 }
 
@@ -83,7 +90,7 @@ footer {
 #searchfield:focus,
 #searchfield:hover {
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08);
-/*  border: 1px solid rgb(121, 166, 210);*/
+  /*  border: 1px solid rgb(121, 166, 210);*/
   border: 1px solid rgb(223, 27, 46);
 }
 
@@ -109,11 +116,11 @@ main {
   -webkit-column-count: 3;
   -moz-column-count: 3;
   column-count: 3;
-/*  -webkit-column-width: 600px;*/
-/*  -moz-column-width: 600px;*/
+  /*  -webkit-column-width: 600px;*/
+  /*  -moz-column-width: 600px;*/
   -webkit-column-width: 600px;
-     -moz-column-width: 600px;
-          column-width: 600px;
+  -moz-column-width: 600px;
+  column-width: 600px;
   -webkit-column-gap: 0px;
   -moz-column-gap: 0px;
   column-gap: 0px;
@@ -137,7 +144,7 @@ section {
   width: calc(100% - 20px);
   max-width: 730px;
   page-break-inside: avoid;
-       break-inside: avoid;
+  break-inside: avoid;
   -webkit-column-break-inside: avoid;
   -moz-column-break-inside: avoid;
 }
