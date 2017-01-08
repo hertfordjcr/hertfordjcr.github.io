@@ -45,22 +45,17 @@
 </head>
 
 <body onload="ready()">
-
   <header>
-    <a class="mbutton" href="/">Home</a>
-<!--    <h1>Students' Area</h1>-->
-    <h1>Student Area</h1>
-    <a class="mbutton" id="patrify" onclick="swapPatTheme()">Patrify</a>
-  </header>
-  <!--
-    <div id="messagetoall">
-      Though the forms do work, please don't send any information through with them yet, as everything will arrive in Mikey's inbox and I have no desire to take welfare orders from you now, or ever.
+    <div class="funnel">
+      <a class="mbutton" href="/">Home</a>
+      <a class="mbutton" id="patrify" onclick="swapPatTheme()">Patrify</a>
+      <h1>Student Area</h1>
     </div>
--->
-  <input type="text" id="searchfield" placeholder="search..." autocomplete="off" oninput="doSearch()">
-  <!-- hidden div to show when, obviously, no results are round -->
-  <div id="noresults">no results :(</div>
+  </header>
   <main>
+    <input type="text" id="searchfield" placeholder="search..." autocomplete="off" oninput="doSearch()">
+    <!-- hidden div to show when, obviously, no results are round -->
+    <div id="noresults">no results :(</div>
 
     <section class="card">
       <h3>Food</h3>
@@ -348,6 +343,7 @@
           <h4>Live ballot</h4>
         </div>
 -->
+      <!--  <!-- -->
     </section>
   </main>
   <div class="spacer"></div>

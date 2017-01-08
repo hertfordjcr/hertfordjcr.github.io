@@ -18,8 +18,6 @@
   <title>Live ballot</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <!-- Using students.css for the card layout -->
-  <link rel="stylesheet" href="/css/students.css">
   <link rel="stylesheet" href="/css/ballot.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.4.1/velocity.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
@@ -34,6 +32,30 @@
     firebase.initializeApp(config);
 
     function ready() {
+      [].forEach.call(document.getElementsByClassName("floorwrapper"), function (divv) {
+        divv.getElementsByTagName("h4")[0].addEventListener("click", function () {
+          var floor = divv.getElementsByClassName("floor")[0];
+          console.log(floor.style.display);
+          if (floor.style.display === "none" || floor.style.display === "") {
+            //            Velocity(floor, "slideDown", {
+            //              duration: 300
+            //            });
+            floor.style.display = "block";
+          } else {
+            //            Velocity(floor, "slideUp", {
+            //              duration: 300
+            //            });
+            floor.style.display = "none";
+          }
+        });
+      });
+      refresh();
+    }
+
+    function refresh() {
+      [].forEach.call(document.getElementsByClassName("room"), function (room) {
+        room.className = "room";
+      });
       firebase.database().ref("/room").once('value').then(function (snapshot) {
         var rooms = snapshot.val();
         [].forEach.call(document.getElementsByClassName("room"), function (room) {
@@ -42,30 +64,17 @@
           else room.className = "room freeroom";
         });
       });
-      [].forEach.call(document.getElementsByClassName("floorwrapper"), function (divv) {
-        divv.getElementsByTagName("h4")[0].addEventListener("click", function () {
-          var floor = divv.getElementsByClassName("floor")[0];
-          console.log(floor.style.display);
-          if (floor.style.display === "none" || floor.style.display === "") {
-//            Velocity(floor, "slideDown", {
-//              duration: 300
-//            });
-            floor.style.display = "block";
-          } else {
-//            Velocity(floor, "slideUp", {
-//              duration: 300
-//            });
-            floor.style.display = "none";
-          }
-        });
-      });
     }
   </script>
 </head>
 
 <body onload="ready()">
   <header>
-    <h1>Ballot Status</h1>
+    <div class="funnel">
+      <div class="mbutton" id="homebutton" href="/">Home</div>
+      <div class="mbutton" onclick="refresh()">Refresh</div>
+      <h1>Ballot Status</h1>
+    </div>
   </header>
   <main>
     <section class="card">

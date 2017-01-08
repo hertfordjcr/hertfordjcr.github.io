@@ -49,19 +49,28 @@ body {
 }
 
 #photocredit {
-  color: #ddd;
-  text-shadow: 0 0 2px black;
-  position: absolute;
   top: 3px;
   left: 8px;
 }
 
-#photocredit a {
+#websitecredit {
+  top: 3px;
+  right: 8px;
+  font-size: 0.9em;
+}
+
+.credit {
+  color: #ddd;
+  text-shadow: 0 0 2px black;
+  position: absolute;
+}
+
+.credit a {
   text-decoration: none;
   color: inherit;
 }
 
-#photocredit a:hover {
+.credit a:hover {
   text-decoration: underline;
 }
 
@@ -130,6 +139,14 @@ aside {
 nav .mbutton {
   display: inline-block;
   font-size: 1.5em;
+}
+
+header .mbutton:first-child {
+  float: none;
+}
+
+header .mbutton:nth-child(2) {
+  float: none;
 }
 
 h2 {
