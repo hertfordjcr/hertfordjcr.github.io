@@ -48,20 +48,29 @@ body {
   }
 }
 
-#photocredit {
+.credit {
   color: #ddd;
   text-shadow: 0 0 2px black;
   position: absolute;
+}
+
+#photocredit {
   top: 3px;
   left: 8px;
 }
 
-#photocredit a {
+#websitecredit {
+  top: 3px;
+  right: 8px;
+  font-size: 0.9em;
+}
+
+.credit a {
   text-decoration: none;
   color: inherit;
 }
 
-#photocredit a:hover {
+.credit a:hover {
   text-decoration: underline;
 }
 

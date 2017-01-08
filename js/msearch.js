@@ -100,6 +100,7 @@ function doSearch() {
       handleHideItem(oldsingletonitemcatch);
       oldsingletonitemcatch = null;
     }
+    document.getElementsByTagName("main")[0].className = "";
     return; // search cancelled; show everything
   }
   full = " " + full;
@@ -134,9 +135,11 @@ function doSearch() {
   if (numresults === 1) {
     handleGrowItem(singletonitemcatch);
     oldsingletonitemcatch = singletonitemcatch;
+    document.getElementsByTagName("main")[0].className = "singleitem";
   } else if (oldsingletonitemcatch !== null) {
     handleHideItem(oldsingletonitemcatch);
     oldsingletonitemcatch = null;
+    document.getElementsByTagName("main")[0].className = "";
   }
 }
 

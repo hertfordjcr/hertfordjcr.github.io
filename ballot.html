@@ -34,14 +34,6 @@
     firebase.initializeApp(config);
 
     function ready() {
-      firebase.database().ref("/room").once('value').then(function (snapshot) {
-        var rooms = snapshot.val();
-        [].forEach.call(document.getElementsByClassName("room"), function (room) {
-          var name = room.innerHTML.split(" ")[1];
-          if (rooms.ab[name]) room.className = "room takenroom";
-          else room.className = "room freeroom";
-        });
-      });
       [].forEach.call(document.getElementsByClassName("floorwrapper"), function (divv) {
         divv.getElementsByTagName("h4")[0].addEventListener("click", function () {
           var floor = divv.getElementsByClassName("floor")[0];
@@ -60,12 +52,24 @@
         });
       });
     }
+    function refresh() {
+      firebase.database().ref("/room").once('value').then(function (snapshot) {
+        var rooms = snapshot.val();
+        [].forEach.call(document.getElementsByClassName("room"), function (room) {
+          var name = room.innerHTML.split(" ")[1];
+          if (rooms.ab[name]) room.className = "room takenroom";
+          else room.className = "room freeroom";
+        });
+      });
+    }
   </script>
 </head>
 
 <body onload="ready()">
   <header>
+    <div class="mbutton" onclick="refresh()">Refresh</div>
     <h1>Ballot Status</h1>
+    <a href="/" class="mbutton">Home</a>
   </header>
   <main>
     <section class="card">

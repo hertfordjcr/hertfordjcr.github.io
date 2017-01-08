@@ -1,9 +1,11 @@
-header {
-  display: block;
-}
+
 
 main {
   margin: 30px 0;
+}
+
+section {
+  max-width: 10000px;
 }
 
 section ul {
