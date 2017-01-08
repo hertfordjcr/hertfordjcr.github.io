@@ -96,7 +96,7 @@ function doSearch() {
   var full = document.getElementById("searchfield").value.trim().toUpperCase();
   if (full.length === 0) {
     showAll();
-    if (oldsingletonitemcatch !== null) {
+    if (oldsingletonitemcatch != null) {
       handleHideItem(oldsingletonitemcatch);
       oldsingletonitemcatch = null;
     }
@@ -136,7 +136,7 @@ function doSearch() {
     handleGrowItem(singletonitemcatch);
     oldsingletonitemcatch = singletonitemcatch;
     document.getElementsByTagName("main")[0].className = "singleitem";
-  } else if (oldsingletonitemcatch !== null) {
+  } else if (oldsingletonitemcatch != null) {
     handleHideItem(oldsingletonitemcatch);
     oldsingletonitemcatch = null;
     document.getElementsByTagName("main")[0].className = "";
