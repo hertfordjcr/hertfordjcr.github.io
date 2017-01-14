@@ -36,8 +36,8 @@ main {
 }
 
 #apeman {
-  background: -webkit-linear-gradient(left, lightgreen, olive, darkgoldenrod);
-  background: linear-gradient(to right, lightgreen, olive, darkgoldenrod);
+  background: -webkit-linear-gradient(left, rgb(26, 102, 0), rgb(96, 64, 32));
+  background: linear-gradient(to right, rgb(26, 102, 0), rgb(96, 64, 32));
   text-shadow: 0 0 5px white;
 }
 

@@ -19,16 +19,30 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/members.css">
+
+  <audio id="spookyaudio">
+    <source src="fun/spooky.mp3"></source>
+  </audio>
+
   <script src="js/memail.js"></script>
+  <script>
+    function ready() {
+      memailReady();
+      document.getElementById("spooky").addEventListener("mouseenter", function(event) {   
+        console.log("asd");
+        document.getElementById("spookyaudio").play();
+      });
+    }
+  </script>
 </head>
 
-<body onload="memailReady()">
+<body onload="ready()">
   <header>
     <h1>Representatives Committee</h1>
   </header>
   <main>
-    <div class="member card">
-      <img src="img/testimg.jpg">
+    <div class="member card"  id="spooky">
+      <img src="img/members/boooooooooooooooo.png">
       <div class="membername">James Olney</div>
       <div class="memberrole">Entz rep</div>
       <div class="memail">james.olney@hertford.ox.ac.uk</div>
@@ -40,7 +54,7 @@
       <div class="memail">miranda.ryan@hertford.ox.ac.uk</div>
     </div>
     <div class="member card" id="apeman">
-      <img src="img/testimg.jpg">
+      <img src="img/members/ed.png">
       <div class="membername">Ed Burnett</div>
       <div class="memberrole">Environment and ethics rep</div>
       <div class="memail">edward.burnett@herford.ox.ac.uk</div>
