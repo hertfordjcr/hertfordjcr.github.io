@@ -129,7 +129,7 @@ main {
   text-align: center;
 }
 
-.singleitem {
+.singlelist {
   -webkit-column-count: 1;
   -moz-column-count: 1;
   column-count: 1;

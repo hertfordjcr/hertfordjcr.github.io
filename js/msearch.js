@@ -94,18 +94,22 @@ var oldsingletonitemcatch;
 function doSearch() {
   // format search term
   var full = document.getElementById("searchfield").value.trim().toUpperCase();
-  if (full.length === 0) {
+  if (full.length === 0) { // Empty search box
+    document.getElementsByTagName("main")[0].className = "";
     showAll();
     if (oldsingletonitemcatch != null) {
       handleHideItem(oldsingletonitemcatch);
       oldsingletonitemcatch = null;
     }
-    document.getElementsByTagName("main")[0].className = "";
-    return; // search cancelled; show everything
+    return; // don't do search on empty box
   }
+  
+  // line up results in single column
+  document.getElementsByTagName("main")[0].className = "singlelist";
   full = " " + full;
-
+  
   var numresults = 0;
+  var numsections = 0;
   [].forEach.call(getSections(), function (section) {
     if (searchSection(section, full)) {
       showFullSection(section);
@@ -131,15 +135,13 @@ function doSearch() {
 
   document.getElementById("noresults").style.display = numresults === 0 ? "block" : "none";
   // If only one item matches, grow it if possible
-  // If one item matched before, hide it 
+  // If one item matched before, hide it
   if (numresults === 1) {
     handleGrowItem(singletonitemcatch);
     oldsingletonitemcatch = singletonitemcatch;
-    document.getElementsByTagName("main")[0].className = "singleitem";
   } else if (oldsingletonitemcatch != null) {
     handleHideItem(oldsingletonitemcatch);
     oldsingletonitemcatch = null;
-    document.getElementsByTagName("main")[0].className = "";
   }
 }
 
