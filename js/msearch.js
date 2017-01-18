@@ -5,7 +5,7 @@ function msearchReady() {
   // handle search term carried in URL
   var st = window.location.href.split("?")[1];
   if (st != null) {
-    document.getElementById("searchfield").value = st.split("%20").join(" ");
+    document.getElementById("searchfield").value = st.split("+").join(" ").split("%20").join(" ");
     // force refresh on placeholder, so it's hidden until text cleared
     document.getElementById("searchfield").removeAttribute("placeholder");
     document.getElementById("searchfield").setAttribute("placeholder", "search");

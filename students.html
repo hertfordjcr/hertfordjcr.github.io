@@ -48,7 +48,7 @@
 
   <header>
     <a class="mbutton" href="/">Home</a>
-<!--    <h1>Students' Area</h1>-->
+    <!--    <h1>Students' Area</h1>-->
     <h1>Student Area</h1>
     <a class="mbutton" onclick="swapPatTheme()">Patrify</a>
   </header>
@@ -57,6 +57,7 @@
       Though the forms do work, please don't send any information through with them yet, as everything will arrive in Mikey's inbox and I have no desire to take welfare orders from you now, or ever.
     </div>
 -->
+  <div id="splash">Yo,<br>If you can read this pls don't use the forms at the mo – I'm doing "maintenance" (fucking around) and can't guarantee that any form will make it to the right place. Check back at, like, 7? Ish.</div>
   <input type="text" id="searchfield" placeholder="search..." autocomplete="off" oninput="doSearch()">
   <!-- hidden div to show when, obviously, no results are round -->
   <div id="noresults">no results :(</div>
@@ -125,6 +126,21 @@
               <input class="firstrow" autocomplete="off" type="text" name="name" placeholder="name" required>
               <input autocomplete="off" type="text" name="email" placeholder="email" required>
             </div>
+
+            <div class="itemgrownote">Select which ports your computer will have. At present we have no adapters for USB-C/Thunderbolt 3 – apologies for that. (I'll add more port options as I become aware that we can support them.)</div>
+
+            <div class="formrow">
+              <div>
+                <label>
+                  <input class="radio" type="checkbox" name="port" value="HDMI">HDMI (<a target="_blank" href="http://www.cablestogo.com/product-images/40028/400/40028a.jpg">pic</a>)</label>
+                <label>
+                  <input class="radio" type="checkbox" name="port" value="VGA">VGA (<a target="_blank" href="http://cctv.help/wp-content/uploads/2015/01/VGA-Cable.jpg">pic</a>)</label>
+              </div>
+              <div>
+                <label>
+                  <input class="radio" type="checkbox" name="port" value="Thunderbolt 2">Thunderbolt (the <a target="_blank" href="http://core0.staticworld.net/images/article/2013/09/thunderbolt-connector-100054566-large.jpeg">Mac one</a>)</label>
+              </div>
+            </div>
             <textarea name="message" placeholder="desired time"></textarea>
             <input type="text" name="_gotcha" style="display:none">
             <input type="hidden" name="_subject" value="Projector request">
@@ -152,6 +168,8 @@
               <div>
                 <label>
                   <input class="radio" type="checkbox" name="order" value="condoms">condoms</label>
+                <label>
+                  <input class="radio" type="checkbox" name="order" value="large condoms">large condoms</label>
                 <label>
                   <input class="radio" type="checkbox" name="order" value="lube">lube</label>
                 <label>
@@ -186,6 +204,8 @@
               <div>
                 <label>
                   <input class="radio" type="checkbox" name="order" value="condoms">condoms</label>
+                <label>
+                  <input class="radio" type="checkbox" name="order" value="large condoms">large condoms</label>
                 <label>
                   <input class="radio" type="checkbox" name="order" value="lube">lube</label>
                 <label>
@@ -304,7 +324,7 @@
         <h4>Music society</h4>
       </div>
     </section>
-    
+
     <section class="card">
       <h3>Sports</h3>
       <div class="item" data-terms="sports announcements,sports news">
