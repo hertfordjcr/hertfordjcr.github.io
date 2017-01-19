@@ -42,7 +42,7 @@
             //alert("Menu updated successfully :D");
             var r = confirm("Menu updated successfully.\nWould you like to send the menu out by email now?");
             if(r){
-              window.location.href = "mailto:fandh@michaelagius.uk?subject=Today's%20Warnock&body=" + content.replace(/[\n\r]/g, "%0A");
+              window.location.href = "mailto:fandh@michaelagius.uk;tanzil.rahman@hertford.ox.ac.uk?subject=Today's%20Warnock&body=" + content.replace(/[\n\r]/g, "%0A");
             }
           }, function (error) {
             alert(error.message);

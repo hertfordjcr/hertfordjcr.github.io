@@ -12,7 +12,11 @@ body {
 }
 
 main {
-  font-size: 1.4em;
+  font-size: 1.2em;
+}
+
+form {
+  max-width: 1000px;
 }
 
 .emoji {
@@ -25,6 +29,7 @@ p {
 
 .card {
   padding: 20px;
+  max-width: 1000px;
 }
 
 .mbutton {
