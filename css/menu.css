@@ -1,9 +1,13 @@
 #warnymenucont {
-  font-size: 1.8em;
+  font-size: 1.5em;
   text-align: center;
-  padding: 30px;
-  max-width: calc(100% - 20px);
-  margin: 0 auto;
+  max-width: 700px;
+  width: calc(100% - 20px);
+  margin: 20px auto;
+}
+  
+#warnymenucont p {
+  margin: 24px;
 }
 
 section {

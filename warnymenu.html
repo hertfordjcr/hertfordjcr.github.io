@@ -36,7 +36,7 @@
         var warnymenu = snapshot.val();
         var contentarea = document.getElementsByTagName("main")[0];
         if (warnymenu.date == new Date().getDate()) {
-          contentarea.innerHTML = warnymenu.content.replace(/[\n\r]/g, "<br>");
+          contentarea.innerHTML = "<p>" + warnymenu.content.replace(/[\n\r]/g, "</p><p>") + "</p>";
         } else {
           contentarea.innerHTML = "Today's menu isn't ready yet :(";
         }
@@ -48,7 +48,7 @@
 <body onload="ready()">
   <header><h1>Warnock Menu</h1></header>
   <div class="spacer"></div>
-  <main class="card" id="warnymenucont">...loading...</main>
+  <main class="card" id="warnymenucont"><p>...loading...</p></main>
   <div class="spacer"></div>
   <footer>&copy; Michael Agius</footer>
 </body>
