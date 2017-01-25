@@ -19,6 +19,7 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/students.css">
+  <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.4.1/velocity.min.js"></script>
   <script src="js/msearch.js"></script>
   <script src="js/memail.js"></script>
@@ -26,6 +27,34 @@
     function ready() {
       msearchReady();
       memailReady();
+      
+      document.getElementById("sportsannouncementsitem").addEventListener()
+    }
+    
+    var firebaseloaded = false;
+    function setupFirebase(){
+      var config = {
+        apiKey: "AIzaSyBgT_WotHdQwc4YX8IcC2tYPJ2BxPifS2Y",
+        authDomain: "hertfordjcr-bf40e.firebaseapp.com",
+        databaseURL: "https://hertfordjcr-bf40e.firebaseio.com",
+        storageBucket: "hertfordjcr-bf40e.appspot.com",
+        messagingSenderId: "318620778170"
+      };
+      firebase.initializeApp(config);
+      firebaseloaded = true;
+    }
+
+    function loadSportsAnnouncements() {
+      if(!firebaseloaded) setupFirebase();
+      firebase.database().ref("/sports").once('value').then(function (snapshot) {
+        var contentarea = document.getElementById("sportsannouncements");
+        var s = "";
+        snapshot.forEach(function (item) {
+          s += "<h5>" + item.val().sport + "</h5><p>" + item.val().message + "</p>";
+        });
+        if(s === "") s = "No news at the mo :(";
+        contentarea.innerHTML = s;
+      });
     }
 
     function swapPatTheme() {
@@ -57,7 +86,7 @@
       Though the forms do work, please don't send any information through with them yet, as everything will arrive in Mikey's inbox and I have no desire to take welfare orders from you now, or ever.
     </div>
 -->
-<!--  <div id="splash">Yo,<br>If you can read this pls don't use the forms at the mo – I'm doing "maintenance" (fucking around) and can't guarantee that any form will make it to the right place. Check back at, like, 7? Ish.</div>-->
+  <!--  <div id="splash">Yo,<br>If you can read this pls don't use the forms at the mo – I'm doing "maintenance" (fucking around) and can't guarantee that any form will make it to the right place. Check back at, like, 7? Ish.</div>-->
   <input type="text" id="searchfield" placeholder="search..." autocomplete="off" oninput="doSearch()">
   <!-- hidden div to show when, obviously, no results are round -->
   <div id="noresults">no results :(</div>
@@ -326,27 +355,6 @@
     </section>
 
     <section class="card">
-      <h3>Sports</h3>
-      <div class="item" data-terms="sports announcements,sports news">
-        <h4>Announcements</h4>
-        <div class="itemgrow">
-          <h5>Rowing</h5>
-          <p>On Sunday 22nd, W1 completed the two 1.7km races down the ISIS. Overall both rows were extremely strong and promising for our first racing experience of the term and only our 5th time rowing together. Despite being a relatively new crew, there was a lot of focus throughout the two pieces and we can only go away being extremely happy with our performance. We hope that this has set the tone for a great term ahead! Well done to everyone who rowed!</p>
-          <h5>Football</h5>
-          <p>On Sunday 22nd, the Hertford/Keble women’s football team powered into the quarter final of the women’s cupper’s competition with a strong 10-1 victory over St Peters and St Annes!</p>
-          <h5>Netball</h5>
-          <p>Saturday was a great opportunity for Herftord Netball to compete against our rivals; Cambridge! After some very tight quarters, we lost the first match but came back to win the second; with an overall tie in terms of goals scored. There were some great performances across the court, with some amazing goals from Sarah Goodman, and aggressive defence from Abie Witts. Everyone enjoyed the day, and we look forward to hosting Jesus College next year!</p>
-        </div>
-      </div>
-      <div class="item" data-link="/captains">
-        <h4>Sports captains</h4>
-      </div>
-      <div class="item" data-link="https://hertfordcollegeboatclub.com">
-        <h4>Boat club</h4>
-      </div>
-    </section>
-
-    <section class="card">
       <h3>Laundry</h3>
       <div class="item" data-link="https://www.circuit.co.uk/i-want-to-do-my-laundry/card-top-up/">
         <h4>Top up</h4>
@@ -356,6 +364,34 @@
       </div>
     </section>
 
+    <section class="card">
+      <h3>Rooms</h3>
+      <div class="item" data-link="https://www.hertford.ox.ac.uk/my-hertford/forms-and-bookings/room-booking">
+        <h4>Book a room</h4>
+      </div>
+      <!--
+        <div class="item" data-link="/housing" data-terms="housing">
+          <h4>Live ballot</h4>
+        </div>
+-->
+    </section>
+    
+    <section class="card">
+      <h3>Sports</h3>
+      <div class="item" id="sportsannouncementsitem" data-terms="sports announcements,sports news" data-func="loadSportsAnnouncements()">
+        <h4>Announcements</h4>
+        <div class="itemgrow" id="sportsannouncements">
+          Loading...
+        </div>
+      </div>
+      <div class="item" data-link="/captains">
+        <h4>Sports captains</h4>
+      </div>
+      <div class="item" data-link="https://hertfordcollegeboatclub.com">
+        <h4>Boat club</h4>
+      </div>
+    </section>
+    
     <section class="card">
       <h3>Facebook</h3>
       <div class="item" data-link="https://www.facebook.com/groups/337705103235565/">
@@ -371,18 +407,7 @@
         <h4>Entz profile</h4>
       </div>
     </section>
-
-    <section class="card">
-      <h3>Rooms</h3>
-      <div class="item" data-link="https://www.hertford.ox.ac.uk/my-hertford/forms-and-bookings/room-booking">
-        <h4>Book a room</h4>
-      </div>
-      <!--
-        <div class="item" data-link="/housing" data-terms="housing">
-          <h4>Live ballot</h4>
-        </div>
--->
-    </section>
+    
   </main>
   <div class="spacer"></div>
   <footer>&copy; Michael Agius</footer>

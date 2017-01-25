@@ -1,0 +1,17 @@
+.card {
+  padding: 20px;
+  margin: 20px auto;
+  width: 1000px;
+  max-width: calc(100% - 20px);
+}
+
+form {
+  font-size: 1.3em;
+  max-width: 1000px;
+  width: 100%;
+}
+
+form > input,
+form > textarea {
+  text-align: center;
+}

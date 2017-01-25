@@ -31,6 +31,11 @@ function getItemLink(item) {
   return item.getAttribute("data-link");
 }
 
+
+function getItemFunc(item) {
+  return item.getAttribute("data-func");
+}
+
 function getItemGrow(item) {
   return item.getElementsByClassName("itemgrow")[0];
 }
@@ -56,6 +61,10 @@ function handleHideItem(item) {
 function handleGrowItem(item) {
   var grow = getItemGrow(item);
   if (grow != null && item.className === "item") {
+    //load
+    var func = getItemFunc(item);
+    if(func != "null") eval(func);
+    //grow
     item.className = "item itemfocus";
     Velocity(grow, "slideDown", {
       duration: 300

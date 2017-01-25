@@ -95,16 +95,6 @@ form {
   max-width: 600px;
 }
 
-.menuform {
-  margin: 30px auto;
-  font-size: 1.4em;
-}
-
-.menuform > textarea,
-.menuform > input {
-  text-align: center;
-}
-
 form label {
   cursor: pointer;
   display: block;

@@ -10,7 +10,7 @@
   <link rel="shortcut icon" href="/favicons/favicon.ico">
   <meta name="msapplication-config" content="/favicons/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
-  <title>Warny meal input</title>
+  <title>New Sports Announcement</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/locals.css">
@@ -26,34 +26,50 @@
     firebase.initializeApp(config);
 
     function processForm(e) {
-      if (e.preventDefault) e.preventDefault();
       var pass = document.getElementById("pass").value;
-      var content = document.getElementById("contentmenu").value;
-      firebase.auth().signInWithEmailAndPassword("pass@michaelagius.uk", pass).catch(function (error) {
+      if (e.preventDefault) e.preventDefault();
+      firebase.auth().signInWithEmailAndPassword("sportspass@michaelagius.uk", pass).catch(function (error) {
         var errorCode = error.code;
         var errorMessage = error.message;
         alert(errorMessage);
-      }).then(function () {
-        firebase.database().ref('warny').set({
-          content: content,
-          date: new Date().getDate()
-        }).then(function () {
-          firebase.auth().signOut().then(function () {
-            var r = confirm("Menu updated successfully.\nWould you like to send the menu out by email now?");
-            if(r){
-              window.location.href = "mailto:fandh@michaelagius.uk?subject=Today's%20Warnock&body=" + content.replace(/[\n\r]/g, "%0A");
-            }
-          }, function (error) {
-            alert(error.message);
-          });
-        });
-      });
+      }).then(removeOld);
       // must return false to prevent the default form behavior
       return false;
     }
 
+    function removeOld() {
+      firebase.database().ref("/sports").once('value').then(function (snapshot) {
+        var now = new Date().getTime();
+        snapshot.forEach(function (item) {
+          if (now - item.val().date > 1209600000){
+            item.ref.remove();
+          }
+        });
+        addNew();
+      });
+    }
+
+    function addNew() {
+      var newPostKey = firebase.database().ref().child('sports').push().key;
+      var updates = {};
+      var sport = document.getElementById("sport").value;
+      var content = document.getElementById("contentmsg").value;
+      updates['sports/' + newPostKey + "/sport"] = sport;
+      updates['sports/' + newPostKey + "/date"] = new Date().getTime();
+      updates['sports/' + newPostKey + "/message"] = content;
+      firebase.database().ref().update(updates).then(signOut);
+    }
+
+    function signOut() {
+      firebase.auth().signOut().then(function () {
+        alert("Announcement uploaded :D");
+      }, function (error) {
+        alert(error.message);
+      });
+    }
+
     function ready() {
-      var form = document.getElementById('menuform');
+      var form = document.getElementById('sform');
       if (form.attachEvent) form.attachEvent("submit", processForm);
       else form.addEventListener("submit", processForm);
     }
@@ -61,12 +77,14 @@
 </head>
 
 <body onload="ready()">
-  <header><h1>Warnock Menu Input</h1></header>
+  <header>
+    <h1>New Sports Announcement</h1></header>
   <div class="spacer"></div>
   <main class="card">
-    <form id="menuform" class="menuform" method="POST" autocomplete="off">
+    <form id="sform" class="sform" method="POST" autocomplete="off">
       <input id="pass" autocomplete="off" type="text" name="name" placeholder="password" required>
-      <textarea id="contentmenu" name="message" placeholder="today's menu" rows="10"></textarea>
+      <input id="sport" type="text" name="name" placeholder="sport" required>
+      <textarea id="contentmsg" name="message" placeholder="announcement" rows="10"></textarea>
       <button class="mbutton" type="submit">send</button>
     </form>
   </main>
