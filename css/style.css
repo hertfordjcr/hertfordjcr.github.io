@@ -91,6 +91,28 @@ main {
   outline: none;
 }
 
+table {
+  padding: 10px;
+  text-align: center;
+  margin: 10px auto;
+  border-radius: 2px;
+  border-collapse: separate;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.137255) 0px 1px 1px 0px, rgba(0, 0, 0, 0.117647) 0px 2px 1px -1px;
+/*  transform: rotate(2deg);*/
+}
+
+thead td,
+td:first-child {
+  font-weight: 400;
+  background-color: rgb(160, 210, 255);
+}
+
+td {
+  border-radius: 0 5px 5px 5px;
+  background-color: rgb(200, 230, 255);
+  padding: 10px 25px;
+}
+
 form {
   max-width: 600px;
 }

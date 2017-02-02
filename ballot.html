@@ -51,6 +51,7 @@
           }
         });
       });
+      refresh();
     }
     function refresh() {
       firebase.database().ref("/room").once('value').then(function (snapshot) {

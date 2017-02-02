@@ -28,7 +28,9 @@
       msearchReady();
       memailReady();
       
-      document.getElementById("sportsannouncementsitem").addEventListener()
+      //document.getElementById("sportsannouncementsitem").addEventListener();
+      
+      if(localStorage.getItem("patrify") == 1) swapPatTheme();
     }
     
     var firebaseloaded = false;
@@ -63,11 +65,13 @@
         document.getElementsByTagName("header")[0].className = "";
         document.getElementsByTagName("footer")[0].className = "";
         document.getElementsByTagName("footer")[0].innerHTML = "&copy; Michael Agius";
+        localStorage.setItem("patrify", 0);
       } else {
         document.body.className = "pattedbody";
         document.getElementsByTagName("header")[0].className = "pattedheader";
         document.getElementsByTagName("footer")[0].className = "pattedheader";
         document.getElementsByTagName("footer")[0].innerHTML = "<marquee>glorious Pat theme</marquee>";
+        localStorage.setItem("patrify", 1);
       }
     }
   </script>
@@ -112,6 +116,50 @@
       <div class="item" data-link="http://meals.hertford.ox.ac.uk/asmeals">
         <h4>Book formal meals</h4>
       </div>
+      
+      <div class="item">
+        <h4>Meal times</h4>
+        <div class="itemgrow">
+          <table>
+            <thead>
+              <td>Meal</td>
+              <td>Days</td>
+              <td>Times</td>
+            </thead>
+            <tr>
+              <td>Breakfast</td>
+              <td>Weekdays</td>
+              <td>08:15 – 09:00</td>
+            </tr>
+            <tr>
+              <td>Lunch</td>
+              <td>Weekdays</td>
+              <td>12:00 – 13:30</td>
+            </tr>
+            <tr>
+              <td>Dinner</td>
+              <td>Weekdays</td>
+              <td>18:00 – 18:45</td>
+            </tr>
+            <tr>
+              <td>Brunch</td>
+              <td>Weekends</td>
+              <td>11:00 – 12:30</td>
+            </tr>
+            <tr>
+              <td>Formal Hall</td>
+              <td>Wed / Sun</td>
+              <td>19:15 – 21:00</td>
+            </tr>
+            <tr>
+              <td>Guest Night</td>
+              <td>Fri 4<sup>th</sup> / 8<sup>th</sup></td>
+              <td>19:15 – 21:00</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      
     </section>
 
     <section class="card">
@@ -161,13 +209,13 @@
             <div class="formrow">
               <div>
                 <label>
-                  <input class="radio" type="checkbox" name="port" value="HDMI">HDMI (<a target="_blank" href="http://ww2.justanswer.com/uploads/pramitpanda/2010-12-22_011706_hdmi.jpg">pic</a>)</label>
+                  <input class="radio" type="checkbox" name="port" value="HDMI">HDMI (<a target="_blank" href="/img/ports/HDMI.jpg">pic</a>)</label>
                 <label>
-                  <input class="radio" type="checkbox" name="port" value="VGA">VGA (<a target="_blank" href="http://www.shsu.edu/dept/it@sam/technology-tutorials/laptop/images/vga.png">pic</a>)</label>
+                  <input class="radio" type="checkbox" name="port" value="VGA">VGA (<a target="_blank" href="/img/ports/VGA.jpg">pic</a>)</label>
               </div>
               <div>
                 <label>
-                  <input class="radio" type="checkbox" name="port" value="Thunderbolt 2">Thunderbolt (the <a target="_blank" href="http://cdn.appstorm.net/iphone.appstorm.net/files/2011/02/thunderbolt-1.jpg">Mac one</a>)</label>
+                  <input class="radio" type="checkbox" name="port" value="Thunderbolt 2">Thunderbolt (the <a target="_blank" href="/img/ports/Thunderbolt.jpg">Mac one</a>)</label>
               </div>
             </div>
             <textarea name="message" placeholder="desired time"></textarea>
@@ -405,6 +453,21 @@
       </div>
       <div class="item" data-link="https://www.facebook.com/profile.php?id=100009280119680">
         <h4>Entz profile</h4>
+      </div>
+    </section>
+    
+    <section class="card">
+      <h3>Resources</h3>
+      <div class="item">
+        <h4>College Crests</h4>
+        <div class="itemgrow">
+          <ul>
+            <li><a target="_blank" href="resources/crests/BlackAndWhite.png">Black and White</a></li>
+            <li><a target="_blank" href="resources/crests/Colour1.jpg">Colour v1</a></li>
+            <li><a target="_blank" href="resources/crests/Colour2.jpg">Colour v2</a></li>
+            <li><a target="_blank" href="resources/crests/Colour3.png">Colour v3</a></li>
+          </ul>
+        </div>
       </div>
     </section>
     
