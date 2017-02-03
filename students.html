@@ -27,9 +27,6 @@
     function ready() {
       msearchReady();
       memailReady();
-      
-      //document.getElementById("sportsannouncementsitem").addEventListener();
-      
       if(localStorage.getItem("patrify") == 1) swapPatTheme();
     }
     
@@ -56,6 +53,24 @@
         });
         if(s === "") s = "No news at the mo :(";
         contentarea.innerHTML = s;
+      });
+    }
+    
+    function loadWarnyMenu(){
+      if(!firebaseloaded) setupFirebase();
+      firebase.database().ref("/warny").once('value').then(function (snapshot) {
+        var warnymenu = snapshot.val();
+        var warnymenustring = warnymenu.content;
+        if(warnymenustring.endsWith("\nThanks")){
+          // remove Nigel's thanks at the end for the menu
+          warnymenustring = warnymenustring.substring(0, warnymenustring.length - "\nThanks".length);
+        }
+        var contentarea = document.getElementById("warnymenucontentbox");
+        if (warnymenu.date == new Date().getDate()) {
+          contentarea.innerHTML = "<p>" + warnymenustring.replace(/[\n\r]/g, "</p><p>") + "</p>";
+        } else {
+          contentarea.innerHTML = "Today's menu isn't ready yet :(";
+        }
       });
     }
 
@@ -110,8 +125,11 @@
         </div>
 -->
 
-      <div class="item" data-link="/warnymenu" data-terms="warny">
+      <div class="item" data-terms="warny, warnymenu" data-func="loadWarnyMenu()">
         <h4>Warnock menu</h4>
+        <div class="itemgrow" id="warnymenucontentbox">
+          Loading...
+        </div>
       </div>
       <div class="item" data-link="http://meals.hertford.ox.ac.uk/asmeals">
         <h4>Book formal meals</h4>
@@ -417,11 +435,9 @@
       <div class="item" data-link="https://www.hertford.ox.ac.uk/my-hertford/forms-and-bookings/room-booking">
         <h4>Book a room</h4>
       </div>
-      <!--
-        <div class="item" data-link="/housing" data-terms="housing">
-          <h4>Live ballot</h4>
-        </div>
--->
+      <div class="item" data-link="/ballot" data-terms="housing, rooms">
+        <h4>Live ballot</h4>
+      </div>
     </section>
     
     <section class="card">

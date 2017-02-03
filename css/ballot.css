@@ -1,3 +1,14 @@
+.inlineinner {
+  margin: 5px 0;
+}
+
+.inlineinner > * {
+  display: inline-block;
+/*  display: block;*/
+  margin: 10px;
+/*  padding: 100px;*/
+}
+
 main {
   margin: 30px 0;
 }
@@ -23,7 +34,7 @@ section h4 {
 }
 
 .room {
-  margin: 5px 0;
+  margin: 2px 0;
   padding: 8px;
   text-align: center;
   border-radius: 5px;
