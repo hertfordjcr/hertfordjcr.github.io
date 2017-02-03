@@ -84,7 +84,8 @@ body {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  min-height: 100vh;
+  margin-top: 40px;
+  min-height: calc(100vh - 40px);
   box-sizing: border-box;
 }
 
