@@ -64,6 +64,7 @@
         if(warnymenustring.endsWith("\nThanks")){
           // remove Nigel's thanks at the end for the menu
           warnymenustring = warnymenustring.substring(0, warnymenustring.length - "\nThanks".length);
+          // unless he writes cheers, in which case I'll just let him have it
         }
         var contentarea = document.getElementById("warnymenucontentbox");
         if (warnymenu.date == new Date().getDate()) {

@@ -234,3 +234,7 @@ section h3 {
   padding-left: -1em;
   text-indent: 1em;
 }
+
+.itemgrow p {
+  margin: 15px 0;
+}

@@ -91,6 +91,10 @@ main {
   outline: none;
 }
 
+a {
+  color: rgb(61, 102, 244);
+}
+
 table {
   padding: 12px;
   text-align: center;
