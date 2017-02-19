@@ -42,7 +42,8 @@ function getItemGrow(item) {
 
 function handleItem(item) {
   var link = getItemLink(item);
-  if (link !== null) window.location.href = link;
+  //if (link !== null) window.location.href = link;
+  if(link !== null) window.open(link,'_blank');
   else if (!handleGrowItem(item)) {
     handleHideItem(item);
   }
