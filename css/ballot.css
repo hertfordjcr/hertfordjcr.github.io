@@ -9,8 +9,13 @@
 /*  padding: 100px;*/
 }
 
+header {
+  position: fixed;
+}
+
 main {
   margin: 30px 0;
+  padding-top: 100px;
 }
 
 section {
