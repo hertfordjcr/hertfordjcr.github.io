@@ -42,28 +42,33 @@
     }
     
     function loadResults() {
-      firebase.database().ref("/voting").once('value').then(function (snapshot) {
-        var seenips = [];
-        var votes = [0,0,0];
-        snapshot.forEach(function (item) {
-          var ips = item.val().ip;
-          if(seenips.indexOf(ips) < 0){
-            votes[item.val().vote] += 1;
-            seenips.push(ips);
+      firebase.auth().signInWithEmailAndPassword("votepass@michaelagius.uk",
+          document.getElementById("voterpassword").value).then(function(){
+        firebase.database().ref("/voting").once('value').then(function (snapshot) {
+          var seenips = [];
+          var votes = [0,0,0];
+          snapshot.forEach(function (item) {
+            var ips = item.val().ip;
+            if(seenips.indexOf(ips) < 0){
+              votes[item.val().vote] += 1;
+              seenips.push(ips);
+            }
+          });
+          var sum = votes[0] + votes[1] + votes[2];
+          if(sum === 0){
+            resetChart();
+            alert("no votes cast");
+            return;
           }
+          forword.innerHTML = votes[0];
+          againstword.innerHTML = votes[1];
+          abstainword.innerHTML = votes[2];
+          forbar.style.width = Math.max(100 * votes[0] / sum, 2) + "%";
+          againstbar.style.width = Math.max(100 * votes[1] / sum, 2) + "%";
+          abstainbar.style.width = Math.max(100 * votes[2] / sum, 2) + "%";
         });
-        var sum = votes[0] + votes[1] + votes[2];
-        if(sum === 0){
-          resetChart();
-          alert("no votes cast");
-          return;
-        }
-        forword.innerHTML = votes[0];
-        againstword.innerHTML = votes[1];
-        abstainword.innerHTML = votes[2];
-        forbar.style.width = Math.max(100 * votes[0] / sum, 2) + "%";
-        againstbar.style.width = Math.max(100 * votes[1] / sum, 2) + "%";
-        abstainbar.style.width = Math.max(100 * votes[2] / sum, 2) + "%";
+      }).catch(function(error){
+        alert("wrong password m8");
       });
     }
     
