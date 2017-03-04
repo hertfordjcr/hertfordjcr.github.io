@@ -15,10 +15,9 @@
   <link rel="shortcut icon" href="/favicons/favicon.ico">
   <meta name="msapplication-config" content="/favicons/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
-  <title>Warnock menu</title>
+  <title>Mikey's Overkill Voting System</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/menu.css">
   <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
   <script>
     var config = {
@@ -29,26 +28,35 @@
       messagingSenderId: "318620778170"
     };
     firebase.initializeApp(config);
-
-    function ready() {
-      firebase.database().ref("/warny").once('value').then(function (snapshot) {
-        var warnymenu = snapshot.val();
-        var contentarea = document.getElementsByTagName("main")[0];
-        if (warnymenu.date == new Date().getDate()) {
-          contentarea.innerHTML = "<p>" + warnymenu.content.replace(/[\n\r]/g, "</p><p>") + "</p>";
-        } else {
-          contentarea.innerHTML = "<p>Today's menu isn't ready yet :(</p>";
-        }
-      });
+    var ipc;
+    function getIP(json) {
+      ipc = json.ip;
+    }
+    function vote(which){
+      firebase.database().ref().child('voting').push({ip: ipc, vote: which});
+      alert("Vote cast successfully :D");
     }
   </script>
+  <script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
 </head>
 
-<body onload="ready()">
-  <header><h1>Warnock Menu</h1></header>
+<body>
+  <header><h1>.MOVS</h1></header>
+  
+  
   <div class="spacer"></div>
-  <main class="singlebox card"><p>...loading...</p></main>
+  
+  <main class="card singlebox">
+    <p>Your vote will only count if you make sure it's sent after the countdown starts and before it finishes. You may vote as many times as you like, but only your first vote will count.</p>
+    <p> </p>
+    <button class="votebutton" onclick="vote(0)">for</button>
+    <button class="votebutton" onclick="vote(1)">against</button>
+    <button class="votebutton" onclick="vote(2)">abstain</button>
+  </main>
+  
   <div class="spacer"></div>
+  
+  
   <footer>&copy; Michael Agius</footer>
 </body>
 

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Today's Warnock Menu">
+  <meta name="keywords" content="Hertford,JCR,current,students,information,menu,warny,warnock">
+  <meta name="author" content="Michael Agius">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/favicons/manifest.json">
+  <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/favicons/favicon.ico">
+  <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <title>Mikey's Overkill Voting System</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyBgT_WotHdQwc4YX8IcC2tYPJ2BxPifS2Y",
+      authDomain: "hertfordjcr-bf40e.firebaseapp.com",
+      databaseURL: "https://hertfordjcr-bf40e.firebaseio.com",
+      storageBucket: "hertfordjcr-bf40e.appspot.com",
+      messagingSenderId: "318620778170"
+    };
+    firebase.initializeApp(config);
+
+    var forbar, againstbar, abstainbar, forword, againstword, abstainword;
+    
+    function ready(){
+      forbar = document.getElementById("forbox");
+      againstbar = document.getElementById("againstbox");
+      abstainbar = document.getElementById("abstainbox");
+      forword = document.getElementById("forword");
+      againstword = document.getElementById("againstword");
+      abstainword = document.getElementById("abstainword");
+      resetChart();
+    }
+    
+    function loadResults() {
+      firebase.database().ref("/voting").once('value').then(function (snapshot) {
+        var seenips = [];
+        var votes = [0,0,0];
+        snapshot.forEach(function (item) {
+          var ips = item.val().ip;
+          if(seenips.indexOf(ips) < 0 || true){
+            votes[item.val().vote] += 1;
+            seenips.push(ips);
+          }
+        });
+        var sum = votes[0] + votes[1] + votes[2];
+        if(sum === 0){
+          resetChart();
+          alert("no votes cast");
+          return;
+        }
+        forword.innerHTML = votes[0];
+        againstword.innerHTML = votes[1];
+        abstainword.innerHTML = votes[2];
+        forbar.style.width = Math.max(100 * votes[0] / sum, 2) + "%";
+        againstbar.style.width = Math.max(100 * votes[1] / sum, 2) + "%";
+        abstainbar.style.width = Math.max(100 * votes[2] / sum, 2) + "%";
+      });
+    }
+    
+    function resetChart(){
+      forword.innerHTML = "–";
+      againstword.innerHTML = "–";
+      abstainword.innerHTML = "–";
+      forbar.style.width = "44%";
+      againstbar.style.width = "33%";
+      abstainbar.style.width = "23%";
+    }
+    
+    function clearResults() {
+      firebase.auth().signInWithEmailAndPassword("votepass@michaelagius.uk",
+          document.getElementById("voterpassword").value).then(function(){
+        firebase.database().ref("/voting").once('value').then(function (snapshot) {
+          snapshot.forEach(function (item) {item.ref.remove();});
+        });
+        resetChart();
+      }).catch(function(error){
+        alert("wrong password m8");
+      });
+    }
+  </script>
+</head>
+
+<body onload="ready()">
+  <header class="complexheader">
+    <div class="inlineinner">
+      <div class="mbutton" onclick="clearResults()">Clear</div>
+      <div class="mbutton" onclick="loadResults()">Load</div>
+    </div>
+    <h1>.MOVS</h1>
+    <div class="inlineinner">
+      <input id="voterpassword" type="password">
+    </div>
+  </header>
+  <div class="spacer"></div>
+  <main class="card singlelargebox" id="voteresultsbox">
+    <p>For: <span id="forword">–</span></p>
+    <div id="forbox" class="votebar"> </div>
+    <p>Against: <span id="againstword">–</span></p>
+    <div id="againstbox" class="votebar"> </div>
+    <p>Abstain: <span id="abstainword">–</span></p>
+    <div id="abstainbox" class="votebar"> </div>
+  </main>
+  <div class="spacer"></div>
+  <footer>&copy; Michael Agius</footer>
+</body>
+
+</html>

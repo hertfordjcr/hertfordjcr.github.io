@@ -52,6 +52,61 @@ header h1 {
   font-weight: 400;
 }
 
+.complexheader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.complexheader .mbutton {
+  font-size: 1.3em;
+  text-align: center;
+}
+
+@media only screen and (max-width: 990px) {
+  .complexheader {
+    padding-top: 10px;
+    padding-left: 10px;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+  .complexheader h1 {
+    -webkit-box-ordinal-group: 3;
+    -ms-flex-order: 2;
+    order: 2;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .complexheader .mbutton {
+    display: inline-block;
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+  }
+}
+
+header,
+footer {
+  -webkit-transition: all 2s ease-in-out;
+  transition: all 2s ease-in-out;
+}
+
+@media only screen and (max-width: 800px) {
+  .complexheader .mbutton {
+    margin: 0 5px;
+  }
+}
+
 main {
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -207,9 +262,70 @@ textarea {
   resize: vertical;
 }
 
+.singlebox {
+  font-size: 1.5em;
+  text-align: center;
+  max-width: 700px;
+  width: calc(100% - 20px);
+  margin: 20px auto;
+  padding: 24px;
+}
+
+.singlelargebox {
+  font-size: 2.5em;
+  max-width: 1300px;
+  width: calc(100% - 20px);
+  margin: 20px auto;
+  padding: 24px;
+}
+
 button {
   font-size: 1.1em;
   float: right;
+}
+
+.votebutton {
+  border-radius: 5px;
+  padding: 10px 20px;
+  display: inline-block;
+  float: none;
+  margin: 20px 10px;
+  background-color: rgb(100, 210, 225);
+  color: white;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+  outline: none;
+  font-size: 1.5em;
+}
+
+.votebutton:hover {
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#voteresultsbox p {
+  margin-bottom: 0px;
+}
+
+#voteresultsbox p:not(:first-child) {
+  margin-top: 60px;
+}
+
+.votebar {
+  background-color: rgb(100, 210, 225);
+  border-radius: 5px;
+  font-size: 1.0em;
+}
+
+.inlineinner {
+  margin: 5px 0;
+}
+
+.inlineinner > * {
+  display: inline-block;
+/*  display: block;*/
+  margin: 10px;
+/*  padding: 100px;*/
 }
 
 .spacer {

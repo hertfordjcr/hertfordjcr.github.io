@@ -1,14 +1,3 @@
-.inlineinner {
-  margin: 5px 0;
-}
-
-.inlineinner > * {
-  display: inline-block;
-/*  display: block;*/
-  margin: 10px;
-/*  padding: 100px;*/
-}
-
 header {
   position: fixed;
 }

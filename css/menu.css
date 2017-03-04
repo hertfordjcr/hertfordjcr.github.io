@@ -1,15 +1,3 @@
-#warnymenucont {
-  font-size: 1.5em;
-  text-align: center;
-  max-width: 700px;
-  width: calc(100% - 20px);
-  margin: 20px auto;
-}
-  
-#warnymenucont p {
-  margin: 24px;
-}
-
 section {
   margin-bottom: 30px;
   overflow: auto;
