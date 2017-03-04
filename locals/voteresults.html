@@ -47,7 +47,7 @@
         var votes = [0,0,0];
         snapshot.forEach(function (item) {
           var ips = item.val().ip;
-          if(seenips.indexOf(ips) < 0 || true){
+          if(seenips.indexOf(ips) < 0){
             votes[item.val().vote] += 1;
             seenips.push(ips);
           }
