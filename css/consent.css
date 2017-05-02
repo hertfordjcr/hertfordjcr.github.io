@@ -27,13 +27,13 @@ header {
 }
 
 header h1 {
-  font-weight: 200;
+  font-weight: 500;
 }
 
 header p {
   padding-top: 10px;
   display: block;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 section {
