@@ -81,6 +81,7 @@ h2 {
 #infoholder {
   background: rgb(70, 100, 160);
   padding: 100px;
+  box-sizing: border-box;
 }
 
 #blocktext {
@@ -142,18 +143,17 @@ h2 {
   }
 }
 
-
-a,
-a:visited,
-a:hover,
-a:active {
-  text-decoration: none;
-  color: inherit;
+@media print {
+  #infoholder {
+    height: 100vh;
+  }
 }
-.memail {
+
+a {
   cursor: pointer;
   color: rgb(100, 200, 255);
 }
-.memail:hover {
+
+a:hover {
   text-decoration: underline;
 }
