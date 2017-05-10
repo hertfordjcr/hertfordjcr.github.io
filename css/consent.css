@@ -1,5 +1,5 @@
 @page {
-  size: A3;
+  size: A2;
 }
 
 * {
@@ -16,6 +16,13 @@ body {
   background-repeat: no-repeat;
   background-position: top, bottom;
   color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.spacer {
+  flex-grow: 2;
 }
 
 header {
@@ -39,12 +46,13 @@ header p {
 section {
   width: 75%;
   max-width: 1400px;
-  margin: 40px 60px;
+  margin: 15px 60px;
   box-sizing: border-box;
   font-size: 1.3em;
   padding: 20px 40px 40px 20px;
   border-radius: 3px 60px 60px 60px;
-  border: 2px solid white;
+  border: 2px solid rgba(0,0,0,0.1);
+/*  box-shadow: 0 10px 20px rgba(0,0,0,0.3);*/
 }
 
 section:nth-child(even) {
@@ -120,6 +128,16 @@ footer a {
 }
 
 footer a:hover {
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  text-shadow: 0 0 20px white;
   text-decoration: underline;
 }
 

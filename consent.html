@@ -19,12 +19,9 @@
 <body>
 
   <header>
-    
     <h1>Concerned about consent?</h1>
-    <p>
-      Worried about an incident which you think may have been non-consensual?</p><p>Whether it's about you or someone you know, there's a variety of people you can talk to.
-    </p>
-
+    <p>Worried about an incident which you think may have been non-consensual?</p>
+    <p>Whether it's about you or someone you know, there's a variety of people you can talk to.</p>
   </header>
 
   <section>
@@ -58,7 +55,11 @@
     <ul>
       <li>
         <h4>COLLEGE NURSE</h4>
-        <p>the nurse can of course help with any physical medical concerns, but is also trained to support anyone who needs to make a disclosure and can signpost you to support. She can also talk to other staff in college such as tutors on your behalf.</p>
+        <p>the nurse course wil now only help with any physical medical concerns, as a Welfare Coordinator is now in place.</p>
+      </li>
+      <li>
+        <h4>WELFARE CO-ORDINATOR</h4>
+        <p>The welfare co-ordinator provides drop in sessions for various issues and CBT, as well as being able to liaise with college and university structures on your behalf.</p>
       </li>
       <li>
         <h4>JUNIOR DEAN</h4>
@@ -84,19 +85,19 @@
     <ul>
       <li>
         <h4>UNIVERSITY ADVICE SERVICE</h4>
-        <p>this service is just a great resource for literally anything, but the university recommends them if you are concerned about an incident of sexual assault or sexual violence. They are contactable on advice@ousu.ox.ac.uk and 01865 288466</p>
+        <p>this service is just a great resource for literally anything, but the university recommends them if you are concerned about an incident of sexual assault or sexual violence. They are contactable on <span class="memail">advice@ousu.ox.ac.uk</span> and 01865 288466</p>
       </li>
       <li>
         <h4>HARASSMENT ADVISERS</h4>
-        <p>the university also has highly trained harassment advisers. You can contact them on harassment.line@admin.ox.ac.uk or 01865 270760</p>
+        <p>the university also has highly trained harassment advisers. You can contact them on <span class="memail">harassment.line@admin.ox.ac.uk</span> or 01865 270760</p>
       </li>
       <li>
         <h4>DIRECTOR OF STUDENT WELFARE AND SUPPORT SERVICES OFFICER </h4>
-        <p>the highest up person you can take something to inside the university. Contactable on 01865 280444 or director.swss@admin.ox.ac.uk</p>
+        <p>the highest up person you can take something to inside the university. Contactable on 01865 280444 or <span class="memail">director.swss@admin.ox.ac.uk</span></p>
       </li>
       <li>
         <h4>COUNSELLING</h4>
-        <p>for more long term support, including if you are supporting someone else after an incident, you can make appointments with the counselling service on counselling@admin.ox.ac.uk or 01865 270300</p>
+        <p>for more long term support, including if you are supporting someone else after an incident, you can make appointments with the counselling service on <span class="memail">counselling@admin.ox.ac.uk</span> or 01865 270300</p>
       </li>
     </ul>
   </section>
@@ -106,7 +107,7 @@
     <ul>
       <li>
         <h4>OSARCC</h4>
-        <p>Oxfordshire Sexual Abuse & Rape Crisis Centre. A support centre in Oxford for women and girls. You can contact them on support@osarc.org.uk, 0800 783 6294 and 01865 726295.</p>
+        <p>Oxfordshire Sexual Abuse & Rape Crisis Centre. A support centre in Oxford for women and girls. You can contact them on <span class="memail">support@osarc.org.uk</span>, 0800 783 6294 and 01865 726295.</p>
       </li>
       <li>
         <h4>POLICE</h4>
@@ -136,18 +137,26 @@
       </li>
       <li>
         <h4>OUSU VP Women*</h4>
-        <p>can provide a great overview of student services and action around consent vpwomen@ousu.ox.ac.uk</p>
+        <p>can provide a great overview of student services and action around consent <span class="memail">vpwomen@ousu.ox.ac.uk</span></p>
       </li>
       <li>
         <h4>It Happens Here</h4>
-        <p>student run campaign against sexual violence at Oxford, and a great source of resources and information about consent at Oxford. ithappenshereoxford.wordpress.com</p>
+        <p>student run campaign against sexual violence at Oxford, and a great source of resources and information about consent at Oxford. Website <a href="ithappenshereoxford.wordpress.com">here</a>.</p>
       </li>
     </ul>
   </section>
+
+  <div class="spacer"></div>
   
   <footer>
-    <a href='http://www.freepik.com/free-vector/abstract-blue-background_859016.htm'>Background design by Freepik</a>
-    <span>JCR Exec and Reps 2017</span>
+    <span>Design by Michael Agius; background from <a href='http://www.freepik.com/free-vector/abstract-blue-background_859016.htm'>Freepik</a></span>
+    <span>Hertford JCR Exec and Reps 2017</span>
   </footer>
+  <script>
+    for (let mem of document.getElementsByClassName("memail")) {
+      let x = mem.innerHTML;
+      mem.innerHTML = `<a href='mailto:${x}'>${x}</a>`;
+    }
+  </script>
 </body>
 </html>
