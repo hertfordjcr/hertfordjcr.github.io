@@ -124,10 +124,10 @@ main {
   color: white;
   cursor: pointer;
   /*  background-color: rgba(121, 166, 210, 0.9);*/
-  background-color: rgba(223, 27, 46, 0.9);
+  background-color: rgba(200,30,40, 0.9);
   /*  border-bottom: 5px solid rgba(121, 166, 210, 0.9);*/
   padding: 10px 25px;
-  border-radius: 2px;
+  border-radius: 5px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
   -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
@@ -338,5 +338,5 @@ footer {
   -ms-flex-negative: 0;
   flex-shrink: 0;
   text-align: center;
-  padding: 5px 7px;
+  padding: 5px 0;
 }

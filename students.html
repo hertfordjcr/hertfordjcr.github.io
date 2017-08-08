@@ -78,13 +78,13 @@
     function swapPatTheme() {
       if (document.body.className === "pattedbody") {
         document.body.className = "";
-        document.getElementsByTagName("header")[0].className = "";
+        document.getElementsByTagName("header")[0].className = "complexheader";
         document.getElementsByTagName("footer")[0].className = "";
-        document.getElementsByTagName("footer")[0].innerHTML = "&copy; Michael Agius";
+        document.getElementsByTagName("footer")[0].innerHTML = "Michael Agius 2017";
         localStorage.setItem("patrify", 0);
       } else {
         document.body.className = "pattedbody";
-        document.getElementsByTagName("header")[0].className = "pattedheader";
+        document.getElementsByTagName("header")[0].className = "pattedheader complexheader";
         document.getElementsByTagName("footer")[0].className = "pattedheader";
         document.getElementsByTagName("footer")[0].innerHTML = "<marquee>glorious Pat theme</marquee>";
         localStorage.setItem("patrify", 1);
@@ -498,7 +498,7 @@
     
   </main>
   <div class="spacer"></div>
-  <footer>&copy; Michael Agius</footer>
+  <footer>Michael Agius 2017</footer>
 </body>
 
 </html>

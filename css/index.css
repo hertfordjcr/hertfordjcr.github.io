@@ -98,7 +98,7 @@ header {
   /*  background-color: rgba(0, 0, 0, 0.45);*/
   background-color: transparent;
   box-shadow: none;
-  /*  background: radial-gradient(black, transparent, transparent);*/
+/*    background: radial-gradient(rgba(0,0,0,0.3), transparent, transparent);*/
 }
 
 #headerborder {
@@ -110,7 +110,7 @@ header h1 {
   color: white;
   font-size: 6.5em;
   font-weight: 100;
-  font-family: 'Optima', sans-serif;
+  font-family: 'Goudy Old Style', sans-serif;
   display: inline-block;
   border-bottom: 1px solid black;
   line-height: 0.8em;
