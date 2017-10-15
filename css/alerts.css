@@ -11,24 +11,15 @@ body {
   align-items: center;
 }
 
-main {
-  font-size: 1.2em;
-}
-
 .emoji {
-  font-size: 5em;
-}
-
-p {
-  padding: 10px;
+  font-size: 4em;
 }
 
 .card {
-  padding: 20px;
-  max-width: 1000px;
+  padding: 10px;
 }
 
 .mbutton {
   display: inline-block;
-  margin-top: 30px;
+  margin-top: 20px;
 }

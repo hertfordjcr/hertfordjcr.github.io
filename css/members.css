@@ -6,24 +6,31 @@ main {
 }
 
 .member {
+  width: 410px;
+  max-width: 100%;
   display: inline-block;
-  width: 300px;
   box-sizing: border-box;
+  text-align: left;
   padding: 0px;
   /* margin difference cancels out whitespace
   of inline elements */
-  margin: 11px 9px;
-  padding-bottom: 20px;
-  overflow: auto;
+  margin: 7px 5px;
+  padding: 5px;
+}
+
+.member::after {
+  display: block;
+  content: "";
+  clear: both;
 }
 
 .membername {
   padding-top: 10px;
-  font-size: 1.6em;
+  font-size: 1.2em;
 }
 
 .memberrole {
-  font-size: 1.3em;
+  font-size: 1.1em;
   padding-top: 3px;
 }
 
@@ -32,7 +39,11 @@ main {
 }
 
 .member img {
-  width: 100%;
+  width: 100px;
+  float: left;
+  margin-right: 10px;
+  border-radius: 2px;
+  border: 1px solid rgba(0,0,0,0.1);
 }
 
 #apeman {

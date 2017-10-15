@@ -62,7 +62,6 @@ body {
 #websitecredit {
   top: 3px;
   right: 8px;
-  font-size: 0.9em;
 }
 
 .credit a {
@@ -95,10 +94,8 @@ body {
 
 header {
   text-align: center;
-  /*  background-color: rgba(0, 0, 0, 0.45);*/
   background-color: transparent;
   box-shadow: none;
-/*    background: radial-gradient(rgba(0,0,0,0.3), transparent, transparent);*/
 }
 
 #headerborder {
@@ -108,8 +105,8 @@ header {
 
 header h1 {
   color: white;
-  font-size: 6.5em;
-  font-weight: 100;
+  font-size: 5.5em;
+  font-weight: 300;
   font-family: 'Goudy Old Style', sans-serif;
   display: inline-block;
   border-bottom: 1px solid black;
@@ -130,34 +127,31 @@ header h1 {
   }
 }
 
+nav .mbutton {
+  display: inline-block;
+  font-size: 1.2em;
+}
+
 aside {
   margin-top: 50px;
-  width: 700px;
-  padding: 20px;
+  padding: 25px;
   overflow: auto;
   background-color: rgba(255, 255, 255, 0.9);
   max-width: 100%;
 }
 
-nav .mbutton {
-  display: inline-block;
-  font-size: 1.5em;
-}
 
 h2 {
   font-weight: 400;
   max-width: 600px;
   margin: 0 auto;
-  font-size: 1.6em;
 }
 
 p {
   max-width: 600px;
   margin: 5px auto;
-  font-size: 1.15em;
 }
 
 form {
   margin: 0 auto;
-  font-size: 1.2em;
 }

@@ -16,7 +16,7 @@
   <meta name="msapplication-config" content="/favicons/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
   <title>Students' area</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/students.css">
   <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
@@ -97,35 +97,16 @@
 
   <header class="complexheader">
     <a class="mbutton" href="/">Home</a>
-    <!--    <h1>Students' Area</h1>-->
     <h1>Student Area</h1>
     <a class="mbutton" onclick="swapPatTheme()">Patrify</a>
   </header>
-  <!--
-    <div id="messagetoall">
-      Though the forms do work, please don't send any information through with them yet, as everything will arrive in Mikey's inbox and I have no desire to take welfare orders from you now, or ever.
-    </div>
--->
-  <!--  <div id="splash">Yo,<br>If you can read this pls don't use the forms at the mo – I'm doing "maintenance" (fucking around) and can't guarantee that any form will make it to the right place. Check back at, like, 7? Ish.</div>-->
   <input type="text" id="searchfield" placeholder="search..." autocomplete="off" oninput="doSearch()">
-  <!-- hidden div to show when, obviously, no results are round -->
+  <!-- hidden div to show when, obviously, no results are found -->
   <div id="noresults">no results :(</div>
   <main>
 
     <section class="card">
       <h3>Food</h3>
-      <!--
-        <div class="item" data-link="/menu">
-          <h4>Hall menu</h4>
-        </div>
-        <div class="item" data-link="/prices">
-          <h4>Hall prices</h4>
-        </div>
-        <div class="item">
-          <h4>View food battels</h4>
-        </div>
--->
-
       <div class="item" data-terms="warny, warnymenu" data-func="loadWarnyMenu()">
         <h4>Warnock menu</h4>
         <div class="itemgrow" id="warnymenucontentbox">
@@ -223,7 +204,7 @@
               <input autocomplete="off" type="text" name="email" placeholder="email" required>
             </div>
 
-            <div class="itemgrownote">Select which ports your computer will have. At present we have no adapters for USB-C/Thunderbolt 3 – apologies for that. (I'll add more port options as I become aware that we can support them.)</div>
+            <div class="itemgrownote">Select which ports the computer will have (we don't have any adapters for USB C)</div>
 
             <div class="formrow">
               <div>
@@ -436,12 +417,14 @@
     
     <section class="card">
       <h3>Sports</h3>
+<!--
       <div class="item" id="sportsannouncementsitem" data-terms="sports announcements,sports news" data-func="loadSportsAnnouncements()">
         <h4>Announcements</h4>
         <div class="itemgrow" id="sportsannouncements">
           Loading...
         </div>
       </div>
+-->
       <div class="item" data-link="/captains">
         <h4>Sports captains</h4>
       </div>
@@ -497,8 +480,6 @@
     </section>
     
   </main>
-  <div class="spacer"></div>
-  <footer>Michael Agius 2017</footer>
 </body>
 
 </html>

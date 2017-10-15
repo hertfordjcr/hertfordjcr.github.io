@@ -17,9 +17,9 @@ section ul {
 }
 
 section h4 {
-  font-size: 1.4em;
   cursor: pointer;
-  font-weight: 300;
+  font-weight: 400;
+  padding: 3px 0;
 }
 
 .floor {
@@ -35,7 +35,6 @@ section h4 {
   background-color: rgba(0, 0, 0, 0.3);
   border-bottom: 2px solid #444;
   color: white;
-  font-size: 1.1em;
   width: 100px;
   display: inline-block;
 }
