@@ -1,5 +1,12 @@
 /* images should be 600x600 for retina */
 
+header p {
+  margin: 10px auto 5px auto;
+  padding: 0 10px;
+  text-align: center;
+  max-width: 1200px;
+}
+
 main {
   text-align: center;
   margin: 40px 0;
@@ -9,6 +16,7 @@ main {
   width: 410px;
   max-width: 100%;
   display: inline-block;
+  vertical-align: top;
   box-sizing: border-box;
   text-align: left;
   padding: 0px;
