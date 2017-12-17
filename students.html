@@ -21,18 +21,201 @@
   <link rel="stylesheet" href="css/students.css">
   <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.4.1/velocity.min.js"></script>
-  <script src="js/msearch.js"></script>
-  <script src="js/memail.js"></script>
   <script>
     function ready() {
-      msearchReady();
-      memailReady();
-      if(localStorage.getItem("patrify") == 1) swapPatTheme();
+      // handle search term carried in URL
+      const st = window.location.href.split("?")[1];
+      if (st != null) {
+        document.getElementById("searchfield").value = st.split("+").join(" ").split("%20").join(" ");
+        // force refresh on placeholder, so it's hidden until text cleared
+        document.getElementById("searchfield").removeAttribute("placeholder");
+        document.getElementById("searchfield").setAttribute("placeholder", "search");
+        doSearch();
+      }
+
+      // event listener to focus search when hovered
+      document.getElementById("searchfield").addEventListener("mouseover", () => {
+        document.getElementById("searchfield").focus();
+      });
+
+      // event listener to handle item when clicked
+      for (const item of getAllItems()) {
+        item.addEventListener("click", (e) => {
+          e = window.event || e;
+          if (e.target === this || e.target === getItemNameElement(item)) handleItem(item);
+        });
+      }
     }
-    
-    var firebaseloaded = false;
-    function setupFirebase(){
-      var config = {
+
+    function getItemLink(item) {
+      return item.getAttribute("data-link");
+    }
+
+
+    function getItemFunc(item) {
+      return item.getAttribute("data-func");
+    }
+
+    function getItemGrow(item) {
+      return item.getElementsByTagName("s-itemgrow")[0];
+    }
+
+    function handleItem(item) {
+      const link = getItemLink(item);
+      if (link !== null) window.open(link, '_blank');
+      else if (!handleGrowItem(item)) {
+        handleHideItem(item);
+      }
+    }
+
+    function handleHideItem(item) {
+      const grow = getItemGrow(item);
+      if (grow != null && item.className !== "") {
+        item.className = "";
+        Velocity(grow, "slideUp", {
+          duration: 300
+        });
+      }
+    }
+
+    function handleGrowItem(item) {
+      const grow = getItemGrow(item);
+      if (grow != null && item.className === "") {
+        //load
+        const func = getItemFunc(item);
+        if (func != "null") eval(func);
+        //grow
+        item.className = "itemfocus";
+        Velocity(grow, "slideDown", {
+          duration: 300
+        });
+        return true;
+      } else return false;
+    }
+
+    function getSections() {
+      return document.getElementsByTagName("s-section");
+    }
+
+    function getSectionName(section) {
+      return section.getElementsByTagName("h3")[0].innerHTML;
+    }
+
+    function getAllItems() {
+      return document.getElementsByTagName("s-item");
+    }
+
+    function getItems(section) {
+      return section.getElementsByTagName("s-item");
+    }
+
+    function getItemName(item) {
+      return getItemNameElement(item).innerHTML;
+    }
+
+    function getItemNameElement(item) {
+      return item.getElementsByTagName("h4")[0];
+    }
+
+    let singletonitemcatch;
+    let oldsingletonitemcatch;
+
+    function doSearch() {
+      // format search term
+      var full = document.getElementById("searchfield").value.trim().toUpperCase();
+      if (full.length === 0) { // Empty search box
+        document.getElementsByTagName("main")[0].className = "";
+        showAll();
+        if (oldsingletonitemcatch != null) {
+          handleHideItem(oldsingletonitemcatch);
+          oldsingletonitemcatch = null;
+        }
+        return; // don't do search on empty box
+      }
+
+      // line up results in single column
+      document.getElementsByTagName("main")[0].className = "singlelist";
+      full = " " + full;
+
+      let numresults = 0;
+      let numsections = 0;
+      for (const section of getSections()) {
+        if (searchSection(section, full)) {
+          showFullSection(section);
+          const itemcount = getItems(section).length;
+          numresults += itemcount;
+          if (itemcount === 1) {
+            singletonitemcatch = getItems(section)[0];
+          }
+        } else {
+          let noneVisible = true;
+          for (let item of getItems(section)) {
+            if (searchItem(item, full)) {
+              showItem(item);
+              numresults += 1;
+              singletonitemcatch = item;
+              noneVisible = false;
+            } else hideDiv(item);
+          }
+          if (noneVisible) hideDiv(section);
+          else showSection(section);
+        }
+      }
+
+      document.getElementsByTagName("no-results")[0].style.display = numresults === 0 ? "block" : "none";
+      // If only one item matches, grow it if possible
+      // If one item matched before, hide it
+      if (numresults === 1) {
+        handleGrowItem(singletonitemcatch);
+        oldsingletonitemcatch = singletonitemcatch;
+      } else if (oldsingletonitemcatch != null) {
+        handleHideItem(oldsingletonitemcatch);
+        oldsingletonitemcatch = null;
+      }
+    }
+
+    function searchSection(section, sfor) {
+      return (" " + getSectionName(section)).toUpperCase().includes(sfor);
+    }
+
+    function searchItem(item, sfor) {
+      if ((" " + getItemName(item)).toUpperCase().includes(sfor)) return true;
+      const terms = item.getAttribute("data-terms");
+      if (terms === null) return false;
+      let matchesterm = false;
+      for (const sin of terms.split(", ")) {
+        if ((" " + sin).toUpperCase().includes(sfor)) matchesterm = true;
+      }
+      return matchesterm;
+    }
+
+    function showAll() {
+      [].forEach.call(getSections(), showSection);
+      [].forEach.call(getAllItems(), showItem);
+      hideDiv(document.getElementsByTagName("no-results")[0]);
+    }
+
+    function showFullSection(section) {
+      showSection(section);
+      [].forEach.call(getItems(section), showItem);
+    }
+
+    function hideDiv(divv) {
+      divv.style.display = "none";
+    }
+
+    function showSection(divv) {
+      divv.style.display = "inline-block";
+    }
+
+    function showItem(divv) {
+      divv.style.display = "block";
+    }
+
+    let firebaseloaded = false;
+
+    function setupFirebase() {
+      const config = {
         apiKey: "AIzaSyBgT_WotHdQwc4YX8IcC2tYPJ2BxPifS2Y",
         authDomain: "hertfordjcr-bf40e.firebaseapp.com",
         databaseURL: "https://hertfordjcr-bf40e.firebaseio.com",
@@ -43,30 +226,17 @@
       firebaseloaded = true;
     }
 
-    function loadSportsAnnouncements() {
-      if(!firebaseloaded) setupFirebase();
-      firebase.database().ref("/sports").once('value').then(function (snapshot) {
-        var contentarea = document.getElementById("sportsannouncements");
-        var s = "";
-        snapshot.forEach(function (item) {
-          s += "<h5>" + item.val().sport + "</h5><p>" + item.val().message + "</p>";
-        });
-        if(s === "") s = "No news at the mo :(";
-        contentarea.innerHTML = s;
-      });
-    }
-    
-    function loadWarnyMenu(){
-      if(!firebaseloaded) setupFirebase();
-      firebase.database().ref("/warny").once('value').then(function (snapshot) {
-        var warnymenu = snapshot.val();
-        var warnymenustring = warnymenu.content;
-        if(warnymenustring.endsWith("\nThanks")){
+    function loadWarnyMenu() {
+      if (!firebaseloaded) setupFirebase();
+      firebase.database().ref("/warny").once('value').then(function(snapshot) {
+        const warnymenu = snapshot.val();
+        let warnymenustring = warnymenu.content;
+        if (warnymenustring.endsWith("\nThanks")) {
           // remove Nigel's thanks at the end for the menu
           warnymenustring = warnymenustring.substring(0, warnymenustring.length - "\nThanks".length);
           // unless he writes cheers, in which case I'll just let him have it
         }
-        var contentarea = document.getElementById("warnymenucontentbox");
+        const contentarea = document.getElementById("warnymenucontentbox");
         if (warnymenu.date == new Date().getDate()) {
           contentarea.innerHTML = "<p>" + warnymenustring.replace(/[\n\r]/g, "</p><p>") + "</p>";
         } else {
@@ -74,52 +244,40 @@
         }
       });
     }
-
-    function swapPatTheme() {
-      if (document.body.className === "pattedbody") {
-        document.body.className = "";
-        document.getElementsByTagName("header")[0].className = "complexheader";
-        document.getElementsByTagName("footer")[0].className = "";
-        document.getElementsByTagName("footer")[0].innerHTML = "Michael Agius 2017";
-        localStorage.setItem("patrify", 0);
-      } else {
-        document.body.className = "pattedbody";
-        document.getElementsByTagName("header")[0].className = "pattedheader complexheader";
-        document.getElementsByTagName("footer")[0].className = "pattedheader";
-        document.getElementsByTagName("footer")[0].innerHTML = "<marquee>glorious Pat theme</marquee>";
-        localStorage.setItem("patrify", 1);
-      }
-    }
   </script>
 </head>
 
 <body onload="ready()">
 
-  <header class="complexheader">
-    <a class="mbutton" href="/">Home</a>
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <a class="mbutton" href="/">Home</a>
+        </li>
+      </ul>
+    </nav>
     <h1>Student Area</h1>
-    <a class="mbutton" onclick="swapPatTheme()">Patrify</a>
+    <input type="text" id="searchfield" placeholder="search..." autocomplete="off" oninput="doSearch()" autofocus>
   </header>
-  <input type="text" id="searchfield" placeholder="search..." autocomplete="off" oninput="doSearch()">
-  <!-- hidden div to show when, obviously, no results are found -->
-  <div id="noresults">no results :(</div>
+  <no-results>no results :(</no-results>
   <main>
 
-    <section class="card">
+    <s-section class="card">
       <h3>Food</h3>
-      <div class="item" data-terms="warny, warnymenu" data-func="loadWarnyMenu()">
+      <s-item data-terms="warny, warnymenu" data-func="loadWarnyMenu()">
         <h4>Warnock menu</h4>
-        <div class="itemgrow" id="warnymenucontentbox">
+        <s-itemgrow id="warnymenucontentbox">
           Loading...
-        </div>
-      </div>
-      <div class="item" data-link="http://meals.hertford.ox.ac.uk/asmeals">
+        </s-itemgrow>
+      </s-item>
+      <s-item data-link="http://meals.hertford.ox.ac.uk/asmeals">
         <h4>Book formal meals</h4>
-      </div>
-      
-      <div class="item">
+      </s-item>
+
+      <s-item data-terms="when is food">
         <h4>Meal times</h4>
-        <div class="itemgrow">
+        <s-itemgrow>
           <table>
             <thead>
               <td>Meal</td>
@@ -157,47 +315,26 @@
               <td>19:15 – 21:00</td>
             </tr>
           </table>
-        </div>
-      </div>
-      
-    </section>
+        </s-itemgrow>
+      </s-item>
 
-    <section class="card">
+    </s-section>
+
+    <s-section class="card">
       <h3>Committees</h3>
-      <div class="item" data-link="/executives" data-terms="jcr">
+      <s-item data-link="/executives" data-terms="jcr">
         <h4>Executives</h4>
-      </div>
-      <div class="item" data-link="/representatives" data-terms="reps">
+      </s-item>
+      <s-item data-link="/representatives" data-terms="reps">
         <h4>Representatives</h4>
-      </div>
-      <!--
-        <div class="item" data-link="/peersupporters">
-          <h4>Peer supporters</h4>
-        </div>
--->
-    </section>
+      </s-item>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>IT</h3>
-      <div class="item">
-        <h4>Report a broken printer</h4>
-        <div class="itemgrow">
-          <form method="POST" autocomplete="off" action="https://formspree.io/m@michaelagius.uk">
-            <div class="formrow">
-              <input class="firstrow" autocomplete="off" type="text" name="name" placeholder="name" required>
-              <input autocomplete="off" type="text" name="email" placeholder="email" required>
-            </div>
-            <textarea name="message" placeholder="details"></textarea>
-            <input type="text" name="_gotcha" style="display:none">
-            <input type="hidden" name="_subject" value="Broken printer report">
-            <input type="hidden" name="_next" value="//hertfordjcr.github.io/formsent">
-            <button class="mbutton" type="submit">send</button>
-          </form>
-        </div>
-      </div>
-      <div class="item">
+      <s-item>
         <h4>Request a projector</h4>
-        <div class="itemgrow">
+        <s-itemgrow>
           <form method="POST" autocomplete="off" action="https://formspree.io/m@michaelagius.uk">
             <div class="formrow">
               <input class="firstrow" autocomplete="off" type="text" name="name" placeholder="name" required>
@@ -224,18 +361,18 @@
             <input type="hidden" name="_next" value="//hertfordjcr.github.io/formsent">
             <button class="mbutton" type="submit">send</button>
           </form>
-        </div>
-      </div>
-      <div class="item" data-link="https://webprint.hertford.ox.ac.uk" data-terms="webprint">
+        </s-itemgrow>
+      </s-item>
+      <s-item data-link="https://webprint.hertford.ox.ac.uk" data-terms="webprint">
         <h4>Web print</h4>
-      </div>
-    </section>
+      </s-item>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>Welfare</h3>
-      <div class="item" data-terms="condoms, lubs, attack alarm, pregnancy test, ear plugs, dental dam">
+      <s-item data-terms="condoms, lubs, attack alarm, pregnancy test, ear plugs, dental dam">
         <h4>Order from female welfare</h4>
-        <div class="itemgrow">
+        <s-itemgrow>
           <form method="POST" autocomplete="off" action="https://formspree.io/fwelfare@michaelagius.uk">
             <div class="formrow">
               <input class="firstrow" autocomplete="off" type="text" name="name" placeholder="name" required>
@@ -267,11 +404,11 @@
             <input type="hidden" name="_next" value="//hertfordjcr.github.io/formsent">
             <button class="mbutton" type="submit">send</button>
           </form>
-        </div>
-      </div>
-      <div class="item" data-terms="condoms, lubs, attack alarm, pregnancy test, ear plugs, dental dam">
+        </s-itemgrow>
+      </s-item>
+      <s-item data-terms="condoms, lubs, attack alarm, pregnancy test, ear plugs, dental dam">
         <h4>Order from male welfare</h4>
-        <div class="itemgrow">
+        <s-itemgrow>
           <form method="POST" autocomplete="off" action="https://formspree.io/mwelfare@michaelagius.uk">
             <div class="formrow">
               <input class="firstrow" autocomplete="off" type="text" name="name" placeholder="name" required>
@@ -303,26 +440,26 @@
             <input type="hidden" name="_next" value="//hertfordjcr.github.io/formsent">
             <button class="mbutton" type="submit">send</button>
           </form>
-        </div>
-      </div>
-      <div class="item" data-link="/peersupporters">
+        </s-itemgrow>
+      </s-item>
+      <s-item data-link="/peersupporters">
         <h4>Peer Supporters</h4>
-      </div>
-      <div class="item" data-link="/firstresponders">
+      </s-item>
+      <s-item data-link="/firstresponders">
         <h4>First Responders</h4>
-      </div>
-    </section>
-    <section class="card">
+      </s-item>
+    </s-section>
+    <s-section class="card">
       <h3>Access</h3>
-      <div class="item" data-link="https://hertfordaccess.wordpress.com">
+      <s-item data-link="https://hertfordaccess.wordpress.com">
         <h4>Access website</h4>
-      </div>
-      <div class="item" data-link="/docs/AlternativeProspectus2016.pdf">
+      </s-item>
+      <s-item data-link="/docs/AlternativeProspectus2016.pdf">
         <h4>Alternative prospectus 2016</h4>
-      </div>
-      <div class="item">
+      </s-item>
+      <s-item>
         <h4>Student support fund information</h4>
-        <div class="itemgrow">
+        <s-itemgrow>
           <h5>What is it?</h5>
           <p>The Student Support Fund is designed to help out Hertford students who come into unexpected financial difficulty due to circumstances beyond their direct control. Alumni donate funds specifically for this purpose. All Hertford students are eligible whether graduate or undergraduate, UK or overseas.</p>
           <h5>What is it typically awarded for?</h5>
@@ -339,18 +476,18 @@
           <p>Applications must be submitted to the Bursary by the end of 2<sup>nd</sup> or 6<sup>th</sup> week each term. Discussions will take place in 3<sup>rd</sup> and 7<sup>th</sup> week, after which the college will contact students to let them know whether their application has been successful or not and why.</p>
           <h5>Other questions</h5>
           <p>If there are any problems or further questions, please don't hesitate to get in contact with either the bursary or the welfare officers.</p>
-        </div>
-      </div>
-      <div class="item" data-link="/docs/HertfordStudentSupportFundApplicationForm.docx">
+        </s-itemgrow>
+      </s-item>
+      <s-item data-link="/docs/HertfordStudentSupportFundApplicationForm.docx">
         <h4>Student support fund application form</h4>
-      </div>
-    </section>
+      </s-item>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>Entz</h3>
-      <div class="item">
+      <s-item>
         <h4>Welfairy volunteer form</h4>
-        <div class="itemgrow">
+        <s-itemgrow>
           <div class="itemgrownote">Make sure you have read the guide beforehand.</div>
           <form method="POST" autocomplete="off" action="https://formspree.io/entz@michaelagius.uk">
             <input autocomplete="off" type="text" name="name" placeholder="name" required>
@@ -366,11 +503,11 @@
             <input type="hidden" name="_next" value="//hertfordjcr.github.io/formsent">
             <button class="mbutton" type="submit">send</button>
           </form>
-        </div>
-      </div>
-      <div class="item">
+        </s-itemgrow>
+      </s-item>
+      <s-item>
         <h4>Welfairy guide</h4>
-        <div class="itemgrow">
+        <s-itemgrow>
           <h5>Expected Behaviour</h5>
           <ul>
             <li>Your role is primarily preventative and intended to provide support in addition to that which friends can be expected to provide.</li>
@@ -394,99 +531,89 @@
             <li>Maya (Female Welfare): 07508 703 079</li>
             <li>Sarah (Entz): 07854 224 068</li>
           </ul>
-        </div>
-      </div>
-    </section>
+        </s-itemgrow>
+      </s-item>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>Society websites</h3>
-      <div class="item" data-link="http://hertfordmusic.org">
+      <s-item data-link="http://hertfordmusic.org">
         <h4>Music society</h4>
-      </div>
-    </section>
+      </s-item>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>Laundry</h3>
-      <div class="item" data-link="https://www.circuit.co.uk/i-want-to-do-my-laundry/card-top-up/">
+      <s-item data-link="https://www.circuit.co.uk/i-want-to-do-my-laundry/card-top-up/">
         <h4>Top up</h4>
-      </div>
-      <div class="item" data-link="http://www.laundryview.com/lvs.php?s=418">
+      </s-item>
+      <s-item data-link="http://www.laundryview.com/lvs.php?s=418">
         <h4>Live status</h4>
-      </div>
-    </section>
+      </s-item>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>Rooms</h3>
-      <div class="item" data-link="https://www.hertford.ox.ac.uk/my-hertford/forms-and-bookings/room-booking">
+      <s-item data-link="https://www.hertford.ox.ac.uk/my-hertford/forms-and-bookings/room-booking">
         <h4>Book a room</h4>
-      </div>
-    </section>
-    
-    <section class="card">
+      </s-item>
+      <s-item data-link="ballot">
+        <h4>Live ballot</h4>
+      </s-item>
+    </s-section>
+
+    <s-section class="card">
       <h3>Sports</h3>
-<!--
-      <div class="item" id="sportsannouncementsitem" data-terms="sports announcements,sports news" data-func="loadSportsAnnouncements()">
-        <h4>Announcements</h4>
-        <div class="itemgrow" id="sportsannouncements">
-          Loading...
-        </div>
-      </div>
--->
-      <div class="item" data-link="/captains">
+      <s-item data-link="/captains">
         <h4>Sports captains</h4>
-      </div>
-      <div class="item" data-link="https://hertfordcollegeboatclub.com">
+      </s-item>
+      <s-item data-link="https://hertfordcollegeboatclub.com">
         <h4>Boat club</h4>
-      </div>
-    </section>
-    
-    <section class="card">
+      </s-item>
+    </s-section>
+
+    <s-section class="card">
       <h3>Facebook</h3>
-      <div class="item" data-link="https://www.facebook.com/groups/337705103235565/">
+      <s-item data-link="https://www.facebook.com/groups/337705103235565/">
         <h4>Main JCR group</h4>
-      </div>
-      <div class="item" data-link="https://www.facebook.com/groups/431113416959461/">
+      </s-item>
+      <s-item data-link="https://www.facebook.com/groups/431113416959461/">
         <h4>Access group</h4>
-      </div>
-      <div class="item" data-link="https://www.facebook.com/groups/1657058711204395/">
+      </s-item>
+      <s-item data-link="https://www.facebook.com/groups/1657058711204395/">
         <h4>Artford group</h4>
-      </div>
-      <div class="item" data-link="https://www.facebook.com/profile.php?id=100009280119680">
+      </s-item>
+      <s-item data-link="https://www.facebook.com/profile.php?id=100009280119680">
         <h4>Entz profile</h4>
-      </div>
-    </section>
-    
-    <section class="card">
+      </s-item>
+    </s-section>
+
+    <s-section class="card">
       <h3>Resources</h3>
-      <div class="item">
+      <s-item>
         <h4>College Crests</h4>
-        <div class="itemgrow">
+        <s-itemgrow>
           <ul>
             <li><a target="_blank" href="resources/crests/BlackAndWhite.png">Black and White</a></li>
             <li><a target="_blank" href="resources/crests/Colour1.jpg">Colour v1</a></li>
             <li><a target="_blank" href="resources/crests/Colour2.jpg">Colour v2</a></li>
             <li><a target="_blank" href="resources/crests/Colour3.png">Colour v3</a></li>
           </ul>
-        </div>
-      </div>
-      <div class="item" data-link="/consent">
+        </s-itemgrow>
+      </s-item>
+      <s-item data-link="/consent">
         <h4>Consent Advice</h4>
-      </div>
-<!--
-      <div class="item" data-link="/ra">
-        <h4>RA Advert</h4>
-      </div>
--->
-    </section>
-    
-    <section class="card">
+      </s-item>
+    </s-section>
+
+    <s-section class="card">
       <h3>Policy</h3>
-      <div class="item" data-link="/docs/Harassment Policy and Procedure.pdf">
+      <s-item data-link="/docs/Harassment Policy and Procedure.pdf">
         <h4>Harassment Policy and Procedure</h4>
-      </div>
-    </section>
-    
+      </s-item>
+    </s-section>
   </main>
+  <script src="js/addmailto.js"></script>
 </body>
 
 </html>

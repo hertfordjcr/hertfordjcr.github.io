@@ -19,20 +19,9 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/members.css">
-
-  <script src="js/memail.js"></script>
-  <script>
-    function ready() {
-      memailReady();
-      document.getElementById("spooky").addEventListener("mouseenter", function(event) {   
-        console.log("asd");
-        document.getElementById("spookyaudio").play();
-      });
-    }
-  </script>
 </head>
 
-<body onload="ready()">
+<body>
   <header>
     <h1>Representatives Committee</h1>
   </header>
@@ -122,7 +111,7 @@
       <div class="memail">sam.gledhill@hertford.ox.ac.uk</div>
     </div>
   </main>
-  <div class="spacer"></div>
+  <script src="js/addmailto.js"></script>
 </body>
 
 </html>

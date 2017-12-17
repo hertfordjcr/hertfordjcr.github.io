@@ -1,68 +1,16 @@
+header {
+  text-align: center;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  padding: 20px 0;
+}
+
 section {
   margin-bottom: 30px;
   overflow: auto;
 }
 
-h3 {
-  font-size: 1.5em;
-  padding-left: 40px;
-  clear: both;
-  margin: 15px 0;
-}
-
-.lunch, .dinner {
-  text-align: center;
-  width: 50%;
-  box-sizing: border-box;
-}
-
-.lunch {
-  float: left;
-  border-right: 1px solid black;
-}
-
-.dinner {
-  float: right;
-}
-
-/* print stuff */
-
-#printpage {
-  width: 100%;
-}
-
-table {
-  width: 100%;
-  text-align: center;
-  padding: 10px;
-  font-size: 1.5em;
-}
-
-th {
-  font-weight: 300;
-  font-size: 1.3em;
-}
-
-.rotate {
-  transform: rotate(-90deg);
-  padding: 30px 0;
-  width: 30px;
-}
-
-@media print {
-  body {
-    transform: rotate(-90deg);
-  }
-  header, footer, .spacer {
-    display: none;
-  }
-}
-
 p {
   margin: 30px 0;
   font-size: 0.9em;
-}
-
-main {
-  max-width: 1000px !important;
 }

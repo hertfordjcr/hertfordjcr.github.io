@@ -30,7 +30,7 @@ body {
   }
 }
 
-header {
+old-header {
   padding: 10px 20px;
   box-sizing: border-box;
   width: 100%;
@@ -42,67 +42,6 @@ header {
 (min-resolution: 192dpi) {
   body {
     background-image: url(/img/backs/fg2.png);
-  }
-}
-
-header h1 {
-  text-align: center;
-  font-size: 2em;
-  padding: 0 50px;
-  font-weight: 500;
-}
-
-.complexheader {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.complexheader .mbutton {
-  text-align: center;
-}
-
-@media only screen and (max-width: 990px) {
-  .complexheader {
-    padding-top: 10px;
-    padding-left: 10px;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-  }
-  .complexheader h1 {
-    -webkit-box-ordinal-group: 3;
-    -ms-flex-order: 2;
-    order: 2;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  .complexheader .mbutton {
-    display: inline-block;
-    -webkit-box-ordinal-group: 2;
-    -ms-flex-order: 1;
-    order: 1;
-  }
-}
-
-header,
-footer {
-  -webkit-transition: all 2s ease-in-out;
-  transition: all 2s ease-in-out;
-}
-
-@media only screen and (max-width: 800px) {
-  .complexheader .mbutton {
-    margin: 0 5px;
   }
 }
 
@@ -151,7 +90,6 @@ table {
   border-radius: 2px;
   border-collapse: separate;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.137255) 0px 1px 1px 0px, rgba(0, 0, 0, 0.117647) 0px 2px 1px -1px;
-/*  transform: rotate(2deg);*/
 }
 
 thead td,
@@ -183,9 +121,9 @@ form label {
 input,
 textarea {
   background-color: rgba(200, 200, 200, 0.2);
-  padding: 8px 12px;
+  padding: 5px 10px;
   margin: 5px 0;
-  border-radius: 5px;
+  border-radius: 3px;
   color: black;
   font-size: inherit;
   box-sizing: border-box;
@@ -284,9 +222,7 @@ button {
 
 .inlineinner > * {
   display: inline-block;
-/*  display: block;*/
   margin: 10px;
-/*  padding: 100px;*/
 }
 
 .spacer {

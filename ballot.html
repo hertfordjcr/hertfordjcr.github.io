@@ -32,14 +32,11 @@
       messagingSenderId: "318620778170"
     };
     firebase.initializeApp(config);
-
-    // until next automatic refresh
-    var secleft = 120;
     
     function ready() {
-      [].forEach.call(document.getElementsByClassName("floorwrapper"), function (divv) {
-        divv.getElementsByTagName("h4")[0].addEventListener("click", function () {
-          var floor = divv.getElementsByClassName("floor")[0];
+      for(const divv of document.getElementsByClassName("floorwrapper")){
+        divv.getElementsByTagName("h4")[0].addEventListener("click", () => {
+          const floor = divv.getElementsByClassName("floor")[0];
           if (floor.style.display === "none" || floor.style.display === "") {
             Velocity(floor, "slideDown", {
               duration: 300
@@ -50,32 +47,23 @@
             });
           }
         });
-      });
+      }
       refresh();
-      
-      var refreshbutton = document.getElementById("refreshbutton");
-      setInterval(function() {
-        secleft--;
-        if(secleft === -1){
-          refresh();
-          secleft = 119;
-        }
-        refreshbutton.innerHTML = "Refresh (" + secleft + ")";
-      }, 1000); 
     }
 
     function refresh() {
       secleft = 120;
-      [].forEach.call(document.getElementsByClassName("room"), function(room) {
+      for(const room of document.getElementsByClassName("room")){
         room.className = "room";
-      });
-      firebase.database().ref("/ballot").once('value').then(function (snapshot) {
-        var rooms = snapshot.val();
-        [].forEach.call(document.getElementsByClassName("room"), function (room) {
-          var number = room.innerHTML.split(" ")[1];
-          var floor = room.parentElement.parentElement.getElementsByTagName("h4")[0].innerHTML;
-          var building = room.parentElement.parentElement.parentElement.parentElement.getElementsByTagName("h3")[0].innerHTML;
-          var roombool;
+      }
+      firebase.database().ref("/ballot").once('value').then((snapshot) => {
+        const rooms = snapshot.val();
+        for(const room of document.getElementsByClassName("room")){
+          //const number = room.innerHTML.split(" ")[1];
+          const number = room.innerHTML;
+          const floor = room.parentElement.parentElement.getElementsByTagName("h4")[0].innerHTML;
+          const building = room.parentElement.parentElement.parentElement.parentElement.getElementsByTagName("h3")[0].innerHTML;
+          let roombool;
           switch (building) {
           case "Old Buildings":
             roombool = rooms["OB"][floor][number];
@@ -122,482 +110,490 @@
             roombool = rooms["LECKFORD"][number];
           }
           room.className = roombool ? "room takenroom" : "room freeroom";
-        });
+        }
       });
     }
 
     
     
     function affectAll(inn) {
-      [].forEach.call(document.getElementsByClassName("floorwrapper"), function (divv) {
-        var floor = divv.getElementsByClassName("floor")[0];
+      for(let divv of document.getElementsByClassName("floorwrapper")){
+        const floor = divv.getElementsByClassName("floor")[0];
         if ((floor.style.display === "none" || floor.style.display === "") === inn ) {
           Velocity(floor, (inn ? "slideDown" : "slideUp"), {
             duration: 300
           });
         }
-      });
+      }
     }
   </script>
 </head>
 
 <body onload="ready()">
-  <header class="complexheader">
-    <div class="inlineinner">
-      <a href="/" class="mbutton">Home</a>
-      <div class="mbutton" id="refreshbutton" onclick="refresh()">Refresh</div>
-    </div>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/students" class="mbutton">Back</a></li>
+        <li><div class="mbutton" id="refreshbutton" onclick="refresh()">Refresh</div></li>  
+        <li><div class="mbutton" onclick="affectAll(true)">Show All</div></li>
+        <li><div class="mbutton" onclick="affectAll(false)">Hide All</div></li>
+      </ul>
+    </nav>
     <h1>Ballot Status</h1>
-    <div class="inlineinner">
-      <div class="mbutton" onclick="affectAll(true)">Show All</div>
-      <div class="mbutton" onclick="affectAll(false)">Hide All</div>
-    </div>
   </header>
   <main>
 
-    <section class="card">
+    <s-section class="card">
       <h3>Old Buildings</h3>
       <ul>
         <li class="floorwrapper">
           <h4>OB1</h4>
           <div class="floor">
-            <div class="room">room 23</div>
-            <div class="room">room 24</div>
-            <div class="room">room 26</div>
-            <div class="room">room 27</div>
+            <div class="room">23</div>
+            <div class="room">24</div>
+            <div class="room">26</div>
+            <div class="room">27</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>OB3</h4>
           <div class="floor">
-            <div class="room">room 4</div>
-            <div class="room">room 5</div>
-            <div class="room">room 6</div>
-            <div class="room">room 7</div>
-            <div class="room">room 10</div>
-            <div class="room">room 12</div>
-            <div class="room">room 14</div>
-            <div class="room">room 15</div>
+            <div class="room">4</div>
+            <div class="room">5</div>
+            <div class="room">6</div>
+            <div class="room">7</div>
+            <div class="room">10</div>
+            <div class="room">12</div>
+            <div class="room">14</div>
+            <div class="room">15</div>
           </div>
         </li>
       </ul>
-    </section>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>New Buildings</h3>
       <ul>
         <li class="floorwrapper">
           <h4>NB1</h4>
           <div class="floor">
-            <div class="room">room 5</div>
-            <div class="room">room 6</div>
-            <div class="room">room 7</div>
-            <div class="room">room 9</div>
-            <div class="room">room 10</div>
-            <div class="room">room 11</div>
-            <div class="room">room 12</div>
-            <div class="room">room 14</div>
-            <div class="room">room 15</div>
-            <div class="room">room 16</div>
+            <div class="room">5</div>
+            <div class="room">6</div>
+            <div class="room">7</div>
+            <div class="room">9</div>
+            <div class="room">10</div>
+            <div class="room">11</div>
+            <div class="room">12</div>
+            <div class="room">14</div>
+            <div class="room">15</div>
+            <div class="room">16</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>NB2</h4>
           <div class="floor">
-            <div class="room">room 20</div>
-            <div class="room">room 21</div>
-            <div class="room">room 22</div>
+            <div class="room">20</div>
+            <div class="room">21</div>
+            <div class="room">22</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>NB3</h4>
           <div class="floor">
-            <div class="room">room 17</div>
+            <div class="room">17</div>
           </div>
         </li>
       </ul>
-    </section>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>Graduate Centre</h3>
       <ul>
         <li class="floorwrapper">
-          <h4>North Block</h4>
+          <h4>First Floor</h4>
           <div class="floor">
-            <div class="room">room 106</div>
-            <div class="room">room 107</div>
-            <div class="room">room 108</div>
-            <div class="room">room 109</div>
-            <div class="room">room 110</div>
-            <div class="room">room 111</div>
-            <div class="room">room 112</div>
-            <div class="room">room 113</div>
-            <div class="room">room 114</div>
-            <div class="room">room 115</div>
-            <div class="room">room 116</div>
-            <div class="room">room 117</div>
-            <div class="room">room 118</div>
-            <div class="room">room 119</div>
-            <div class="room">room 120</div>
-            <div class="room">room 121</div>
-            <div class="room">room 122</div>
-            <div class="room">room 123</div>
-            <div class="room">room 124</div>
-            <div class="room">room 125</div>
-            <div class="room">room 126</div>
-            <div class="room">room 127</div>
-            <div class="room">room 128</div>
-            <div class="room">room 129</div>
-            <div class="room">room 130</div>
+            <div class="room">106</div>
+            <div class="room">107</div>
+            <div class="room">108</div>
+            <div class="room">109</div>
+            <div class="room">110</div>
+          </div>
+        </li>
+        <li class="floorwrapper">
+          <h4>Second Floor</h4>
+          <div class="floor">
+            <div class="room">111</div>
+            <div class="room">112</div>
+            <div class="room">113</div>
+            <div class="room">114</div>
+            <div class="room">115</div>
+            <div class="room">116</div>
+            <div class="room">117</div>
+            <div class="room">118</div>
+            <div class="room">119</div>
+            <div class="room">120</div>
+          </div>
+        </li>
+        <li class="floorwrapper">
+          <h4>Third Floor</h4>
+          <div class="floor">
+            <div class="room">121</div>
+            <div class="room">122</div>
+            <div class="room">123</div>
+            <div class="room">124</div>
+            <div class="room">125</div>
+            <div class="room">126</div>
+            <div class="room">127</div>
+            <div class="room">128</div>
+            <div class="room">129</div>
+            <div class="room">130</div>
           </div>
         </li>
       </ul>
-    </section>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>Old Ab</h3>
       <ul>
         <li class="floorwrapper">
           <h4>Ground floor</h4>
           <div class="floor">
-            <div class="room">room 1</div>
-            <div class="room">room 2</div>
-            <div class="room">room 2a</div>
-            <div class="room">room 3</div>
-            <div class="room">room 4</div>
+            <div class="room">1</div>
+            <div class="room">2</div>
+            <div class="room">2a</div>
+            <div class="room">3</div>
+            <div class="room">4</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>First floor</h4>
           <div class="floor">
-            <div class="room">room 5</div>
-            <div class="room">room 6</div>
-            <div class="room">room 7</div>
-            <div class="room">room 8</div>
-            <div class="room">room 9</div>
-            <div class="room">room 10</div>
+            <div class="room">5</div>
+            <div class="room">6</div>
+            <div class="room">7</div>
+            <div class="room">8</div>
+            <div class="room">9</div>
+            <div class="room">10</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>Second floor</h4>
           <div class="floor">
-            <div class="room">room 11</div>
-            <div class="room">room 12</div>
-            <div class="room">room 13</div>
-            <div class="room">room 14</div>
-            <div class="room">room 15</div>
-            <div class="room">room 16</div>
+            <div class="room">11</div>
+            <div class="room">12</div>
+            <div class="room">13</div>
+            <div class="room">14</div>
+            <div class="room">15</div>
+            <div class="room">16</div>
           </div>
         </li>
       </ul>
-    </section>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>New Ab</h3>
       <ul>
         <li class="floorwrapper">
           <h4>First floor</h4> 
           <div class="floor">
-            <div class="room">room 18</div>
-            <div class="room">room 19</div>
-            <div class="room">room 20</div>
-            <div class="room">room 22</div>
-            <div class="room">room 23</div>
-            <div class="room">room 26</div>
-            <div class="room">room 27</div>
-            <div class="room">room 28</div>
-            <div class="room">room 29</div>
-            <div class="room">room 30</div>
-            <div class="room">room 31</div>
+            <div class="room">18</div>
+            <div class="room">19</div>
+            <div class="room">20</div>
+            <div class="room">22</div>
+            <div class="room">23</div>
+            <div class="room">26</div>
+            <div class="room">27</div>
+            <div class="room">28</div>
+            <div class="room">29</div>
+            <div class="room">30</div>
+            <div class="room">31</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>Second floor</h4>
           <div class="floor">
-            <div class="room">room 32</div>
-            <div class="room">room 34</div>
-            <div class="room">room 35</div>
-            <div class="room">room 37</div>
-            <div class="room">room 39</div>
-            <div class="room">room 40</div>
-            <div class="room">room 41</div>
-            <div class="room">room 42</div>
-            <div class="room">room 43</div>
-            <div class="room">room 44</div>
-            <div class="room">room 45</div>
+            <div class="room">32</div>
+            <div class="room">34</div>
+            <div class="room">35</div>
+            <div class="room">37</div>
+            <div class="room">39</div>
+            <div class="room">40</div>
+            <div class="room">41</div>
+            <div class="room">42</div>
+            <div class="room">43</div>
+            <div class="room">44</div>
+            <div class="room">45</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>Third floor</h4>
           <div class="floor">
-            <div class="room">room 47</div>
-            <div class="room">room 48</div>
-            <div class="room">room 50</div>
-            <div class="room">room 51</div>
-            <div class="room">room 52</div>
-            <div class="room">room 53</div>
-            <div class="room">room 54</div>
-            <div class="room">room 56</div>
-            <div class="room">room 58</div>
+            <div class="room">47</div>
+            <div class="room">48</div>
+            <div class="room">50</div>
+            <div class="room">51</div>
+            <div class="room">52</div>
+            <div class="room">53</div>
+            <div class="room">54</div>
+            <div class="room">56</div>
+            <div class="room">58</div>
           </div>
         </li>
       </ul>
-    </section>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>Mary Warnock</h3>
       <ul>
         <li class="floorwrapper">
           <h4>Ground floor</h4>
           <div class="floor">
-            <div class="room">room 1</div>
-            <div class="room">room 2</div>
+            <div class="room">1</div>
+            <div class="room">2</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>First floor</h4>
           <div class="floor">
-            <div class="room">room 3</div>
-            <div class="room">room 4</div>
-            <div class="room">room 5</div>
-            <div class="room">room 6</div>
-            <div class="room">room 7</div>
-            <div class="room">room 8</div>
-            <div class="room">room 9</div>
-            <div class="room">room 10</div>
-            <div class="room">room 11</div>
+            <div class="room">3</div>
+            <div class="room">4</div>
+            <div class="room">5</div>
+            <div class="room">6</div>
+            <div class="room">7</div>
+            <div class="room">8</div>
+            <div class="room">9</div>
+            <div class="room">10</div>
+            <div class="room">11</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>Second floor</h4>
           <div class="floor">
-            <div class="room">room 12</div>
-            <div class="room">room 13</div>
-            <div class="room">room 14</div>
-            <div class="room">room 15</div>
-            <div class="room">room 16</div>
-            <div class="room">room 17</div>
-            <div class="room">room 18</div>
-            <div class="room">room 19</div>
+            <div class="room">12</div>
+            <div class="room">13</div>
+            <div class="room">14</div>
+            <div class="room">15</div>
+            <div class="room">16</div>
+            <div class="room">17</div>
+            <div class="room">18</div>
+            <div class="room">19</div>
           </div>
         </li>
       </ul>
-    </section>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>Geoffrey Warnock</h3>
       <ul>
         <li class="floorwrapper">
           <h4>Ground floor</h4>
           <div class="floor">
-            <div class="room">room 1</div>
-            <div class="room">room 2</div>
-            <div class="room">room 3</div>
-            <div class="room">room 6</div>
-            <div class="room">room 7</div>
-            <div class="room">room 8</div>
-            <div class="room">room 9</div>
+            <div class="room">1</div>
+            <div class="room">2</div>
+            <div class="room">3</div>
+            <div class="room">6</div>
+            <div class="room">7</div>
+            <div class="room">8</div>
+            <div class="room">9</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>First floor</h4>
           <div class="floor">
-            <div class="room">room 11</div>
-            <div class="room">room 12</div>
-            <div class="room">room 13</div>
-            <div class="room">room 15</div>
-            <div class="room">room 16</div>
-            <div class="room">room 17</div>
-            <div class="room">room 18</div>
-            <div class="room">room 19</div>
-            <div class="room">room 20</div>
-            <div class="room">room 21</div>
-            <div class="room">room 22</div>
-            <div class="room">room 24</div>
-            <div class="room">room 26</div>
+            <div class="room">11</div>
+            <div class="room">12</div>
+            <div class="room">13</div>
+            <div class="room">15</div>
+            <div class="room">16</div>
+            <div class="room">17</div>
+            <div class="room">18</div>
+            <div class="room">19</div>
+            <div class="room">20</div>
+            <div class="room">21</div>
+            <div class="room">22</div>
+            <div class="room">24</div>
+            <div class="room">26</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>Second floor</h4>
           <div class="floor">
-            <div class="room">room 28</div>
-            <div class="room">room 29</div>
-            <div class="room">room 30</div>
-            <div class="room">room 32</div>
-            <div class="room">room 33</div>
-            <div class="room">room 34</div>
-            <div class="room">room 35</div>
-            <div class="room">room 36</div>
-            <div class="room">room 37</div>
-            <div class="room">room 38</div>
-            <div class="room">room 39</div>
-            <div class="room">room 41</div>
-            <div class="room">room 43</div>
+            <div class="room">28</div>
+            <div class="room">29</div>
+            <div class="room">30</div>
+            <div class="room">32</div>
+            <div class="room">33</div>
+            <div class="room">34</div>
+            <div class="room">35</div>
+            <div class="room">36</div>
+            <div class="room">37</div>
+            <div class="room">38</div>
+            <div class="room">39</div>
+            <div class="room">41</div>
+            <div class="room">43</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>Third floor</h4>
           <div class="floor">
-            <div class="room">room 44</div>
-            <div class="room">room 45</div>
-            <div class="room">room 46</div>
-            <div class="room">room 47</div>
-            <div class="room">room 48</div>
-            <div class="room">room 49</div>
-            <div class="room">room 50</div>
-            <div class="room">room 51</div>
-            <div class="room">room 52</div>
-            <div class="room">room 53</div>
+            <div class="room">44</div>
+            <div class="room">45</div>
+            <div class="room">46</div>
+            <div class="room">47</div>
+            <div class="room">48</div>
+            <div class="room">49</div>
+            <div class="room">50</div>
+            <div class="room">51</div>
+            <div class="room">52</div>
+            <div class="room">53</div>
           </div>
         </li>
       </ul>
-    </section>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>Abingdon Road</h3>
       <ul>
         <li class="floorwrapper">
           <h4>96 Abingdon</h4>
           <div class="floor">
-            <div class="room">room 1</div>
-            <div class="room">room 2</div>
-            <div class="room">room 3</div>
-            <div class="room">room 4</div>
-            <div class="room">room 5</div>
-            <div class="room">room 6</div>
-            <div class="room">room 7</div>
+            <div class="room">1</div>
+            <div class="room">2</div>
+            <div class="room">3</div>
+            <div class="room">4</div>
+            <div class="room">5</div>
+            <div class="room">6</div>
+            <div class="room">7</div>
           </div>
         </li>
       </ul>
-    </section>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>Western Road</h3>
       <ul>
         <li class="floorwrapper">
           <h4>3 Western</h4>
           <div class="floor">
-            <div class="room">room 59</div>
-            <div class="room">room 60</div>
-            <div class="room">room 61</div>
-            <div class="room">room 62</div>
-            <div class="room">room 63</div>
+            <div class="room">59</div>
+            <div class="room">60</div>
+            <div class="room">61</div>
+            <div class="room">62</div>
+            <div class="room">63</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>34 Western</h4>
           <div class="floor">
-            <div class="room">room 1</div>
-            <div class="room">room 2</div>
-            <div class="room">room 3</div>
-            <div class="room">room 4</div>
-            <div class="room">room 5</div>
-            <div class="room">room 6</div>
+            <div class="room">1</div>
+            <div class="room">2</div>
+            <div class="room">3</div>
+            <div class="room">4</div>
+            <div class="room">5</div>
+            <div class="room">6</div>
           </div>
         </li>
       </ul>
-    </section>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>Banbury Road</h3>
       <ul>
         <li class="floorwrapper">
           <h4>57 Banbury</h4>
           <div class="floor">
-            <div class="room">room 1</div>
-            <div class="room">room 2</div>
-            <div class="room">room 3</div>
-            <div class="room">room 4</div>
-            <div class="room">room 5</div>
-            <div class="room">room 6</div>
-            <div class="room">room 7</div>
-            <div class="room">room 8</div>
-            <div class="room">room 9</div>
-            <div class="room">room 10</div>
+            <div class="room">1</div>
+            <div class="room">2</div>
+            <div class="room">3</div>
+            <div class="room">4</div>
+            <div class="room">5</div>
+            <div class="room">6</div>
+            <div class="room">7</div>
+            <div class="room">8</div>
+            <div class="room">9</div>
+            <div class="room">10</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>59 Banbury</h4>
           <div class="floor">
-            <div class="room">room 1</div>
-            <div class="room">room 1a</div>
-            <div class="room">room 2</div>
-            <div class="room">room 2a</div>
-            <div class="room">room 3</div>
-            <div class="room">room 3a</div>
-            <div class="room">room 4</div>
-            <div class="room">room 5</div>
-            <div class="room">room 6</div>
-            <div class="room">room 7</div>
-            <div class="room">room 8</div>
-            <div class="room">room 9</div>
-            <div class="room">room 10</div>
-            <div class="room">room 11</div>
-            <div class="room">room 12</div>
+            <div class="room">1</div>
+            <div class="room">1a</div>
+            <div class="room">2</div>
+            <div class="room">2a</div>
+            <div class="room">3</div>
+            <div class="room">3a</div>
+            <div class="room">4</div>
+            <div class="room">5</div>
+            <div class="room">6</div>
+            <div class="room">7</div>
+            <div class="room">8</div>
+            <div class="room">9</div>
+            <div class="room">10</div>
+            <div class="room">11</div>
+            <div class="room">12</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>189 Banbury</h4>
           <div class="floor">
-            <div class="room">room 1</div>
-            <div class="room">room 2</div>
-            <div class="room">room 3</div>
-            <div class="room">room 4</div>
-            <div class="room">room 5</div>
-            <div class="room">room 6</div>
-            <div class="room">room 7</div>
-            <div class="room">room 8</div>
-            <div class="room">room 9</div>
-            <div class="room">room 10</div>
-            <div class="room">room 11</div>
-            <div class="room">room 12</div>
-            <div class="room">room 13</div>
-            <div class="room">room 14</div>
-            <div class="room">room 15</div>
-            <div class="room">room 16</div>
+            <div class="room">1</div>
+            <div class="room">2</div>
+            <div class="room">3</div>
+            <div class="room">4</div>
+            <div class="room">5</div>
+            <div class="room">6</div>
+            <div class="room">7</div>
+            <div class="room">8</div>
+            <div class="room">9</div>
+            <div class="room">10</div>
+            <div class="room">11</div>
+            <div class="room">12</div>
+            <div class="room">13</div>
+            <div class="room">14</div>
+            <div class="room">15</div>
+            <div class="room">16</div>
           </div>
         </li>
         <li class="floorwrapper">
           <h4>214b Banbury</h4>
           <div class="floor">
-            <div class="room">room 1</div>
-            <div class="room">room 2</div>
-            <div class="room">room 3</div>
-            <div class="room">room 4</div>
-            <div class="room">room 5</div>
-            <div class="room">room 6</div>
+            <div class="room">1</div>
+            <div class="room">2</div>
+            <div class="room">3</div>
+            <div class="room">4</div>
+            <div class="room">5</div>
+            <div class="room">6</div>
           </div>
         </li>
       </ul>
-    </section>
+    </s-section>
 
-    <section class="card">
+    <s-section class="card">
       <h3>Leckford Road</h3>
       <ul>
         <li class="floorwrapper">
           <h4>29 Leckford</h4>
           <div class="floor">
-            <div class="room">room 1</div>
-            <div class="room">room 2</div>
-            <div class="room">room 3</div>
-            <div class="room">room 4</div>
-            <div class="room">room 5</div>
-            <div class="room">room 6</div>
-            <div class="room">room 7</div>
-            <div class="room">room 8</div>
-            <div class="room">room 9</div>
-            <div class="room">room 10</div>
-            <div class="room">room 11</div>
-            <div class="room">room 12</div>
-            <div class="room">room 13</div>
-            <div class="room">room 14</div>
+            <div class="room">1</div>
+            <div class="room">2</div>
+            <div class="room">3</div>
+            <div class="room">4</div>
+            <div class="room">5</div>
+            <div class="room">6</div>
+            <div class="room">7</div>
+            <div class="room">8</div>
+            <div class="room">9</div>
+            <div class="room">10</div>
+            <div class="room">11</div>
+            <div class="room">12</div>
+            <div class="room">13</div>
+            <div class="room">14</div>
           </div>
         </li>
       </ul>
-    </section>
+    </s-section>
   </main>
-  <div class="spacer"></div>
-  <footer>Michael Agius 2017</footer>
 </body>
 
 </html>

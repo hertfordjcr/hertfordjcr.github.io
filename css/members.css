@@ -1,5 +1,12 @@
 /* images should be 600x600 for retina */
 
+header {
+  text-align: center;
+  padding: 10px 0;
+  background: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
 header p {
   margin: 10px auto 5px auto;
   padding: 0 10px;

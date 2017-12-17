@@ -53,37 +53,22 @@
 </head>
 
 <body>
-  <div id="photocredit" class="credit">
+
+  <credit-box>
     <a href="https://www.flickr.com/photos/10287726@N02/7988398466">Photo &copy;Simon Q</a>
-  </div>
-  <div id="websitecredit" class="credit">
-    Hertford College, Oxford
-  </div>
-  <div id="flexholder">
-    <div>
-      <header>
-        <h1><div id="headerborder">Hertford JCR</div></h1>
-        <nav>
-          <a class="mbutton" href="/students">students' area</a>
-        </nav>
-      </header>
-      <aside class="card">
-        <h2>Get in touch</h2>
-        <p>If you're thinking of applying to Hertford, feel free to send us a message with any questions. Be sure to put in your email so we can get back to you!</p>
-        <form method="POST" action="https://formspree.io/m@michaelagius.uk">
-          <div class="formrow">
-            <input autocomplete="off" type="text" name="name" placeholder="name">
-            <input type="text" name="email" placeholder="email">
-          </div>
-          <textarea autocomplete="off" name="message" placeholder="message"></textarea>
-          <input type="text" name="_gotcha" style="display:none">
-          <input type="hidden" name="_next" value="//hertfordjcr.github.io/formsent?in">
-          <input type="hidden" name="_subject" value="Question about Hertford">
-          <button class="mbutton" type="submit">send message</button>
-        </form>
-      </aside>
-    </div>
-  </div>
+  </credit-box>
+
+  <flex-holder>
+    <header>
+      <h1>
+        <div id="headerborder">Hertford JCR</div>
+      </h1>
+      <nav>
+        <a class="mbutton" href="/students">students' area</a>
+        <a class="mbutton" href="/contact">get in touch</a>
+      </nav>
+    </header>
+  </flex-holder>
 </body>
 
 </html>
