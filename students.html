@@ -122,7 +122,7 @@
 
     function doSearch() {
       // format search term
-      var full = document.getElementById("searchfield").value.trim().toUpperCase();
+      const full = document.getElementById("searchfield").value.trim().toUpperCase();
       if (full.length === 0) { // Empty search box
         document.getElementsByTagName("main")[0].className = "";
         showAll();
@@ -149,7 +149,7 @@
           }
         } else {
           let noneVisible = true;
-          for (let item of getItems(section)) {
+          for (const item of getItems(section)) {
             if (searchItem(item, full)) {
               showItem(item);
               numresults += 1;
@@ -190,14 +190,20 @@
     }
 
     function showAll() {
-      [].forEach.call(getSections(), showSection);
-      [].forEach.call(getAllItems(), showItem);
+      for(const s of getSections()){
+        showSection(s);
+      }
+      for(const i of getAllItems()){
+        showItem(i);
+      }
       hideDiv(document.getElementsByTagName("no-results")[0]);
     }
 
     function showFullSection(section) {
       showSection(section);
-      [].forEach.call(getItems(section), showItem);
+      for(const i of getAllItems(section)){
+        showItem(i);
+      }
     }
 
     function hideDiv(divv) {
@@ -306,7 +312,7 @@
             </tr>
             <tr>
               <td>Formal Hall</td>
-              <td>Wed / Sun</td>
+              <td>Thu / Fri and Sun</td>
               <td>19:15 – 21:00</td>
             </tr>
             <tr>
@@ -315,6 +321,240 @@
               <td>19:15 – 21:00</td>
             </tr>
           </table>
+        </s-itemgrow>
+      </s-item>
+      
+      <s-item>
+        <h4>Breakfast / Brunch Prices</h4>
+        <s-itemgrow>
+          <table>
+            <tr>
+              <td>Cooked Breakfast</td>
+              <td>£1.49</td>
+            </tr>
+            <tr>
+              <td>Half Brunch</td>
+              <td>£1.81</td>
+            </tr>
+            <tr>
+              <td>Full Brunch</td>
+              <td>£3.56</td>
+            </tr>
+            <tr>
+              <td>Croissant</td>
+              <td>£0.64</td>
+            </tr>
+            <tr>
+              <td>Cereal</td>
+              <td>£0.64</td>
+            </tr>
+            <tr>
+              <td>Toast</td>
+              <td>£0.38</td>
+            </tr>
+            <tr>
+              <td>Tea or Coffee</td>
+              <td>£0.45</td>
+            </tr>
+            <tr>
+              <td>Sausage</td>
+              <td>£0.66</td>
+            </tr>
+            <tr>
+              <td>Bacon</td>
+              <td>£0.55</td>
+            </tr>
+            <tr>
+              <td>Fried Egg</td>
+              <td>£0.35</td>
+            </tr>
+            <tr>
+              <td>Baked Beans</td>
+              <td>£0.38</td>
+            </tr>
+            <tr>
+              <td>Mushrooms</td>
+              <td>£0.38</td>
+            </tr>
+          </table>
+        </s-itemgrow>
+      </s-item>
+      
+      <s-item data-terms="potato">
+        <h4>Lunch Prices</h4>
+        <s-itemgrow>
+          <table>
+            <tr>
+              <td>Main (Meat)</td>
+              <td>£2.56</td>
+            </tr>
+            <tr>
+              <td>Main (Vegetarian)</td>
+              <td>£2.17</td>
+            </tr>
+            <tr>
+              <td>Vegetables</td>
+              <td>£0.60</td>
+            </tr>
+            <tr>
+              <td>Potatoes</td>
+              <td>£0.66</td>
+            </tr>
+            <tr>
+              <td>Sweet</td>
+              <td>£0.78</td>
+            </tr>
+            <tr>
+              <td>Full Salad</td>
+              <td>£3.55</td>
+            </tr>
+            <tr>
+              <td>Side Salad</td>
+              <td>£1.30</td>
+            </tr>
+            <tr>
+              <td>Jacket Potato and Filling</td>
+              <td>£1.40</td>
+            </tr>
+            <tr>
+              <td>Fresh Fruit</td>
+              <td>£0.49</td>
+            </tr>
+            <tr>
+              <td>Roll and Butter</td>
+              <td>£0.45</td>
+            </tr>
+            <tr>
+              <td>Soup and Roll</td>
+              <td>£1.33</td>
+            </tr>
+            <tr>
+              <td>Salad Box</td>
+              <td>£3.00</td>
+            </tr>
+          </table>
+          </s-itemgrow>
+      </s-item>
+      <s-item>
+        <h4>Dinner Prices</h4>
+        <s-itemgrow>
+          <table>
+            <tr>
+              <td>Main (Meat)</td>
+              <td>£3.39</td>
+            </tr>
+            <tr>
+              <td>Main (Vegetarian)</td>
+              <td>£2.18</td>
+            </tr>
+            <tr>
+              <td>Vegetables</td>
+              <td>£0.60</td>
+            </tr>
+            <tr>
+              <td>Potatoes</td>
+              <td>£0.66</td>
+            </tr>
+            <tr>
+              <td>Sweet</td>
+              <td>£0.78</td>
+            </tr>
+            <tr>
+              <td>Full Salad</td>
+              <td>£3.55</td>
+            </tr>
+            <tr>
+              <td>Side Salad</td>
+              <td>£1.30</td>
+            </tr>
+            <tr>
+              <td>Salad Box</td>
+              <td>£3.00</td>
+            </tr>
+          </table>
+          </s-itemgrow>
+      </s-item>
+      <s-item data-terms="coke hall">
+        <h4>Confectionery Prices</h4>
+        <s-itemgrow>
+          <table>
+            <tr>
+              <td>Ribena</td>
+              <td>£0.77</td>
+            </tr>
+            <tr>
+              <td>Juice</td>
+              <td>£0.62</td>
+            </tr>
+            <tr>
+              <td>Canned Drinks</td>
+              <td>£0.82</td>
+            </tr>
+            <tr>
+              <td>Chocolate</td>
+              <td>£0.71</td>
+            </tr>
+            <tr>
+              <td>Crisps</td>
+              <td>£0.66</td>
+            </tr>
+            <tr>
+              <td>Cookies</td>
+              <td>£0.61</td>
+            </tr>
+            <tr>
+              <td>Yoghurts</td>
+              <td>£0.87</td>
+            </tr>
+            <tr>
+              <td>Sandwiches</td>
+              <td>£2.11</td>
+            </tr>
+            <tr>
+              <td>Sandwiches ABCD</td>
+              <td>£2.04</td>
+            </tr>
+            <tr>
+              <td>Rolls, Baps, and Wraps</td>
+              <td>£2.64</td>
+            </tr>
+            <tr>
+              <td>Milkshakes</td>
+              <td>£1.00</td>
+            </tr>
+          </table>
+        </s-itemgrow>
+      </s-item>
+      
+      <s-item data-terms="formal hall">
+        <h4>Events Prices</h4>
+        <s-itemgrow>
+          <table>
+            <tr>
+              <td>Formal Hall</td>
+              <td>£8.95</td>
+            </tr>
+            <tr>
+              <td>Guest Night</td>
+              <td>£12.70</td>
+            </tr>
+          </table>
+        </s-itemgrow>
+      </s-item>
+      
+      <s-item>
+        <h4>FAQs</h4>
+        <s-itemgrow>
+          <h5>When are formal dinners? What do I have to wear? Can I bring guests?</h5>
+          <p>Formal dinners are three-course dinners held in Hall and are open to all students, with a sign-up held on the preceding Monday at 9am. Last year they were held on Sunday evenings and Wednesday evenings, although the Wednesday evening formal is being moved to Thursdays and Fridays alternately in order to accommodate as many people as possible this year. Dress code for formals is smart with gowns. There are also Guest Night formals on the Friday nights of 4th and 8th weeks, which are an even swankier version of the normal formals. You can bring up to 3 guests to formal dinners, which you book on using the sign-up system explained below.</p>
+          <h5>How do I book formal dinners? What do I do if I want to swap or cancel it?</h5>
+          <p><a href="http://meals.hertford.ox.ac.uk/asmeals">This link</a> takes you to a different site where you can sign in with your SSO and go through the signup process there. If you want to swap it, then cancel your spot and make sure your friend is on the site at the same time to pick it up. If you want to cancel it, make sure you do so before 10am on the morning of the formal, or at 10am on the preceding Friday for Sunday night formals.</p>
+          <h5>What if the signup isn't working?</h5>
+          <p>Let the Food and Housing Officer know. If it's not working for you, then odds are that it isn't working for everyone else. The Food and Housing Officer will endeavor to get it sorted quickly and fairly and will update the JCR Facebook page accordingly.</p>
+          <h5>I had a terrible meal in Hall. What can I do about it?</h5>
+          <p>On the JCR pinned post there is a page entitled Hertfood Review. Use it to review your meal - either good or bad - and the chefs will be able to see it and respond to your needs.</p>
+          <h5>I have a special dietary requirement - how can I ensure that I am catered for in Hall?</h5>
+          <p>On the form for formal dinners, there is a section where you can stipulate the requirements for you and your guests if needed. For main meals, all allergens are listed on the noticeboard outside hall, and vegetarian and gluten free items are listed on the menu posted on the JCR Facebook page. For other dietary requirements, get in touch with the kitchen in advance (at the start of the week, preferably) and let them know when and what you will require.</p>
         </s-itemgrow>
       </s-item>
 
@@ -553,12 +793,23 @@
     </s-section>
 
     <s-section class="card">
-      <h3>Rooms</h3>
+      <h3>Housing</h3>
       <s-item data-link="https://www.hertford.ox.ac.uk/my-hertford/forms-and-bookings/room-booking">
         <h4>Book a room</h4>
       </s-item>
       <s-item data-link="ballot">
         <h4>Live ballot</h4>
+      </s-item>
+      <s-item>
+        <h4>FAQs</h4>
+        <s-itemgrow>
+          <h5>Something has broken in my room, what do I do?</h5>
+          <p>If something has broken or isn't right in your room, i.e. a light bulb has blown, your taps are broken, you have mould or pests or whatever, then send an email to Hertford's domestic manager, Karen Smith, and CC in the Food and Housing Officer and Caroline Balfour, the head housekeeper. It's also probably a good idea to CC in your housekeeper if you're off main site, but for fresher's this shouldn't be an issue until you're in second year. Karen will pass your problems onto maintenance, who will sort them out as quickly as they can. Karen's not around 24/7 however (she's in college during office hours) so if it's an urgent problem and it hasn't happened between 9 and 5 Monday to Friday, your best bet is the lodge. They're trained to sort most things out, but if not they will be able to get maintenance in to sort it out.</p>
+          <h5>My laundry is stuck in the machine/the machine isn't working/something has gone wrong. What do I do?</h5>
+          <p>Firstly, there is a lot of history to this - this used to happen A LOT. Thankfully, completely new machines have been installed and the laundry rooms have been redecorated all over college's accommodation blocks, so this shouldn't be as big an issue for you as it has been for previous years. If, however, you encounter a problem with the machine, the first thing you need to do is ring the Circuit laundry helpline on either of the following numbers: 08000924068 or 01422820026. It's open 24/7 (during office hours by Circuit itself, outside of them by a contractor) and they will be able to sort out your problem over the phone, get a mechanic sent out if required, and (if between 9-5 M-F) process a refund if required.</p>
+          <h5>What am I allowed to keep in my room? What isn't allowed?</h5>
+          <p>There is a long list of items that are and aren't allowed in college accommodation, far too many for this small answer - you can find a more extensive list on the website, although even this isn't exhaustive. In short, anything with fire is strictly prohibited i.e. candles, incense sticks, grills, toastie makers etc. But you can have kettles (which is a perk) and a small fridge (as long as it is kept clean), as long as they are PAT tested. Pod coffee machines are allowed, but bean-to-cup and pump machines are not. Check the website if you aren't sure about something, and if it isn't listed there, then get in touch with the Food and Housing Officer.</p>
+        </s-itemgrow>
       </s-item>
     </s-section>
 

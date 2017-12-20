@@ -98,6 +98,10 @@ td:first-child {
   background-color: rgb(160, 210, 255);
 }
 
+td:first-child {
+  text-align: left;
+}
+
 td {
   border-radius: 0 5px 5px 5px;
   background-color: rgb(200, 230, 255);
