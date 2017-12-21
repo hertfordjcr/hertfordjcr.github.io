@@ -122,7 +122,7 @@
 
     function doSearch() {
       // format search term
-      const full = document.getElementById("searchfield").value.trim().toUpperCase();
+      let full = document.getElementById("searchfield").value.trim().toUpperCase();
       if (full.length === 0) { // Empty search box
         document.getElementsByTagName("main")[0].className = "";
         showAll();
