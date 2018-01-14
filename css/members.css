@@ -33,6 +33,10 @@ main {
   padding: 5px;
 }
 
+.pronoun {
+  font-size: 0.7em;
+}
+
 .member::after {
   display: block;
   content: "";

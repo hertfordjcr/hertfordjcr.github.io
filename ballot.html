@@ -32,9 +32,9 @@
       messagingSenderId: "318620778170"
     };
     firebase.initializeApp(config);
-    
+
     function ready() {
-      for(const divv of document.getElementsByClassName("floorwrapper")){
+      for (const divv of document.getElementsByClassName("floorwrapper")) {
         divv.getElementsByTagName("h4")[0].addEventListener("click", () => {
           const floor = divv.getElementsByClassName("floor")[0];
           if (floor.style.display === "none" || floor.style.display === "") {
@@ -53,79 +53,87 @@
 
     function refresh() {
       secleft = 120;
-      for(const room of document.getElementsByClassName("room")){
+      for (const room of document.getElementsByClassName("room")) {
         room.className = "room";
       }
       firebase.database().ref("/ballot").once('value').then((snapshot) => {
         const rooms = snapshot.val();
-        for(const room of document.getElementsByClassName("room")){
+        for (const room of document.getElementsByClassName("room")) {
           //const number = room.innerHTML.split(" ")[1];
           const number = room.innerHTML;
           const floor = room.parentElement.parentElement.getElementsByTagName("h4")[0].innerHTML;
           const building = room.parentElement.parentElement.parentElement.parentElement.getElementsByTagName("h3")[0].innerHTML;
           let roombool;
-          switch (building) {
-          case "Old Buildings":
-            roombool = rooms["OB"][floor][number];
-            break;
-          case "New Buildings":
-            roombool = rooms["NB"][floor][number];
-            break;
-          case "Old Ab":
-          case "New Ab":
-            roombool = rooms["AB"][number];
-            break;
-          case "Graduate Centre":
-            roombool = rooms["GC"][number];
-            break;
-          case "Mary Warnock":
-            roombool = rooms["WARNOCK"]["MW"][number];
-            break;
-          case "Geoffrey Warnock":
-            roombool = rooms["WARNOCK"]["GW"][number];
-            break;
-          case "Abingdon Road":
-            roombool = rooms["ABINGDON"][number];
-            break;
-          case "Western Road":
-            if (floor === "3 Western") roombool = rooms["AB"][number];
-            else roombool = rooms["WESTERN"][number];
-            break;
-          case "Banbury Road":
-            switch (floor) {
-            case "57 Banbury":
-              roombool = rooms["BANBURY"]["57B"][number];
-              break;
-            case "59 Banbury":
-              roombool = rooms["BANBURY"]["59B"][number];
-              break;
-            case "189 Banbury":
-              roombool = rooms["BANBURY"]["189B"][number];
-              break;
-            case "214b Banbury":
-              roombool = rooms["BANBURY"]["214B"][number];
+
+          try {
+            switch (building) {
+              case "Old Buildings":
+                roombool = rooms["OB"][floor][number];
+                break;
+              case "New Buildings":
+                roombool = rooms["NB"][floor][number];
+                break;
+              case "Old Ab":
+              case "New Ab":
+                roombool = rooms["AB"][number];
+                break;
+              case "Graduate Centre":
+                roombool = rooms["GC"][number];
+                break;
+              case "Mary Warnock":
+                roombool = rooms["WARNOCK"]["MW"][number];
+                break;
+              case "Geoffrey Warnock":
+                roombool = rooms["WARNOCK"]["GW"][number];
+                break;
+              case "Abingdon Road":
+                roombool = rooms["ABINGDON"][number];
+                break;
+              case "Western Road":
+                if (floor === "3 Western") roombool = rooms["AB"][number];
+                else roombool = rooms["WESTERN"][number];
+                break;
+              case "Banbury Road":
+                switch (floor) {
+                  case "57 Banbury":
+                    roombool = rooms["BANBURY"]["57B"][number];
+                    break;
+                  case "59 Banbury":
+                    roombool = rooms["BANBURY"]["59B"][number];
+                    break;
+                  case "189 Banbury":
+                    roombool = rooms["BANBURY"]["189B"][number];
+                    break;
+                  case "214b Banbury":
+                    roombool = rooms["BANBURY"]["214B"][number];
+                }
+                break;
+              case "Leckford Road":
+                roombool = rooms["LECKFORD"][number];
             }
-            break;
-          case "Leckford Road":
-            roombool = rooms["LECKFORD"][number];
+            
+            room.className = roombool ? "room takenroom" : "room freeroom";
+            
+          } catch (e) {
+            // don't assign a new class
           }
-          room.className = roombool ? "room takenroom" : "room freeroom";
         }
       });
     }
 
-    
-    
+
+
     function affectAll(inn) {
-      for(let divv of document.getElementsByClassName("floorwrapper")){
+      for (let divv of document.getElementsByClassName("floorwrapper")) {
         const floor = divv.getElementsByClassName("floor")[0];
-        if ((floor.style.display === "none" || floor.style.display === "") === inn ) {
+        if ((floor.style.display === "none" || floor.style.display === "") === inn) {
           Velocity(floor, (inn ? "slideDown" : "slideUp"), {
             duration: 300
           });
         }
       }
     }
+
   </script>
 </head>
 
@@ -134,9 +142,15 @@
     <nav>
       <ul>
         <li><a href="/students" class="mbutton">Back</a></li>
-        <li><div class="mbutton" id="refreshbutton" onclick="refresh()">Refresh</div></li>  
-        <li><div class="mbutton" onclick="affectAll(true)">Show All</div></li>
-        <li><div class="mbutton" onclick="affectAll(false)">Hide All</div></li>
+        <li>
+          <div class="mbutton" id="refreshbutton" onclick="refresh()">Refresh</div>
+        </li>
+        <li>
+          <div class="mbutton" onclick="affectAll(true)">Show All</div>
+        </li>
+        <li>
+          <div class="mbutton" onclick="affectAll(false)">Hide All</div>
+        </li>
       </ul>
     </nav>
     <h1>Ballot Status</h1>
@@ -294,7 +308,7 @@
       <h3>New Ab</h3>
       <ul>
         <li class="floorwrapper">
-          <h4>First floor</h4> 
+          <h4>First floor</h4>
           <div class="floor">
             <div class="room">18</div>
             <div class="room">19</div>
