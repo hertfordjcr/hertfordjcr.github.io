@@ -63,7 +63,7 @@
       firebase.database().ref("/ballot").once('value').then((snapshot) => {
         const rooms = snapshot.val();
         const allRooms = document.getElementsByClassName("room");
-        for (let x = 0; x < allRooms.lengthl x++) {
+        for (let x = 0; x < allRooms.length; x++) {
           const room = allRooms[x];
           //const number = room.innerHTML.split(" ")[1];
           const number = room.innerHTML;
