@@ -39,7 +39,9 @@
       });
 
       // event listener to handle item when clicked
-      for (const item of getAllItems()) {
+      const allItems = getAllItems();
+      for(let x = 0; x < allItems.length; x++){
+        const item = allItems[x];
         item.addEventListener("click", (e) => {
           e = window.event || e;
           if (e.target === this || e.target === getItemNameElement(item)) handleItem(item);
@@ -139,7 +141,9 @@
 
       let numresults = 0;
       let numsections = 0;
-      for (const section of getSections()) {
+      const allSections = getSections();
+      for (let x = 0; x < allSections.length; x++) {
+        const section = allSections[x];
         if (searchSection(section, full)) {
           showFullSection(section);
           const itemcount = getItems(section).length;
@@ -149,7 +153,9 @@
           }
         } else {
           let noneVisible = true;
-          for (const item of getItems(section)) {
+          const allSecItems = getItems(section);
+          for (let y = 0; x < allSecItems[y]; y++) {
+            const item = allSecItems[y];
             if (searchItem(item, full)) {
               showItem(item);
               numresults += 1;
@@ -183,17 +189,23 @@
       const terms = item.getAttribute("data-terms");
       if (terms === null) return false;
       let matchesterm = false;
-      for (const sin of terms.split(", ")) {
+      const allTerms = terms.split(", ");
+      for (let x = 0; x < allTerms.length; x++) {
+        const sin = allTerms[x];
         if ((" " + sin).toUpperCase().includes(sfor)) matchesterm = true;
       }
       return matchesterm;
     }
 
     function showAll() {
-      for (const s of getSections()) {
+      const allSections = getSections();
+      for (let x = 0; x < allSections.length; x++) {
+        const s = allSecions[x];
         showSection(s);
       }
-      for (const i of getAllItems()) {
+      const allItems = getAllItems();
+      for (let x = 0; x < allItems.length; x++) {
+        const i = allItems[x];
         showItem(i);
       }
       hideDiv(document.getElementsByTagName("no-results")[0]);
@@ -201,7 +213,9 @@
 
     function showFullSection(section) {
       showSection(section);
-      for (const i of getAllItems(section)) {
+      let allSecItems = getAllItems(section);
+      for (let x = 0; x < allSecItems.length; x++) {
+        const i = allSecItems[x];
         showItem(i);
       }
     }
