@@ -160,7 +160,7 @@
         } else {
           let noneVisible = true;
           const allSecItems = getItems(section);
-          for (let y = 0; x < allSecItems[y]; y++) {
+          for (let y = 0; y < allSecItems[y]; y++) {
             const item = allSecItems[y];
             if (searchItem(item, full)) {
               showItem(item);
@@ -206,13 +206,11 @@
     function showAll() {
       const allSections = getSections();
       for (let x = 0; x < allSections.length; x++) {
-        const s = allSecions[x];
-        showSection(s);
+        showSection(allSections[x]);
       }
       const allItems = getAllItems();
       for (let x = 0; x < allItems.length; x++) {
-        const i = allItems[x];
-        showItem(i);
+        showItem(allItems[x]);
       }
       hideDiv(document.getElementsByTagName("no-results")[0]);
     }
@@ -221,8 +219,7 @@
       showSection(section);
       let allSecItems = getAllItems(section);
       for (let x = 0; x < allSecItems.length; x++) {
-        const i = allSecItems[x];
-        showItem(i);
+        showItem(allSecItems[x]);
       }
     }
 
