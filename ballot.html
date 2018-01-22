@@ -34,7 +34,9 @@
     firebase.initializeApp(config);
 
     function ready() {
-      for (const divv of document.getElementsByClassName("floorwrapper")) {
+      const allEles = document.getElementsByClassName("floorwrapper");
+      for (let x = 0; x < allEles.length; x++) {
+        const divv = allEles[x];
         divv.getElementsByTagName("h4")[0].addEventListener("click", () => {
           const floor = divv.getElementsByClassName("floor")[0];
           if (floor.style.display === "none" || floor.style.display === "") {
@@ -53,12 +55,16 @@
 
     function refresh() {
       secleft = 120;
-      for (const room of document.getElementsByClassName("room")) {
+      const allRooms = document.getElementsByClassName("room");
+      for (let x = 0; x < allRooms.length; x++) {
+        const room = allRooms[x];
         room.className = "room";
       }
       firebase.database().ref("/ballot").once('value').then((snapshot) => {
         const rooms = snapshot.val();
-        for (const room of document.getElementsByClassName("room")) {
+        const allRooms = document.getElementsByClassName("room");
+        for (let x = 0; x < allRooms.lengthl x++) {
+          const room = allRooms[x];
           //const number = room.innerHTML.split(" ")[1];
           const number = room.innerHTML;
           const floor = room.parentElement.parentElement.getElementsByTagName("h4")[0].innerHTML;
@@ -124,7 +130,9 @@
 
 
     function affectAll(inn) {
-      for (let divv of document.getElementsByClassName("floorwrapper")) {
+      const allFloors = document.getElementsByClassName("floorwrapper");
+      for (let x = 0; x < allFloors[x]; x++) {
+        let divv = allFloors[x];
         const floor = divv.getElementsByClassName("floor")[0];
         if ((floor.style.display === "none" || floor.style.display === "") === inn) {
           Velocity(floor, (inn ? "slideDown" : "slideUp"), {

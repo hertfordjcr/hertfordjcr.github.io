@@ -42,6 +42,12 @@
       const allItems = getAllItems();
       for(let x = 0; x < allItems.length; x++){
         const item = allItems[x];
+        // add ext link icon if data-link present
+        const link = getItemLink(item);
+        if (link !== null){
+          getItemNameElement(item).className += " extlink"; 
+        }
+        
         item.addEventListener("click", (e) => {
           e = window.event || e;
           if (e.target === this || e.target === getItemNameElement(item)) handleItem(item);
