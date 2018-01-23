@@ -131,7 +131,7 @@
 
     function affectAll(inn) {
       const allFloors = document.getElementsByClassName("floorwrapper");
-      for (let x = 0; x < allFloors[x]; x++) {
+      for (let x = 0; x < allFloors.length; x++) {
         let divv = allFloors[x];
         const floor = divv.getElementsByClassName("floor")[0];
         if ((floor.style.display === "none" || floor.style.display === "") === inn) {
@@ -177,19 +177,6 @@
             <div class="room">27</div>
           </div>
         </li>
-        <li class="floorwrapper">
-          <h4>OB3</h4>
-          <div class="floor">
-            <div class="room">4</div>
-            <div class="room">5</div>
-            <div class="room">6</div>
-            <div class="room">7</div>
-            <div class="room">10</div>
-            <div class="room">12</div>
-            <div class="room">14</div>
-            <div class="room">15</div>
-          </div>
-        </li>
       </ul>
     </s-section>
 
@@ -217,12 +204,6 @@
             <div class="room">20</div>
             <div class="room">21</div>
             <div class="room">22</div>
-          </div>
-        </li>
-        <li class="floorwrapper">
-          <h4>NB3</h4>
-          <div class="floor">
-            <div class="room">17</div>
           </div>
         </li>
       </ul>
@@ -502,6 +483,14 @@
             <div class="room">61</div>
             <div class="room">62</div>
             <div class="room">63</div>
+          </div>
+        </li>
+        <li class="floorwrapper">
+          <h4>28 Western</h4>
+          <div class="floor">
+            <div class="room">1</div>
+            <div class="room">2</div>
+            <div class="room">3</div>
           </div>
         </li>
         <li class="floorwrapper">
