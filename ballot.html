@@ -38,7 +38,7 @@
       for (let x = 0; x < allEles.length; x++) {
         const divv = allEles[x];
         divv.getElementsByTagName("h4")[0].addEventListener("click", () => {
-          const floor = divv.getElementsByClassName("floor")[0];
+          const floor = divv.getElementsByTagName("b-floor")[0];
           if (floor.style.display === "none" || floor.style.display === "") {
             Velocity(floor, "slideDown", {
               duration: 300
@@ -54,18 +54,12 @@
     }
 
     function refresh() {
-      secleft = 120;
-      const allRooms = document.getElementsByClassName("room");
-      for (let x = 0; x < allRooms.length; x++) {
-        const room = allRooms[x];
-        room.className = "room";
-      }
       firebase.database().ref("/ballot").once('value').then((snapshot) => {
         const rooms = snapshot.val();
-        const allRooms = document.getElementsByClassName("room");
+        const allRooms = document.getElementsByTagName("b-room");
         for (let x = 0; x < allRooms.length; x++) {
           const room = allRooms[x];
-          //const number = room.innerHTML.split(" ")[1];
+          room.className = "";
           const number = room.innerHTML;
           const floor = room.parentElement.parentElement.getElementsByTagName("h4")[0].innerHTML;
           const building = room.parentElement.parentElement.parentElement.parentElement.getElementsByTagName("h3")[0].innerHTML;
@@ -96,8 +90,17 @@
                 roombool = rooms["ABINGDON"][number];
                 break;
               case "Western Road":
-                if (floor === "3 Western") roombool = rooms["AB"][number];
-                else roombool = rooms["WESTERN"][number];
+                switch(floor) {
+                  case "3 Western":
+                    roombool = rooms["AB"][number];
+                    break;
+                  case "28 Western":
+                    roombool = rooms["WESTERN"]["28W"][number];
+                    break;
+                  case "34 Western":
+                    roombool = rooms["WESTERN"]["34W"][number];
+                    break;
+                }
                 break;
               case "Banbury Road":
                 switch (floor) {
@@ -118,7 +121,7 @@
                 roombool = rooms["LECKFORD"][number];
             }
             
-            room.className = roombool ? "room takenroom" : "room freeroom";
+            room.className = roombool ? "takenroom" : "freeroom";
             
           } catch (e) {
             // don't assign a new class
@@ -133,7 +136,7 @@
       const allFloors = document.getElementsByClassName("floorwrapper");
       for (let x = 0; x < allFloors.length; x++) {
         let divv = allFloors[x];
-        const floor = divv.getElementsByClassName("floor")[0];
+        const floor = divv.getElementsByTagName("b-floor")[0];
         if ((floor.style.display === "none" || floor.style.display === "") === inn) {
           Velocity(floor, (inn ? "slideDown" : "slideUp"), {
             duration: 300
@@ -170,12 +173,13 @@
       <ul>
         <li class="floorwrapper">
           <h4>OB1</h4>
-          <div class="floor">
-            <div class="room">23</div>
-            <div class="room">24</div>
-            <div class="room">26</div>
-            <div class="room">27</div>
-          </div>
+          <b-floor>
+            <b-room>23</b-room>
+            <b-room>24</b-room>
+            <b-room>25</b-room>
+            <b-room>26</b-room>
+            <b-room>27</b-room>
+          </b-floor>
         </li>
       </ul>
     </s-section>
@@ -185,26 +189,24 @@
       <ul>
         <li class="floorwrapper">
           <h4>NB1</h4>
-          <div class="floor">
-            <div class="room">5</div>
-            <div class="room">6</div>
-            <div class="room">7</div>
-            <div class="room">9</div>
-            <div class="room">10</div>
-            <div class="room">11</div>
-            <div class="room">12</div>
-            <div class="room">14</div>
-            <div class="room">15</div>
-            <div class="room">16</div>
-          </div>
+          <b-floor>
+            <b-room>5</b-room>
+            <b-room>6</b-room>
+            <b-room>7</b-room>
+            <b-room>9</b-room>
+            <b-room>10</b-room>
+            <b-room>11</b-room>
+            <b-room>12</b-room>
+            <b-room>14</b-room>
+            <b-room>15</b-room>
+            <b-room>16</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>NB2</h4>
-          <div class="floor">
-            <div class="room">20</div>
-            <div class="room">21</div>
-            <div class="room">22</div>
-          </div>
+          <b-floor>
+            <b-room>1</b-room>
+          </b-floor>
         </li>
       </ul>
     </s-section>
@@ -214,43 +216,43 @@
       <ul>
         <li class="floorwrapper">
           <h4>First Floor</h4>
-          <div class="floor">
-            <div class="room">106</div>
-            <div class="room">107</div>
-            <div class="room">108</div>
-            <div class="room">109</div>
-            <div class="room">110</div>
-          </div>
+          <b-floor>
+            <b-room>106</b-room>
+            <b-room>107</b-room>
+            <b-room>108</b-room>
+            <b-room>109</b-room>
+            <b-room>110</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>Second Floor</h4>
-          <div class="floor">
-            <div class="room">111</div>
-            <div class="room">112</div>
-            <div class="room">113</div>
-            <div class="room">114</div>
-            <div class="room">115</div>
-            <div class="room">116</div>
-            <div class="room">117</div>
-            <div class="room">118</div>
-            <div class="room">119</div>
-            <div class="room">120</div>
-          </div>
+          <b-floor>
+            <b-room>111</b-room>
+            <b-room>112</b-room>
+            <b-room>113</b-room>
+            <b-room>114</b-room>
+            <b-room>115</b-room>
+            <b-room>116</b-room>
+            <b-room>117</b-room>
+            <b-room>118</b-room>
+            <b-room>119</b-room>
+            <b-room>120</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>Third Floor</h4>
-          <div class="floor">
-            <div class="room">121</div>
-            <div class="room">122</div>
-            <div class="room">123</div>
-            <div class="room">124</div>
-            <div class="room">125</div>
-            <div class="room">126</div>
-            <div class="room">127</div>
-            <div class="room">128</div>
-            <div class="room">129</div>
-            <div class="room">130</div>
-          </div>
+          <b-floor>
+            <b-room>121</b-room>
+            <b-room>122</b-room>
+            <b-room>123</b-room>
+            <b-room>124</b-room>
+            <b-room>125</b-room>
+            <b-room>126</b-room>
+            <b-room>127</b-room>
+            <b-room>128</b-room>
+            <b-room>129</b-room>
+            <b-room>130</b-room>
+          </b-floor>
         </li>
       </ul>
     </s-section>
@@ -260,35 +262,35 @@
       <ul>
         <li class="floorwrapper">
           <h4>Ground floor</h4>
-          <div class="floor">
-            <div class="room">1</div>
-            <div class="room">2</div>
-            <div class="room">2a</div>
-            <div class="room">3</div>
-            <div class="room">4</div>
-          </div>
+          <b-floor>
+            <b-room>1</b-room>
+            <b-room>2</b-room>
+            <b-room>2a</b-room>
+            <b-room>3</b-room>
+            <b-room>4</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>First floor</h4>
-          <div class="floor">
-            <div class="room">5</div>
-            <div class="room">6</div>
-            <div class="room">7</div>
-            <div class="room">8</div>
-            <div class="room">9</div>
-            <div class="room">10</div>
-          </div>
+          <b-floor>
+            <b-room>5</b-room>
+            <b-room>6</b-room>
+            <b-room>7</b-room>
+            <b-room>8</b-room>
+            <b-room>9</b-room>
+            <b-room>10</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>Second floor</h4>
-          <div class="floor">
-            <div class="room">11</div>
-            <div class="room">12</div>
-            <div class="room">13</div>
-            <div class="room">14</div>
-            <div class="room">15</div>
-            <div class="room">16</div>
-          </div>
+          <b-floor>
+            <b-room>11</b-room>
+            <b-room>12</b-room>
+            <b-room>13</b-room>
+            <b-room>14</b-room>
+            <b-room>15</b-room>
+            <b-room>16</b-room>
+          </b-floor>
         </li>
       </ul>
     </s-section>
@@ -298,49 +300,48 @@
       <ul>
         <li class="floorwrapper">
           <h4>First floor</h4>
-          <div class="floor">
-            <div class="room">18</div>
-            <div class="room">19</div>
-            <div class="room">20</div>
-            <div class="room">22</div>
-            <div class="room">23</div>
-            <div class="room">26</div>
-            <div class="room">27</div>
-            <div class="room">28</div>
-            <div class="room">29</div>
-            <div class="room">30</div>
-            <div class="room">31</div>
-          </div>
+          <b-floor>
+            <b-room>17</b-room>
+            <b-room>19</b-room>
+            <b-room>22</b-room>
+            <b-room>23</b-room>
+            <b-room>26</b-room>
+            <b-room>27</b-room>
+            <b-room>28</b-room>
+            <b-room>29</b-room>
+            <b-room>30</b-room>
+            <b-room>31</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>Second floor</h4>
-          <div class="floor">
-            <div class="room">32</div>
-            <div class="room">34</div>
-            <div class="room">35</div>
-            <div class="room">37</div>
-            <div class="room">39</div>
-            <div class="room">40</div>
-            <div class="room">41</div>
-            <div class="room">42</div>
-            <div class="room">43</div>
-            <div class="room">44</div>
-            <div class="room">45</div>
-          </div>
+          <b-floor>
+            <b-room>32</b-room>
+            <b-room>34</b-room>
+            <b-room>35</b-room>
+            <b-room>37</b-room>
+            <b-room>39</b-room>
+            <b-room>40</b-room>
+            <b-room>41</b-room>
+            <b-room>42</b-room>
+            <b-room>43</b-room>
+            <b-room>44</b-room>
+            <b-room>45</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>Third floor</h4>
-          <div class="floor">
-            <div class="room">47</div>
-            <div class="room">48</div>
-            <div class="room">50</div>
-            <div class="room">51</div>
-            <div class="room">52</div>
-            <div class="room">53</div>
-            <div class="room">54</div>
-            <div class="room">56</div>
-            <div class="room">58</div>
-          </div>
+          <b-floor>
+            <b-room>47</b-room>
+            <b-room>48</b-room>
+            <b-room>50</b-room>
+            <b-room>51</b-room>
+            <b-room>52</b-room>
+            <b-room>53</b-room>
+            <b-room>54</b-room>
+            <b-room>56</b-room>
+            <b-room>58</b-room>
+          </b-floor>
         </li>
       </ul>
     </s-section>
@@ -350,37 +351,32 @@
       <ul>
         <li class="floorwrapper">
           <h4>Ground floor</h4>
-          <div class="floor">
-            <div class="room">1</div>
-            <div class="room">2</div>
-          </div>
+          <b-floor>
+            <b-room>1</b-room>
+            <b-room>2</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>First floor</h4>
-          <div class="floor">
-            <div class="room">3</div>
-            <div class="room">4</div>
-            <div class="room">5</div>
-            <div class="room">6</div>
-            <div class="room">7</div>
-            <div class="room">8</div>
-            <div class="room">9</div>
-            <div class="room">10</div>
-            <div class="room">11</div>
-          </div>
+          <b-floor>
+            <b-room>3</b-room>
+            <b-room>4</b-room>
+            <b-room>5</b-room>
+            <b-room>6</b-room>
+            <b-room>7</b-room>
+            <b-room>8</b-room>
+            <b-room>10</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>Second floor</h4>
-          <div class="floor">
-            <div class="room">12</div>
-            <div class="room">13</div>
-            <div class="room">14</div>
-            <div class="room">15</div>
-            <div class="room">16</div>
-            <div class="room">17</div>
-            <div class="room">18</div>
-            <div class="room">19</div>
-          </div>
+          <b-floor>
+            <b-room>12</b-room>
+            <b-room>14</b-room>
+            <b-room>15</b-room>
+            <b-room>17</b-room>
+            <b-room>18</b-room>
+          </b-floor>
         </li>
       </ul>
     </s-section>
@@ -390,66 +386,66 @@
       <ul>
         <li class="floorwrapper">
           <h4>Ground floor</h4>
-          <div class="floor">
-            <div class="room">1</div>
-            <div class="room">2</div>
-            <div class="room">3</div>
-            <div class="room">6</div>
-            <div class="room">7</div>
-            <div class="room">8</div>
-            <div class="room">9</div>
-          </div>
+          <b-floor>
+            <b-room>1</b-room>
+            <b-room>2</b-room>
+            <b-room>3</b-room>
+            <b-room>6</b-room>
+            <b-room>7</b-room>
+            <b-room>8</b-room>
+            <b-room>9</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>First floor</h4>
-          <div class="floor">
-            <div class="room">11</div>
-            <div class="room">12</div>
-            <div class="room">13</div>
-            <div class="room">15</div>
-            <div class="room">16</div>
-            <div class="room">17</div>
-            <div class="room">18</div>
-            <div class="room">19</div>
-            <div class="room">20</div>
-            <div class="room">21</div>
-            <div class="room">22</div>
-            <div class="room">24</div>
-            <div class="room">26</div>
-          </div>
+          <b-floor>
+            <b-room>11</b-room>
+            <b-room>12</b-room>
+            <b-room>13</b-room>
+            <b-room>15</b-room>
+            <b-room>16</b-room>
+            <b-room>17</b-room>
+            <b-room>18</b-room>
+            <b-room>19</b-room>
+            <b-room>20</b-room>
+            <b-room>21</b-room>
+            <b-room>22</b-room>
+            <b-room>24</b-room>
+            <b-room>26</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>Second floor</h4>
-          <div class="floor">
-            <div class="room">28</div>
-            <div class="room">29</div>
-            <div class="room">30</div>
-            <div class="room">32</div>
-            <div class="room">33</div>
-            <div class="room">34</div>
-            <div class="room">35</div>
-            <div class="room">36</div>
-            <div class="room">37</div>
-            <div class="room">38</div>
-            <div class="room">39</div>
-            <div class="room">41</div>
-            <div class="room">43</div>
-          </div>
+          <b-floor>
+            <b-room>28</b-room>
+            <b-room>29</b-room>
+            <b-room>30</b-room>
+            <b-room>32</b-room>
+            <b-room>33</b-room>
+            <b-room>34</b-room>
+            <b-room>35</b-room>
+            <b-room>36</b-room>
+            <b-room>37</b-room>
+            <b-room>38</b-room>
+            <b-room>39</b-room>
+            <b-room>41</b-room>
+            <b-room>43</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>Third floor</h4>
-          <div class="floor">
-            <div class="room">44</div>
-            <div class="room">45</div>
-            <div class="room">46</div>
-            <div class="room">47</div>
-            <div class="room">48</div>
-            <div class="room">49</div>
-            <div class="room">50</div>
-            <div class="room">51</div>
-            <div class="room">52</div>
-            <div class="room">53</div>
-          </div>
+          <b-floor>
+            <b-room>44</b-room>
+            <b-room>45</b-room>
+            <b-room>46</b-room>
+            <b-room>47</b-room>
+            <b-room>48</b-room>
+            <b-room>49</b-room>
+            <b-room>50</b-room>
+            <b-room>51</b-room>
+            <b-room>52</b-room>
+            <b-room>53</b-room>
+          </b-floor>
         </li>
       </ul>
     </s-section>
@@ -459,15 +455,15 @@
       <ul>
         <li class="floorwrapper">
           <h4>96 Abingdon</h4>
-          <div class="floor">
-            <div class="room">1</div>
-            <div class="room">2</div>
-            <div class="room">3</div>
-            <div class="room">4</div>
-            <div class="room">5</div>
-            <div class="room">6</div>
-            <div class="room">7</div>
-          </div>
+          <b-floor>
+            <b-room>1</b-room>
+            <b-room>2</b-room>
+            <b-room>3</b-room>
+            <b-room>4</b-room>
+            <b-room>5</b-room>
+            <b-room>6</b-room>
+            <b-room>7</b-room>
+          </b-floor>
         </li>
       </ul>
     </s-section>
@@ -477,32 +473,32 @@
       <ul>
         <li class="floorwrapper">
           <h4>3 Western</h4>
-          <div class="floor">
-            <div class="room">59</div>
-            <div class="room">60</div>
-            <div class="room">61</div>
-            <div class="room">62</div>
-            <div class="room">63</div>
-          </div>
+          <b-floor>
+            <b-room>59</b-room>
+            <b-room>60</b-room>
+            <b-room>61</b-room>
+            <b-room>62</b-room>
+            <b-room>63</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>28 Western</h4>
-          <div class="floor">
-            <div class="room">1</div>
-            <div class="room">2</div>
-            <div class="room">3</div>
-          </div>
+          <b-floor>
+            <b-room>4</b-room>
+            <b-room>5</b-room>
+            <b-room>6</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>34 Western</h4>
-          <div class="floor">
-            <div class="room">1</div>
-            <div class="room">2</div>
-            <div class="room">3</div>
-            <div class="room">4</div>
-            <div class="room">5</div>
-            <div class="room">6</div>
-          </div>
+          <b-floor>
+            <b-room>1</b-room>
+            <b-room>2</b-room>
+            <b-room>3</b-room>
+            <b-room>4</b-room>
+            <b-room>5</b-room>
+            <b-room>6</b-room>
+          </b-floor>
         </li>
       </ul>
     </s-section>
@@ -512,70 +508,70 @@
       <ul>
         <li class="floorwrapper">
           <h4>57 Banbury</h4>
-          <div class="floor">
-            <div class="room">1</div>
-            <div class="room">2</div>
-            <div class="room">3</div>
-            <div class="room">4</div>
-            <div class="room">5</div>
-            <div class="room">6</div>
-            <div class="room">7</div>
-            <div class="room">8</div>
-            <div class="room">9</div>
-            <div class="room">10</div>
-          </div>
+          <b-floor>
+            <b-room>1</b-room>
+            <b-room>2</b-room>
+            <b-room>3</b-room>
+            <b-room>4</b-room>
+            <b-room>5</b-room>
+            <b-room>6</b-room>
+            <b-room>7</b-room>
+            <b-room>8</b-room>
+            <b-room>9</b-room>
+            <b-room>10</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>59 Banbury</h4>
-          <div class="floor">
-            <div class="room">1</div>
-            <div class="room">1a</div>
-            <div class="room">2</div>
-            <div class="room">2a</div>
-            <div class="room">3</div>
-            <div class="room">3a</div>
-            <div class="room">4</div>
-            <div class="room">5</div>
-            <div class="room">6</div>
-            <div class="room">7</div>
-            <div class="room">8</div>
-            <div class="room">9</div>
-            <div class="room">10</div>
-            <div class="room">11</div>
-            <div class="room">12</div>
-          </div>
+          <b-floor>
+            <b-room>1</b-room>
+            <b-room>1a</b-room>
+            <b-room>2</b-room>
+            <b-room>2a</b-room>
+            <b-room>3</b-room>
+            <b-room>3a</b-room>
+            <b-room>4</b-room>
+            <b-room>5</b-room>
+            <b-room>6</b-room>
+            <b-room>7</b-room>
+            <b-room>8</b-room>
+            <b-room>9</b-room>
+            <b-room>10</b-room>
+            <b-room>11</b-room>
+            <b-room>12</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>189 Banbury</h4>
-          <div class="floor">
-            <div class="room">1</div>
-            <div class="room">2</div>
-            <div class="room">3</div>
-            <div class="room">4</div>
-            <div class="room">5</div>
-            <div class="room">6</div>
-            <div class="room">7</div>
-            <div class="room">8</div>
-            <div class="room">9</div>
-            <div class="room">10</div>
-            <div class="room">11</div>
-            <div class="room">12</div>
-            <div class="room">13</div>
-            <div class="room">14</div>
-            <div class="room">15</div>
-            <div class="room">16</div>
-          </div>
+          <b-floor>
+            <b-room>1</b-room>
+            <b-room>2</b-room>
+            <b-room>3</b-room>
+            <b-room>4</b-room>
+            <b-room>5</b-room>
+            <b-room>6</b-room>
+            <b-room>7</b-room>
+            <b-room>8</b-room>
+            <b-room>9</b-room>
+            <b-room>10</b-room>
+            <b-room>11</b-room>
+            <b-room>12</b-room>
+            <b-room>13</b-room>
+            <b-room>14</b-room>
+            <b-room>15</b-room>
+            <b-room>16</b-room>
+          </b-floor>
         </li>
         <li class="floorwrapper">
           <h4>214b Banbury</h4>
-          <div class="floor">
-            <div class="room">1</div>
-            <div class="room">2</div>
-            <div class="room">3</div>
-            <div class="room">4</div>
-            <div class="room">5</div>
-            <div class="room">6</div>
-          </div>
+          <b-floor>
+            <b-room>1</b-room>
+            <b-room>2</b-room>
+            <b-room>3</b-room>
+            <b-room>4</b-room>
+            <b-room>5</b-room>
+            <b-room>6</b-room>
+          </b-floor>
         </li>
       </ul>
     </s-section>
@@ -585,22 +581,22 @@
       <ul>
         <li class="floorwrapper">
           <h4>29 Leckford</h4>
-          <div class="floor">
-            <div class="room">1</div>
-            <div class="room">2</div>
-            <div class="room">3</div>
-            <div class="room">4</div>
-            <div class="room">5</div>
-            <div class="room">6</div>
-            <div class="room">7</div>
-            <div class="room">8</div>
-            <div class="room">9</div>
-            <div class="room">10</div>
-            <div class="room">11</div>
-            <div class="room">12</div>
-            <div class="room">13</div>
-            <div class="room">14</div>
-          </div>
+          <b-floor>
+            <b-room>1</b-room>
+            <b-room>2</b-room>
+            <b-room>3</b-room>
+            <b-room>4</b-room>
+            <b-room>5</b-room>
+            <b-room>6</b-room>
+            <b-room>7</b-room>
+            <b-room>8</b-room>
+            <b-room>9</b-room>
+            <b-room>10</b-room>
+            <b-room>11</b-room>
+            <b-room>12</b-room>
+            <b-room>13</b-room>
+            <b-room>14</b-room>
+          </b-floor>
         </li>
       </ul>
     </s-section>
