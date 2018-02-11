@@ -17,7 +17,7 @@
   <meta name="theme-color" content="#ffffff">
   <title>Live ballot</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
   <!-- Using students.css for the card layout -->
   <link rel="stylesheet" href="/css/students.css">
   <link rel="stylesheet" href="/css/ballot.css">
@@ -34,6 +34,107 @@
     firebase.initializeApp(config);
 
     function ready() {
+
+      const roombuts = document.getElementsByTagName("b-room");
+      for (let x = 0; x < roombuts.length; x++) {
+        const room = roombuts[x];
+        room.addEventListener("click", () => {
+
+          let isTaken = false;
+          if (room.className === "takenroom") {
+            isTaken = true;
+          } else if (room.className !== "freeroom") {
+            alert("Can't see the room in the database – call IT lol");
+            return;
+          }
+          const newState = !isTaken;
+
+          const number = room.innerHTML;
+          const floor = room.parentElement.parentElement.getElementsByTagName("h4")[0].innerHTML;
+          const building = room.parentElement.parentElement.parentElement.parentElement.getElementsByTagName("h3")[0].innerHTML;
+
+          let roomloc;
+
+          try {
+            switch (building) {
+              case "Old Buildings":
+                roomloc = "ballot/OB/"+floor+"/"+number;
+                break;
+              case "New Buildings":
+                roomloc = "ballot/NB/"+floor+"/"+number;
+                break;
+              case "Old Ab":
+              case "New Ab":
+                roomloc = "ballot/AB/"+number;
+                break;
+              case "Graduate Centre":
+                roomloc = "ballot/GC/"+number;
+                break;
+              case "Mary Warnock":
+                roomloc = "ballot/WARNOCK/MW/"+number;
+                break;
+              case "Geoffrey Warnock":
+                roomloc = "ballot/WARNOCK/GW/"+number;
+                break;
+              case "Abingdon Road":
+                roomloc = "ballot/ABINGDON/"+number;
+                break;
+              case "Western Road":
+                switch (floor) {
+                  case "3 Western":
+                    roomloc = "ballot/AB/"+number;
+                    break;
+                  case "28 Western":
+                    roomloc = "ballot/WESTERN/28W/"+number;
+                    break;
+                  case "34 Western":
+                    roomloc = "ballot/WESTERN/34W/"+number;
+                    break;
+                }
+                break;
+              case "Banbury Road":
+                switch (floor) {
+                  case "57 Banbury":
+                    roomloc = "ballot/BANBURY/57B/"+number;
+                    break;
+                  case "59 Banbury":
+                    roomloc = "ballot/BANBURY/59B/"+number;
+                    break;
+                  case "189 Banbury":
+                    roomloc = "ballot/BANBURY/189B/"+number;
+                    break;
+                  case "214b Banbury":
+                    roomloc = "ballot/BANBURY/214B/"+number;
+                }
+                break;
+              case "Leckford Road":
+                roomloc = "ballot/LECKFORD/"+number;
+            }
+
+
+
+          } catch (e) {
+            alert("fuck me it's all gone wrong");
+          }
+
+          const pass = document.getElementById("pass").value;
+          
+          firebase.auth().signInWithEmailAndPassword("ballotpass@michaelagius.uk", pass).catch(function(error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            alert(errorMessage);
+          }).then(function() {
+            firebase.database().ref(roomloc).set(newState).then(function() {
+              firebase.auth().signOut().then(refresh, function(error) {
+                alert(error.message);
+              });
+            });
+          });
+
+
+        });
+      }
+
       const allEles = document.getElementsByClassName("floorwrapper");
       for (let x = 0; x < allEles.length; x++) {
         const divv = allEles[x];
@@ -90,7 +191,7 @@
                 roombool = rooms["ABINGDON"][number];
                 break;
               case "Western Road":
-                switch(floor) {
+                switch (floor) {
                   case "3 Western":
                     roombool = rooms["AB"][number];
                     break;
@@ -120,9 +221,9 @@
               case "Leckford Road":
                 roombool = rooms["LECKFORD"][number];
             }
-            
+
             room.className = roombool ? "takenroom" : "freeroom";
-            
+
           } catch (e) {
             // don't assign a new class
           }
@@ -144,11 +245,10 @@
         }
       }
     }
-
   </script>
 </head>
 
-<body onload="ready()">
+<body id="localballot" onload="ready()">
   <header>
     <nav>
       <ul>
@@ -165,6 +265,7 @@
       </ul>
     </nav>
     <h1>Ballot Status</h1>
+    <input id="pass" autocomplete="off" type="password" name="name" placeholder="password" required>
   </header>
   <main>
 
@@ -575,7 +676,9 @@
     </s-section>
 
     <s-section class="card" id="leckfordgold">
-      <marquee><h3>Leckford Road</h3></marquee>
+      <marquee>
+        <h3>Leckford Road</h3>
+      </marquee>
       <ul>
         <li class="floorwrapper">
           <h4>29 Leckford</h4>
