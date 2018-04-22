@@ -49,9 +49,9 @@
             try {
               const successful = document.execCommand('copy');
               if (successful) alert("Menu updated successfully, and copied to the clipboard.\n(paste it with ctrl+v)");
-              else alert("error");
+              else alert("error – copy command not supported");
             } catch (err) {
-              console.log(err.message);
+              alert(err.message);
             }
           }, function(error) {
             alert(error.message);
