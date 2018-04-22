@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="/css/locals.css">
   <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
   <script>
-    var config = {
+    const config = {
       apiKey: "AIzaSyBgT_WotHdQwc4YX8IcC2tYPJ2BxPifS2Y",
       authDomain: "hertfordjcr-bf40e.firebaseapp.com",
       databaseURL: "https://hertfordjcr-bf40e.firebaseio.com",
@@ -27,23 +27,33 @@
 
     function processForm(e) {
       if (e.preventDefault) e.preventDefault();
-      var pass = document.getElementById("pass").value;
-      var content = document.getElementById("contentmenu").value;
-      firebase.auth().signInWithEmailAndPassword("pass@michaelagius.uk", pass).catch(function (error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+      const pass = document.getElementById("pass").value;
+      const contentdiv = document.getElementById("contentmenu");
+      const content = contentdiv.value;
+      firebase.auth().signInWithEmailAndPassword("pass@michaelagius.uk", pass).catch(function(error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
         alert(errorMessage);
-      }).then(function () {
+      }).then(function() {
         firebase.database().ref('warny').set({
           content: content,
           date: new Date().getDate()
-        }).then(function () {
-          firebase.auth().signOut().then(function () {
-            var r = confirm("Menu updated successfully.\nWould you like to send the menu out by email now?");
-            if(r){
-              window.location.href = "mailto:fandh@michaelagius.uk?subject=Today's%20Warnock&body=" + content.replace(/[\n\r]/g, "%0A");
+        }).then(function() {
+          firebase.auth().signOut().then(function() {
+            //const r = confirm("Menu updated successfully.\nWould you like to send the menu out by email now?");
+            //if(r){
+            //  window.location.href = "mailto:fandh@michaelagius.uk?subject=Today's%20Warnock&body=" + content.replace(/[\n\r]/g, "%0A");
+            //}
+            contentdiv.focus();
+            contentdiv.select();
+            try {
+              const successful = document.execCommand('copy');
+              if (successful) alert("Menu updated successfully, and copied to the clipboard.\n(paste it with ctrl+v)");
+              else alert("error");
+            } catch (err) {
+              console.log(err.message);
             }
-          }, function (error) {
+          }, function(error) {
             alert(error.message);
           });
         });
@@ -53,7 +63,7 @@
     }
 
     function ready() {
-      var form = document.getElementById('menuform');
+      const form = document.getElementById('menuform');
       if (form.attachEvent) form.attachEvent("submit", processForm);
       else form.addEventListener("submit", processForm);
     }
@@ -61,7 +71,9 @@
 </head>
 
 <body onload="ready()">
-  <header><h1>Warnock Menu Input</h1></header>
+  <header>
+    <h1>Warnock Menu Input</h1>
+  </header>
   <div class="spacer"></div>
   <main class="card">
     <form id="menuform" class="menuform" method="POST" autocomplete="off">
