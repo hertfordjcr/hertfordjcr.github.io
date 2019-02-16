@@ -16,6 +16,15 @@ main {
 
 s-section {
   max-width: 10000px;
+  box-shadow: none !important;
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+s-section h3 {
+  font-weight: 400 !important;
+  font-size: 1.2em !important;
 }
 
 s-section ul {
@@ -29,29 +38,37 @@ s-section h4 {
   padding: 3px 0;
 }
 
+s-section h4::after {
+  content: ' ⌄';
+}
+
 b-floor {
-  padding: 10px 0 15px 20px;
+  padding: 5px 0 5px 20px;
   display: none;
 }
 
 b-room {
   margin: 2px 0;
-  padding: 8px;
+  padding: 6px;
   text-align: center;
   border-radius: 3px;
-  border: 1px solid rgba(0,0,0,0.2);
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   width: 35px;
   display: inline-block;
+  font-family: monospace;
+  font-size: 1.1em;
 }
 
 .freeroom {
   background-color: rgba(80, 180, 50, 0.8);
+  border-bottom: 1px solid rgba(0,0,0,0.3);
 }
 
 .takenroom {
-  background-color: rgba(130, 0, 0, 0.7);
+  color: rgba(130, 0, 0, 0.6);
+  background: rgba(30,30,0,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 #leckfordgold {
